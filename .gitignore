@@ -1,0 +1,18 @@
+# build artifacts
+*.exe
+*.obj
+*.o
+*.out
+
+# generated data / audio outputs（HW3/HW4 的 input.wav 測試音檔發布時另加白名單）
+output*.wav
+*.csv
+*.log
+
+# python / jupyter
+__pycache__/
+.ipynb_checkpoints/
+
+# editor/OS
+.DS_Store
+Thumbs.db
