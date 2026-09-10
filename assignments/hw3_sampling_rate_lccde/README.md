@@ -1,7 +1,7 @@
 # DSP Assignment-3: Changing the Sampling Rate with a Low-Pass Filter Implemented by LCCDE
 
 參考：2023 版投影片 DSP-Assignment-4(20231224).pdf（當年編為 HW4，去年改編為 HW3 preview version）
-（今年公布第 11 週 11/16，截止 12/10）
+（今年公布第 11 週 11/19，截止 12/10）
 
 ## 學習目標
 - 理解升取樣（up-sampling）與降取樣（down-sampling）
