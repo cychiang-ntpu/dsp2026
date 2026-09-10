@@ -40,7 +40,9 @@
 ## 2. 由 DSP 晶片供應商來看
 
 ### 德州儀器（Texas Instruments, TI；TXN-US）
-- [Digital signal processors (DSPs) – Applications](https://www.ti.com/microcontrollers-mcus-processors/processors/digital-signal-processors/applications.html)
+- [Digital signal processors (DSPs) – Overview](https://www.ti.com/product-category/microcontrollers-processors/microprocessors-dsp/overview.html)：TI DSP 產品線與應用領域（音訊、雷達、汽車 ADAS、Edge AI、航太國防）
+- [Audio & radar DSP SoCs](https://www.ti.com/product-category/microcontrollers-processors/microprocessors-dsp/audio-radar-dsp-socs/overview.html)
+- 白皮書：[Demystifying digital signal processing (DSP) programming](https://www.ti.com/lit/pdf/spry281)（TI, SPRY281）
 - 補充：[處理器的種類：CPU、GPU、MCU、DSP、MPU 各是什麼？](https://www.stockfeel.com.tw/%E8%99%95%E7%90%86%E5%99%A8-cpu-gpu-mcu-dsp-mpu/)
 
 ### 亞德諾（Analog Devices, ADI；ADI-US）
@@ -983,11 +985,19 @@ F --類比訊號--> G[喇叭 / 耳機（Speaker / Headphone）]
 ### 1.2 電訊號數位化表示（類比轉數位/ADC）
 這個步驟就是所謂類比轉數位的過程，也就是 Anolog to Digital Conversion ，其中 digital 這個詞是來自於 digit 這個詞，來源自拉丁文 digitus，代表手指的意思，手指是可以用來數「數字」的，和數位化表示有很有趣的關係，尤其是可數的有限數量以「整數表示」這件事。電子元件裡面就是一個所寫稱為 ADC 的零件，是 Analog-to-Digital Converter （ADC) 的縮寫，就是進行類比訊號轉為數位訊號的工作。
 
+<img src="https://upload.wikimedia.org/wikipedia/commons/f/f0/ADC_Symbol.svg" width="300" alt="ADC symbol">
+
+圖：ADC 的電路符號（[Wikimedia Commons: ADC Symbol.svg](https://commons.wikimedia.org/wiki/File:ADC_Symbol.svg)，Public Domain）
+
 
 為甚麼要數位化？原因是麥克風輸出的電流以波形記錄下來，是以連續時間點（或是無限時間點）紀錄下不同時間點的電流或電壓數值，所以除了時間點是無限多個點以外，連每一個無限時間點上的電流/電壓值都是無限多的連續數值，但由於計算機系統只能儲存有限數量的資料，簡單來講電腦的儲存空間有限，比如你的電腦硬碟是 512G，RAM是 8G，你的隨身碟是 32G 的容量。所以我們必須將電流(波形)以離散可數的時間點以及離散可數的數值記錄下來，所以會進行以下的動作：
 
 1. 信號放大以及濾波：
 因為麥克風的振膜 (diagphram) 和線圈或電容感應出的電流波形數值可能很小，會造成後續處理不方便，所以要先使用電路放大器，將微小的電流放大成後續電路可以處理的數值範圍、或是將不處理的信號頻率濾除，比如較為高頻率且人耳聽不見的訊號。
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/f/fd/Amplifier_Circuit_Small.svg" width="300" alt="Amplifier circuit">
+
+圖：放大器電路示意（[Wikimedia Commons: Amplifier Circuit Small.svg](https://commons.wikimedia.org/wiki/File:Amplifier_Circuit_Small.svg)，Public Domain）
 
 2. 取樣：在時間軸上取樣成離散取樣點。
 使用電路以固定的週期來對連續的波形取值，也就是連續轉離散訊號的過程，簡單來看就是 $x[n]=x(nT_s)=x(\frac{n}{f_s})$，其中 $x(t)$ 這個以小括號表示的訊號 $x$ 為一個時間 $t$ 的函數記錄下來，$t$ 是連續的實數值，有無限個可能的值，而 $T_s$ 就代表取樣週期，$f_s=1/T_s$ 就是所謂的取樣頻率 (sampling frequency)，$n$ 是一個整數，可以被限定總數，也就是可數（countable)，比如如果有一個 1 秒鐘的語音訊號，所以 $0 \le t \le 1$，若取樣率 $f_s=16000$ Hz，則 1 秒鐘內就有 16000 個取樣點，也就是說 $x[n]$ 這個以中括號表示的函數，我們就稱為第 $n$ 個取樣點的取樣值 (sample value)，將數值定義在 $n=0,1,2,...15999$ 的這些離散索引上，對應到原本物理世界的訊號就是 $x[n]=x(\frac{n}{f_s})$ for $n=0,1,2,...,15999$ 。取樣率 $f_s$ 越高，則可以描述的語音訊號頻寬就越寬，可以更精細地描述波型，根據取樣定理，被取樣後的離散信號可以表示最高頻率為 $f_s/2$ 的訊號。
