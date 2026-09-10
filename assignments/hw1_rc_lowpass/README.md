@@ -16,7 +16,7 @@
 
 ## 背景
 連續時間的相子分析與 RC 低通轉換函數推導，見
-[課堂講義第二部分](../../docs/lectures/dsp2026_lecture_notes.md#第二部分day-2from-continuous-to-discrete)。
+[課堂講義第二部分](../../docs/lectures/dsp2026_lecture_notes.md#第二部分day-2-from-continuous-to-discrete)。
 
 RC 電路，輸入 x(t)、輸出 y(t)，由 KVL 得
 
@@ -43,7 +43,7 @@ RC 電路，輸入 x(t)、輸出 y(t)，由 KVL 得
 | B1 | x(t) = e^{jΩt}，求 y(t)（轉換函數 H(Ω) 的振幅與相位） |
 | B2 | x(t) = e^{jΩt} u(t)，求 y(t)（暫態與穩態） |
 | B3–B4 | 數值分析：R = 1000 Ω，C = 1/(2π·400·1000) F；頻率 100 Hz、400 Hz、3000 Hz |
-| B5–B6 | 離散時間分析：取樣率 4000 Hz、8000 Hz、16000 Hz，推導式 (8) 並比較與連續時間結果的差異 |
+| B5–B6 | 離散時間分析：以式 (8) 在取樣率 4000 Hz、8000 Hz、16000 Hz 下分析，並與 B3–B4 的連續時間結果比較 |
 | B7 | C 程式實作式 (8)，以 B4 結果驗證 |
 
 A1–A3、B1–B6 手寫推導（掃描 + LaTeX 轉錄），B7 程式實作。
@@ -62,7 +62,7 @@ A1–A3、B1–B6 手寫推導（掃描 + LaTeX 轉錄），B7 程式實作。
        ./RC_filtering.exe in_fn out_fn
 
 ## 繳交
-- 私人 GitHub repo，邀請 cychiang@mail.ntpu.edu.tw，於 LMS 登錄連結
+- 個人 repo 的 `hw1/` 資料夾（私人 repo，邀請 cychiang@mail.ntpu.edu.tw），於 LMS 登錄 repo URL＋完整 commit SHA
 - 單一 README.md：手寫解答掃描 + LaTeX、C 程式說明、濾波前後波形比較（振幅/相位分析）
 - 兩個 C 原始檔、figure 資料夾（推導與分析圖）
 - 繪圖可用 Python（librosa、matplotlib）

@@ -2,13 +2,14 @@
 
 | 作業 | 主題 | 公布 | 截止 |
 |---|---|---|---|
-| [hw1_rc_lowpass](hw1_rc_lowpass/) | Generating Sine Waves + 相子暖身 + Simulation of RC Low-Pass Filter by DSP | 9/24 | 10/8 |
-| [hw2_transform_analysis](hw2_transform_analysis/) | Transform Analysis + Filtering: Steady/Transient States, Linear/Minimum Phase | 10/22 | 11/12 |
-| [hw3_sampling_rate_lccde](hw3_sampling_rate_lccde/) | Changing the Sampling Rate with a Low-Pass Filter Implemented by LCCDE | 11/19 | 12/10 |
-| [hw4_sampling_rate_fft](hw4_sampling_rate_fft/) | Changing Sampling Rate with FFT Filters | 11/26 | 12/17 |
+| [hw1_rc_lowpass](hw1_rc_lowpass/) | Generating Sine Waves + 相子暖身 + Simulation of RC Low-Pass Filter by DSP | 9/24 | 10/8 18:00 |
+| [hw2_transform_analysis](hw2_transform_analysis/) | Transform Analysis + Filtering: Steady/Transient States, Linear/Minimum Phase | 10/22 | 11/12 18:00 |
+| [hw3_sampling_rate_lccde](hw3_sampling_rate_lccde/) | Changing the Sampling Rate with a Low-Pass Filter Implemented by LCCDE | 11/19 | 12/10 18:00 |
+| [hw4_sampling_rate_fft](hw4_sampling_rate_fft/) | Changing Sampling Rate with FFT Filters | 11/26 | 12/17 18:00 |
 
 共同繳交方式：私人 GitHub repo，邀請 cychiang@mail.ntpu.edu.tw 為 collaborator，
-於 LMS 只繳交 repo 連結。每份作業一個資料夾（`hw1/`…`hw4/`），內含 README.md 報告、原始碼與 `figure/`。
+於 LMS 登錄 repo URL＋完整 commit SHA（不接受可移動的 tag 或 ZIP）。
+四份作業共用同一個個人 repo，每份作業一個資料夾（`hw1/`…`hw4/`），內含 README.md 報告、原始碼與 `figure/`。
 
 ## Team Project（20%）
 

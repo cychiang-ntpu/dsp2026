@@ -19,8 +19,8 @@
 
 | 週 | 週四日期 | 課綱主題（O&S 章節） | 本 repo 對應內容 | 作業 |
 |---|---|---|---|---|
-| 1 | 9/10 | Introduction to DSP；Discrete-time signals and systems I（Ch. 1–2） | [課程介紹](lectures/dsp2026_lecture_notes.md#第一部分day-1introduction-to-dsp)；開發環境與 Git | |
-| 2 | 9/17 | Discrete-time signals and systems II（Ch. 2） | [從連續到離散](lectures/dsp2026_lecture_notes.md#第二部分day-2from-continuous-to-discrete)：相子、阻抗、RC 低通轉換函數；LTI、卷積、LCCDE；WAV 讀寫 | |
+| 1 | 9/10 | Introduction to DSP；Discrete-time signals and systems I（Ch. 1–2） | [課程介紹](lectures/dsp2026_lecture_notes.md#第一部分day-1-introduction-to-dsp)；開發環境與 Git | |
+| 2 | 9/17 | Discrete-time signals and systems II（Ch. 2） | [從連續到離散](lectures/dsp2026_lecture_notes.md#第二部分day-2-from-continuous-to-discrete)：相子、阻抗、RC 低通轉換函數；LTI、卷積、LCCDE；WAV 讀寫 | |
 | 3 | 9/24 | Z-transform I（Ch. 3） | RC 電路離散化；補充：[語音信號的表示](lectures/dsp2026_lecture_notes.md#第三部分語音信號的表示補充教材) | **HW1 公布** |
 | 4 | 10/1 | Z-transform II（Ch. 3） | ROC、系統函數 | |
 | 5 | 10/8 | Sampling of Continuous-Time Signals I（Ch. 4） | 取樣定理、混疊、重建 | **HW1 截止 10/8** |
@@ -33,8 +33,8 @@
 | 12 | 11/26 | Filter Design Techniques I（Ch. 7） | FIR 視窗法：Hamming / Hanning / Kaiser（Ch. 7.5） | **HW4 公布** |
 | 13 | 12/3 | Filter Design Techniques II（Ch. 7） | 視窗法設計範例；HW3 實作細節 | Team Project 進度檢查 |
 | 14 | 12/10 | Discrete Fourier Transform I（Ch. 8） | DFT、圓周卷積、視窗效應 | **HW3 截止 12/10** |
-| 15 | 12/17 | Discrete Fourier Transform II（Ch. 8） | Team Project 評測（報告＋展示＋口試）；上機模擬與補強；AOL 問卷 | **HW4 截止 12/17**；Team 繳交 12/15 18:00 |
-| 16 | 12/24 | Computation of the DFT I（Ch. 9） | **個人期末上機考**（三節課內，140 分鐘） | |
+| 15 | 12/17 | Discrete Fourier Transform II（Ch. 8）；Computation of the DFT（Ch. 9，併講） | FFT 演算法；Team Project 評測（報告＋展示＋口試）；上機模擬與補強；AOL 問卷（不計分） | **HW4 截止 12/17**；Team 繳交 12/15 18:00 |
+| 16 | 12/24 | 期末上機考（課綱 Ch. 9 已於第 15 週併講） | **個人期末上機考**（全堂，140 分鐘） | |
 
 ## 本課程行事曆（依 115-1 校曆）
 
@@ -43,7 +43,7 @@
 
 | 週 | 週四 | 校曆事項（影響本課程者） |
 |---|---|---|
-| — | 9/7（一） | 開始上課；9/7–9/14 加退選；9/15–9/21 人工加簽；9/19–9/21 線上確認選課 |
+| — | 9/7（一） | 全校開始上課（本課第一次上課為 9/10）；9/7–9/14 加退選；9/15–9/21 人工加簽；9/19–9/21 線上確認選課 |
 | 1 | 9/10 | 第一次上課 |
 | 3 | 9/24 | 地震避難掩護正式演練（當日）；9/25（五）中秋節、9/28（一）教師節放假，不影響週四 |
 | 6 | 10/15 | 10/17 上課達三分之一 |
@@ -68,19 +68,19 @@
 | 9/10 | 第 1 週：建置個人 GitHub repo，邀請 cychiang@mail.ntpu.edu.tw |
 | 9/24 | HW1 公布 |
 | 10/8 18:00 | HW1 截止 |
+| 10/15 | Team Project 分組登記 |
 | 10/22 | HW2 公布 |
 | 11/5 | 紙筆期中考（第一節，50 分鐘） |
 | 11/12 18:00 | HW2 截止 |
-| 11/19 | HW3 公布（含 input.wav 測試音檔） |
-| 11/26 | HW4 公布 |
-| 12/10 18:00 | HW3 截止 |
-| 10/15 | Team Project 分組登記 |
 | 11/12 | Team Project 開題（一頁企劃） |
+| 11/19 | HW3 公布（同日發布 input.wav 測試音檔） |
+| 11/26 | HW4 公布 |
 | 12/3 | Team Project 進度檢查 |
+| 12/10 18:00 | HW3 截止 |
 | 12/15 18:00 | Team Project 繳交截止（repo URL＋SHA） |
 | 12/17 18:00 | HW4 截止 |
-| 12/17 | Team Project 評測；上機模擬與補強；AOL 問卷（課堂填寫） |
-| 12/24 | 個人期末上機考（三節課內，140 分鐘） |
+| 12/17 | Team Project 評測；上機模擬與補強；AOL 問卷（課堂填寫，不計分） |
+| 12/24 | 個人期末上機考（全堂，140 分鐘） |
 
 ## 作業一覽（規格見 [assignments/](../assignments/)）
 
@@ -95,7 +95,7 @@
 
 - repo 可存取、本人 commit 紀錄完整，登錄的 SHA 可建置：1 分
 - 程式可編譯執行、輸出符合規格（WAV 可播放）：4 分
-- README 報告：推導/原理說明、圖表、結果分析：4 分
+- 報告（README，HW2 為 notebook 內 Markdown）：推導/原理說明、圖表、結果分析：4 分
 - 程式碼品質與註解：1 分
 - 遲交每日扣 10%，最多 3 日。繳交登錄 repo URL＋完整 commit SHA，不接受可移動的 tag 或 ZIP。
 

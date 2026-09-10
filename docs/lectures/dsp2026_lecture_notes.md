@@ -6,8 +6,8 @@
 
 | 部分 | 週 | 內容 | 原始來源 |
 |---|---|---|---|
-| [第一部分](#第一部分day-1introduction-to-dsp) | 1 | 課程介紹：DSP 應用、歷史、教科書、評分 | [2021](https://hackmd.io/DuawpzgGTAm1pr1ewb6NSA)、[2022](https://hackmd.io/kdVyXcDLQ9yV7OxeIiVlEg) |
-| [第二部分](#第二部分day-2from-continuous-to-discrete) | 2 | 從連續到離散：複數與相子、R/L/C 相位關係、阻抗、RC 低通濾波器、以離散模擬連續 | [2021/2024](https://hackmd.io/PkyN4-shQRujFfkdpUT8dg)，源自[「交流電、電阻、電抗、阻抗」](https://hackmd.io/@cychiang-ntpu/Hk3nWkcKd) |
+| [第一部分](#第一部分day-1-introduction-to-dsp) | 1 | 課程介紹：DSP 應用、歷史、教科書、評分 | [2021](https://hackmd.io/DuawpzgGTAm1pr1ewb6NSA)、[2022](https://hackmd.io/kdVyXcDLQ9yV7OxeIiVlEg) |
+| [第二部分](#第二部分day-2-from-continuous-to-discrete) | 2 | 從連續到離散：複數與相子、R/L/C 相位關係、阻抗、RC 低通濾波器、以離散模擬連續 | [2021/2024](https://hackmd.io/PkyN4-shQRujFfkdpUT8dg)，源自[「交流電、電阻、電抗、阻抗」](https://hackmd.io/@cychiang-ntpu/Hk3nWkcKd) |
 | [第三部分](#第三部分語音信號的表示補充教材) | 3 | 語音信號的表示：麥克風、ADC、傅立葉轉換、窗函數、spectrogram | [HackMD](https://hackmd.io/l9hfP04-Sgm76bunMz05JQ)（編修中） |
 
 歷年作業「Filtering: Steady and Transient States」（2024）另置於
@@ -101,7 +101,7 @@
   牛頓使用有限差分法（finite-difference methods），即本課程離散時間系統的特例。
 
   ![](https://i.imgur.com/vIWH1zu.png)
-- **18 世紀**：高斯（Carl Friedrich Gauss）發現快速傅立葉轉換（FFT）的基本原理。
+- **19 世紀初（1805）**：高斯（Carl Friedrich Gauss）已發現快速傅立葉轉換（FFT）的基本原理。
 - **1950 年代**：訊號處理主要以類比系統完成；數位電腦已進入企業與實驗室，但速度慢、昂貴、體積大。
 - **1950 年代**：數位電腦首次用於 DSP 是在地球物理探勘；受限於取樣頻率，只能把低頻地震訊號錄在磁帶上，
   幾秒的資料要花數分鐘到數小時處理。
@@ -123,8 +123,8 @@
 
 ## 5. 教科書
 
-Oppenheim, A. V., & Schafer, R. W. (2010). *Discrete-Time Signal Processing* (3rd ed.). Pearson.
-ISBN-13: 978-0132067096
+Oppenheim, A. V., & Schafer, R. W. (2009). *Discrete-Time Signal Processing* (3rd ed.). Pearson.
+ISBN-13: 978-0131988422（課綱指定用書）
 
 ![](https://i.imgur.com/36DVd5o.png)
 
@@ -146,7 +146,7 @@ ISBN-13: 978-0132067096
 12. Discrete Hilbert Transforms
 13. Cepstrum Analysis and Homomorphic Deconvolution
 
-本學期實際進度以 Ch. 2–5、7–9 為主，詳見 [course_plan.md](../course_plan.md)。
+本學期實際進度為 Ch. 1–9（Ch. 6 僅簡介結構與運算量），詳見 [course_plan.md](../course_plan.md)。
 
 ---
 
@@ -186,12 +186,12 @@ Linear/Minimum Phase Systems、Changing Sampling Rates、FFT Filters。
 ## 9. 複習 RC 低通濾波器 → 見第二部分
 
 DSP 需要「訊號與系統」的基礎，而其基礎在於交流電、電阻、電抗、阻抗的觀念。
-相關內容已併入本講義[第二部分](#第二部分day-2from-continuous-to-discrete)第 1 節，這也是 HW1 的背景知識。
+相關內容已併入本講義[第二部分](#第二部分day-2-from-continuous-to-discrete)第 1 節，這也是 HW1 的背景知識。
 
 ## 10. 回到 1950 年代：用 DSP 來模擬類比電路 → 見第二部分第 3 節
 
 思考：如何用程式語言模擬 RC 電路，對任何輸入 x(t) 求出 y(t)？
-推導見[第二部分](#第二部分day-2from-continuous-to-discrete)第 3 節，即 [HW1](../../assignments/hw1_rc_lowpass/) 的出發點。
+推導見[第二部分](#第二部分day-2-from-continuous-to-discrete)第 3 節，即 [HW1](../../assignments/hw1_rc_lowpass/) 的出發點。
 
 ---
 
@@ -199,7 +199,7 @@ DSP 需要「訊號與系統」的基礎，而其基礎在於交流電、電阻�
 
 - 日期：2026/9/17（第 2 週，週四）
 - 與本學期作業的關係：第 1 節（相子、阻抗、RC 低通濾波器的轉換函數）與第 3 節（以離散訊號模擬 RC 電路）
-  是 [HW1](../../assignments/hw1_rc_lowpass/) 題 1–4 的背景知識；第 2 節土製 RLC 濾波器實驗為補充閱讀，本學期不列入作業。
+  是 [HW1](../../assignments/hw1_rc_lowpass/) Part A 與 Part B 的背景知識；第 2 節土製 RLC 濾波器實驗為補充閱讀，本學期不列入作業。
 
 ## 1. Very Fundamentals of Continuous Signals and Systems
 ### 引言一
@@ -399,15 +399,11 @@ $$Y(t)=3 sin(w t+\frac{2}{3}\pi)$$
 ##### Problem 2
 請用 phasor 計算 $Z(t)=X(t)+Y(t)$。將手寫結果掃瞄或照相。
 
-Solutions:
+##### Problem 3
+使用 [GeoGebra](https://www.geogebra.org/) 繪製 $X(t)$、$Y(t)$、以及 $Z(t)$，在 README 附上圖與連結。
 
-![](https://i.imgur.com/9VhDJp8.png)
-
-
-
-##### Problem 3 
-使用 [GeoGebra](https://www.geogebra.org/) 繪製 $X(t)$、$Y(t)$、以及 $Z(t)$，將你繪製好的 GeoGebra 圖形連結製作成 QR Code，放在繳交作業的 pdf 檔裡。
-> GeoGebra 互動圖：https://www.geogebra.org/calculator/qyqwwk8s
+> 以上三題即本學期 [HW1 Part A](../../assignments/hw1_rc_lowpass/)（A1–A3），請於 HW1 的 README 繳交；
+> 解答於 HW1 批改後公布。上面 Example 1、Example 2 為同類型的示範題，可先自行練習。
 
 
 
@@ -1143,7 +1139,7 @@ $$20\log_{10}A[k]$$
 為了能夠對應會實際上取樣前的信號頻率，橫軸上 $k$ 其實大概就是對應到以 $\frac{k}{N} f_s$Hz 為中心附近的成分，大致就是描述 $\frac{k-0.5}{N} f_s$Hz 至 $\frac{k+0.5}{N} f_s$Hz 這個頻帶的頻率成分之振幅，因此 $\frac{f_s}{N}=\frac{k+0.5}{N} f_s - \frac{k-0.5}{N} f_s$Hz 就成為「分析頻寬」。因此，如圖分析的變數 $N$ 越多，則頻譜顯示的頻率解析度就越高（越細緻），增加 $N$ 的方法，如果是在取樣頻率不變的情況下，就是增加被分析語音的時間長度（單位是秒），如果是固定被分析語音的時間長度情況下，就要增加取樣頻率 $f_s$。在同一個取樣頻率下，當 $N$ 比較大的時候，稱為窄頻分析，可以比較能夠觀察到有關聲帶振動的 harmonics，而 $N$ 比較小的時候，稱為寬頻分析，可以比較容易觀察到口腔形狀相關的共振腔資訊。
 
 
-> 窄頻分析 (narrow-band spectrum)：一個語音內容是「中秋」、取樣率為16kHz、位元深度為16bits 的語音檔案，由0.5秒開始截取0.032秒的音段進行頻譜分析，因為是0.032秒的音段，也就是0.5到0.532秒大概是/e/這個發音的音段，總共會有 N=0.032*16000=512 點的信號進行頻譜分析，頻率解析度是 16000/512=31.25Hz，所以在圖中的點就是每隔32.5Hz就打一點 $20\log_{10}A[k]$，在圖中的橫軸已經使用 Hz 為單位表示，其中 $k=0$ 就對應到 0Hz，$k=256$ 就對應到 8000Hz，更一般來講 $k$ 就對應到 $k/512\times 16000$ Hz 的中心頻率。由於頻率解析度還算細緻，所以在圖中的 spectrum 看起來是很像是細緻鋸齒的連線。由於這一段語音是voiced vowel，聲帶有振動，在時間軸上有重複的週期特性，所以在頻譜上可以觀察到基礎頻率（170Hz)以及其他倍頻(340Hz、510Hz、680Hz,,,) 的所產生的固定間隔 peak 點。
+> 窄頻分析 (narrow-band spectrum)：一個語音內容是「中秋」、取樣率為16kHz、位元深度為16bits 的語音檔案，由0.5秒開始截取0.032秒的音段進行頻譜分析，因為是0.032秒的音段，也就是0.5到0.532秒大概是/e/這個發音的音段，總共會有 N=0.032*16000=512 點的信號進行頻譜分析，頻率解析度是 16000/512=31.25Hz，所以在圖中的點就是每隔31.25Hz就打一點 $20\log_{10}A[k]$，在圖中的橫軸已經使用 Hz 為單位表示，其中 $k=0$ 就對應到 0Hz，$k=256$ 就對應到 8000Hz，更一般來講 $k$ 就對應到 $k/512\times 16000$ Hz 的中心頻率。由於頻率解析度還算細緻，所以在圖中的 spectrum 看起來是很像是細緻鋸齒的連線。由於這一段語音是voiced vowel，聲帶有振動，在時間軸上有重複的週期特性，所以在頻譜上可以觀察到基礎頻率（170Hz)以及其他倍頻(340Hz、510Hz、680Hz,,,) 的所產生的固定間隔 peak 點。
 ![image](https://hackmd.io/_uploads/r1zFrn36gg.png)
 ![image](https://hackmd.io/_uploads/r1MxSnnTeg.png)
 

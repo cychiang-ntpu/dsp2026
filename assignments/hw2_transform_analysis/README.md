@@ -39,7 +39,7 @@
 2. 繪製 impulse response h_M[n]，M = 4, 16, 64, 512, 2048
 3. 繪製 magnitude response |H_M(e^{jω})| 與 phase response ∠H_M(e^{jω})，形式比照課本圖例，附產生資料點與繪圖的 code
 4. 實作 LCCDE，將 HW1 `sine_wav_gen.c` 產生的波形輸入 h_M[n] 系統，輸出存成 WAV。
-   考慮並討論輸入頻率 1000、3000、4000、5000、8000 Hz
+   輸入以 f_s = 44100 Hz 產生；考慮並討論輸入頻率 1000、3000、4000、5000、8000 Hz
 5. 討論不同 M 下 low-pass filter 的 transient 與 steady state 輸出
 6. 建立 M = 4, 16, 64 對應的 **minimum-phase** low-pass filter，重複以上 impulse response、
    magnitude/phase response 繪製與濾波實驗，並與 linear-phase 結果比較
@@ -55,12 +55,13 @@
 
 範例：
 
-    ./Linear_Phase_Filter.exe 400 32 coef.txt sincos_fs8000_f3000_L1.0.wav filtered_sincos_fs8000_f3000_L1.0.wav
+    ./Linear_Phase_Filter.exe 4000 64 coef.txt sincos_fs44100_f3000_L1.0.wav filtered_sincos_fs44100_f3000_L1.0.wav
 
 ## 繳交
-- 私人 GitHub repo，邀請 cychiang@mail.ntpu.edu.tw，於 LMS 只繳交連結
-- 批改時只執行 `DSP_Assignment_2.ipynb`：C 程式的編譯與執行、所有展示圖片皆須由 notebook 產生，不得手動存檔
+- 個人 repo 的 `hw2/` 資料夾（私人 repo，邀請 cychiang@mail.ntpu.edu.tw），於 LMS 登錄 repo URL＋完整 commit SHA
+- 批改時只執行 `DSP_Assignment_2.ipynb`：C 程式的編譯與執行、所有展示圖片皆須由 notebook 產生，不得手動存檔；
+  報告分數依 notebook 內的 Markdown 說明評分，`hw2/README.md` 只需簡述內容並指向 notebook
 
 ## Hint
-- 求多項式根（minimum phase 需把單位圓外的零點反射進來）：GNU Scientific Library
-  https://www.gnu.org/software/gsl/doc/html/poly.html#examples ，或以 Python `numpy.roots` 求根後把係數寫回 C 程式讀取
+- 求多項式根：GNU Scientific Library https://www.gnu.org/software/gsl/doc/html/poly.html#examples ，
+  或以 Python `numpy.roots` 求根後把係數寫回 C 程式讀取。minimum phase 的建構方法請自行參考課本 Ch. 5.6 並在報告中說明。

@@ -32,18 +32,19 @@
 
 ```
 dsp2026/
-├── assignments/            四份個人作業與 Team Project 規格
+├── assignments/            四份個人作業與 Team Project 規格（README.md 為總表）
 │   ├── hw1_rc_lowpass/             RC 低通濾波器數位模擬（C + Python）
 │   ├── hw2_transform_analysis/     轉換分析 + 暫態/穩態濾波（C + Jupyter）
 │   ├── hw3_sampling_rate_lccde/    取樣率轉換：FIR 低通 + LCCDE（C）
 │   ├── hw4_sampling_rate_fft/      取樣率轉換：FFT 濾波器 overlap-add（C）
 │   ├── team_project_audio_effects/ Team Project：音樂音響效果器（C，2–3 人一組）
 │   └── archive/                    歷年題目原文（2024 Filtering: Steady and Transient States，已併入 HW2）
-├── samples_2025/           去年（1141）作業樣本（HIGH / MEDIUM / LOW）
-├── docs/                   課程時程與評分方式
+├── samples_2025/           去年（1141）作業樣本（hw1–hw4 各 HIGH / MEDIUM / LOW，開學後補上）
+├── docs/
+│   ├── course_plan.md      課程時程、行事曆與評分方式
 │   ├── lectures/           課堂講義（第 1–3 週聯集版：課程介紹、從連續到離散、語音信號表示）
 │   └── tutorials/          新手教學（VSCode、終端機、Git、除錯、Makefile…）
-└── tools/                  課程工具（wav_info.c；input.wav 測試音檔陸續發布）
+└── tools/                  課程工具（wav_info.c；input.wav 測試音檔於 HW3 公布時發布）
 ```
 
 ## 教科書
@@ -60,7 +61,7 @@ Oppenheim, A. V., & Schafer, R. W. (2009). *Discrete-Time Signal Processing* (3r
    架好開發環境，跑出 Hello World，並完成步驟 6 編譯 [tools/wav_info.c](tools/wav_info.c)。
 3. 學會 Git：[docs/tutorials/git_intro.md](docs/tutorials/git_intro.md)，
    建立個人私人 repo 並邀請 cychiang@mail.ntpu.edu.tw。
-4. 安裝 Python 3 與 `numpy`、`scipy`、`matplotlib`、`librosa`、`jupyter`（HW1 繪圖、HW2 使用）。
+4. 安裝 Python 3 與 `numpy`、`scipy`、`matplotlib`、`librosa`、`jupyter`（四份作業的繪圖與 HW2 notebook 都會用到）。
 5. 瀏覽 [assignments/](assignments/) 與 [samples_2025/](samples_2025/) 了解作業長相。
 
 ## 個人作業（HW1–HW4）
