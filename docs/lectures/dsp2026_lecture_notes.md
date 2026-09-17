@@ -239,7 +239,7 @@ K\rightarrow \infty
 複數 (complex number) 通常我們習慣使用符號 $`z`$ 表示，而複數在直角座標系統 (Cartesian coordinate system) 的表示法是：
 
 ```math
-z=x+jy\tag{1}
+z=x+jy \qquad\text{(1)}
 ```
 
 其中 $`j`$ 定義為 $`\sqrt{-1}`$，$`x`$ 稱為實部 (real part)、$`y`$ 稱為虛部 (imaginary part)，而 $`x`$ 和 $`y`$ 為實數 (real number)。我們可以將複數 $`z`$ 以圖一表示。
@@ -252,12 +252,12 @@ z=x+jy\tag{1}
 
 
 ```math
-x=Re\{z\}\tag{2}
+x=Re\{z\} \qquad\text{(2)}
 ```
 
 
 ```math
-y=Im\{z\}\tag{3}
+y=Im\{z\} \qquad\text{(3)}
 ```
 
 
@@ -269,19 +269,19 @@ y=Im\{z\}\tag{3}
 我們亦可以使用極座標方式來表示複數如下：
 
 ```math
-z=r\cos\theta+j\ r\ sin\theta=r(cos\theta+j\ sin\theta)\tag{4}
+z=r\cos\theta+j\ r\ sin\theta=r(cos\theta+j\ sin\theta) \qquad\text{(4)}
 ```
 
 其中 $`x=r\cos\theta`$、$`y=r\sin\theta`$、$`r=(x^2+y^2)^{(1/2)}`$ 為半徑 (radius)，$`\theta`$ 為輻角 (angle)，若 $`x`$ 為正實數 (positive real number) 則 $`z`$ 會在第一和第四象限，則
 
 ```math
-\theta=tan^{-1}(y/x)\tag{5}
+\theta=tan^{-1}(y/x) \qquad\text{(5)}
 ```
 
 其中 $`tan^{-1}`$ 是 arctangent，也就是 $`tan`$ 的反函數 (inverse function)，若 $`x`$ 為負實數 (negative real number)，$`z`$ 在第二和第三象限，則
 
 ```math
-\theta=tan^{-1}(y/x)+\pi\tag{6}
+\theta=tan^{-1}(y/x)+\pi \qquad\text{(6)}
 ```
 
 
@@ -291,13 +291,13 @@ z=r\cos\theta+j\ r\ sin\theta=r(cos\theta+j\ sin\theta)\tag{4}
 我們亦可用 「尤拉表示式」 (Euler’s formula) 來表示複數，這種表示方法非常方便，並廣泛應用於訊號處裡的領域裡面，Euler’s formula 為：
 
 ```math
-e^{j\theta}=cos\theta+j\sin\theta\tag{7}
+e^{j\theta}=cos\theta+j\sin\theta \qquad\text{(7)}
 ```
 
 因此接下來便可以利用數學式(7)來表示複數數學式(4)的複數 $`z`$：
 
 ```math
-z=x+jy=r(cos\theta+j\ sin\theta)=re^{j\theta}\tag{8}
+z=x+jy=r(cos\theta+j\ sin\theta)=re^{j\theta} \qquad\text{(8)}
 ```
 
 **很重要!!** 數學式(8)可以很簡潔地表示一個複數。
@@ -305,12 +305,12 @@ z=x+jy=r(cos\theta+j\ sin\theta)=re^{j\theta}\tag{8}
 複數之間的加減法，要先轉化成直角座標表示後，實部與實部、虛部與虛部相加(減)後即可，比如：
 
 ```math
-z_1=r_1e^{j\theta_1}=r_1(cos\theta_1+j\ sin\theta_1)=r_1cos\theta_1+j\ r_1 sin\theta_1=x_1+jy_1\tag{9}
+z_1=r_1e^{j\theta_1}=r_1(cos\theta_1+j\ sin\theta_1)=r_1cos\theta_1+j\ r_1 sin\theta_1=x_1+jy_1 \qquad\text{(9)}
 ```
 
 
 ```math
-z_2=r_2e^{j\theta_2}=r_2(cos\theta_2+j\ sin\theta_2)=r_2cos\theta_2+j\ r_2 sin\theta_2=x_2+jy_2\tag{10}
+z_2=r_2e^{j\theta_2}=r_2(cos\theta_2+j\ sin\theta_2)=r_2cos\theta_2+j\ r_2 sin\theta_2=x_2+jy_2 \qquad\text{(10)}
 ```
 
 
@@ -318,19 +318,19 @@ z_2=r_2e^{j\theta_2}=r_2(cos\theta_2+j\ sin\theta_2)=r_2cos\theta_2+j\ r_2 sin\t
 \begin{gathered}
 z=az_1+bz_2=a(x_1+jy_1)+b(x_2+jy_2) \\
 =(ax_1+bx_2)+j(ay_1+by_2)
-\end{gathered}\tag{11}
+\end{gathered} \qquad\text{(11)}
 ```
 
 其中 $`a`$ 以及 $`b`$ 都是任意實數，所以 $`z`$ 的實部為 $`ax_1+bx_2`$，$`z`$ 的虛部為 $`ay_1+by_2`$。而相乘或相除，則以尤拉表示式運算較方便，例如兩複數相乘：
 
 ```math
-z_1z_2=(r_1e^{j\theta_1})(r_2e^{j\theta_2})=(r_1r_2)e^{j\theta_1}e^{j\theta_2}=(r_1r_2)e^{j(\theta_1+\theta_2)}\tag{12}
+z_1z_2=(r_1e^{j\theta_1})(r_2e^{j\theta_2})=(r_1r_2)e^{j\theta_1}e^{j\theta_2}=(r_1r_2)e^{j(\theta_1+\theta_2)} \qquad\text{(12)}
 ```
 
 或兩複數相除：
 
 ```math
-z_1/z_2=\frac{r_1e^{j\theta_1}}{r_2e^{j\theta_2}}=\frac{r_1}{r_2}\frac{e^{j\theta_1}}{e^{j\theta_2}}=(r_1/r_2)e^{j(\theta_1-\theta_2)}\tag{13}
+z_1/z_2=\frac{r_1e^{j\theta_1}}{r_2e^{j\theta_2}}=\frac{r_1}{r_2}\frac{e^{j\theta_1}}{e^{j\theta_2}}=(r_1/r_2)e^{j(\theta_1-\theta_2)} \qquad\text{(13)}
 ```
 
 
@@ -348,7 +348,7 @@ Phasor 是用來描述同一個頻率下$`cos`$和$`sin`$的共同表示方法�
 在定義好以尤拉表示式的複數之後，接下來我們便可利用此表示式來表示一個正弦信號：
 
 ```math
-S(t)=V_0sin(\omega t+\phi)=Im\{V_0e^{j(\omega t+\phi)}\}\tag{14}
+S(t)=V_0sin(\omega t+\phi)=Im\{V_0e^{j(\omega t+\phi)}\} \qquad\text{(14)}
 ```
 
 
@@ -356,14 +356,14 @@ S(t)=V_0sin(\omega t+\phi)=Im\{V_0e^{j(\omega t+\phi)}\}\tag{14}
 
 
 ```math
-V_0e^{j(\omega t+\phi)}=V_0cos(\omega t+\phi)+jV_0sin(\omega t+\phi)\tag{15}
+V_0e^{j(\omega t+\phi)}=V_0cos(\omega t+\phi)+jV_0sin(\omega t+\phi) \qquad\text{(15)}
 ```
 
 
 我們也可以用以下數學是來表示ㄧ個餘弦信號：
 
 ```math
-C(t)=V_0cos(\omega t+\phi)=Re\{V_0e^{j(\omega t+\phi)}\}\tag{16}
+C(t)=V_0cos(\omega t+\phi)=Re\{V_0e^{j(\omega t+\phi)}\} \qquad\text{(16)}
 ```
 
 
@@ -373,14 +373,14 @@ C(t)=V_0cos(\omega t+\phi)=Re\{V_0e^{j(\omega t+\phi)}\}\tag{16}
 
 
 ```math
-S(t)=110\sqrt{2}sin(2\pi \cdot 60 \cdot t+\phi)=Im\{110\sqrt{2}e^{j(2\pi \cdot 60 \cdot t+\phi)}\}\tag{17}
+S(t)=110\sqrt{2}sin(2\pi \cdot 60 \cdot t+\phi)=Im\{110\sqrt{2}e^{j(2\pi \cdot 60 \cdot t+\phi)}\} \qquad\text{(17)}
 ```
 
 
 其中 $`V_0`$ 為振幅：
 
 ```math
-V_0=110\sqrt2\tag{18}
+V_0=110\sqrt2 \qquad\text{(18)}
 ```
 
 > 有沒有覺得很奇怪，一般不是說家用電是 110 V 嗎？為什麼振幅是 $`110\sqrt{2}`$？ 請自行去找到答案。
@@ -389,12 +389,12 @@ V_0=110\sqrt2\tag{18}
 $`\omega`$ 為角頻率(angular frequency)：
 
 ```math
-\omega=2\times \pi\times f\tag{19}
+\omega=2\times \pi\times f \qquad\text{(19)}
 ```
 
 
 ```math
-f=60 \text{(unit: Hz)}\tag{20}
+f=60 \text{(unit: Hz)} \qquad\text{(20)}
 ```
 
 
@@ -402,7 +402,7 @@ $`t`$ 是時間，單位為秒 (second)，$`\phi`$ 稱為相位 (phase)，值域
 
 
 ```math
-C(t)=V_0cos(\omega t+\phi)=V_0sin(\omega t+\phi+\frac{\pi}{2})=Im\{V_0e^{j(\omega t+\phi+\frac{\pi}{2})}\}\tag{21}
+C(t)=V_0cos(\omega t+\phi)=V_0sin(\omega t+\phi+\frac{\pi}{2})=Im\{V_0e^{j(\omega t+\phi+\frac{\pi}{2})}\} \qquad\text{(21)}
 ```
 
 
@@ -410,7 +410,7 @@ C(t)=V_0cos(\omega t+\phi)=V_0sin(\omega t+\phi+\frac{\pi}{2})=Im\{V_0e^{j(\omeg
 
 
 ```math
-\vec{V}=V_0e^{j(\omega t+\phi)}\tag{22}
+\vec{V}=V_0e^{j(\omega t+\phi)} \qquad\text{(22)}
 ```
 
 
@@ -418,12 +418,12 @@ C(t)=V_0cos(\omega t+\phi)=V_0sin(\omega t+\phi+\frac{\pi}{2})=Im\{V_0e^{j(\omeg
 
 
 ```math
-S(t)=Im\{\vec{V}\}\tag{23}
+S(t)=Im\{\vec{V}\} \qquad\text{(23)}
 ```
 
 
 ```math
-C(t)=Re\{\vec{V}\}\tag{24}
+C(t)=Re\{\vec{V}\} \qquad\text{(24)}
 ```
 
 
@@ -434,7 +434,7 @@ C(t)=Re\{\vec{V}\}\tag{24}
 \begin{gathered}
 C(t)=Im\{V_0e^{j(\omega t+\phi+\frac{\pi}{2})}\}=Im\{V_0e^{j(\omega t+\phi)}e^{j(\frac{\pi}{2})}\} \\
 =Im\{\vec{V}e^{j(\frac{\pi}{2})}\}
-\end{gathered}\tag{25}
+\end{gathered} \qquad\text{(25)}
 ```
 
 
@@ -460,17 +460,17 @@ C(t)=Im\{V_0e^{j(\omega t+\phi+\frac{\pi}{2})}\}=Im\{V_0e^{j(\omega t+\phi)}e^{j
 相位圖使得交流電的運算方便了許多，下面的例子就是一個很好的證明。若有兩個同角頻率的弦波信號：
 
 ```math
-V_A(t)=V_0sin(\omega t)\tag{26}
+V_A(t)=V_0sin(\omega t) \qquad\text{(26)}
 ```
 
 
 ```math
-V_B(t)=V_0sin(\omega t+\frac{2\pi}{3})\tag{27}
+V_B(t)=V_0sin(\omega t+\frac{2\pi}{3}) \qquad\text{(27)}
 ```
 
 
 ```math
-V_C(t)=V_A(t)-V_B(t)=?\tag{28}
+V_C(t)=V_A(t)-V_B(t)=? \qquad\text{(28)}
 ```
 
 > GeoGebra 互動圖：https://www.geogebra.org/calculator/dtjwrz4s
@@ -492,17 +492,17 @@ V_C(t)=V_A(t)-V_B(t)=?\tag{28}
 相位圖使得交流電的運算方便了許多，下面的例子就是一個很好的證明。若有兩個同角頻率的弦波信號：
 
 ```math
-V_A(t)=2sin(\omega t+\frac{2\pi}{3})\tag{29}
+V_A(t)=2sin(\omega t+\frac{2\pi}{3}) \qquad\text{(29)}
 ```
 
 
 ```math
-V_B(t)=sin(\omega t-\frac{2\pi}{3})\tag{30}
+V_B(t)=sin(\omega t-\frac{2\pi}{3}) \qquad\text{(30)}
 ```
 
 
 ```math
-V_C(t)=V_A(t)+V_B(t)=?\tag{31}
+V_C(t)=V_A(t)+V_B(t)=? \qquad\text{(31)}
 ```
 
 
@@ -557,7 +557,7 @@ https://youtu.be/quCMmtgoHe4
 如圖四所示，交流電流 $`I(t)=I_psin(\omega t)`$ 流經一電阻 $`R`$，由歐姆定律知，通過電阻 a、b 兩端的電壓降為 $`V_R(t)=I(t)R`$，得到：
 
 ```math
-V_R(t)=I_p R sin(\omega t)\tag{32}
+V_R(t)=I_p R sin(\omega t) \qquad\text{(32)}
 ```
 
 
@@ -572,7 +572,7 @@ V_R(t)=I_p R sin(\omega t)\tag{32}
 若用“相子”表示數學式(32)，得到：
 
 ```math
-\vec{V_R}=\vec{I} R\tag{33}
+\vec{V_R}=\vec{I} R \qquad\text{(33)}
 ```
 
 >  注意！ $`\vec{V_R}`$ 和 $`\vec{I}`$ 是線性關係！
@@ -580,12 +580,12 @@ V_R(t)=I_p R sin(\omega t)\tag{32}
 其中
 
 ```math
-\vec{V_R}=I_p R e^{j \omega t}\tag{34}
+\vec{V_R}=I_p R e^{j \omega t} \qquad\text{(34)}
 ```
 
 
 ```math
-\vec{I}=I_p e^{j \omega t}\tag{35}
+\vec{I}=I_p e^{j \omega t} \qquad\text{(35)}
 ```
 
 圖五顯示 $`\vec{V_R}`$ 和 $`\vec{I}`$ 的相位圖，很明顯地上圖中的電流與電阻是同相位的，也就是沒有**相位差**的意思。
@@ -611,7 +611,7 @@ V_R(t)=I_p R sin(\omega t)\tag{32}
 
 
 ```math
-V_L(t)=L\frac{d I(t)}{dt}=L I_p \omega cos(\omega t)=I_p L\omega sin(\omega t + \frac{\pi}{2})\tag{36}
+V_L(t)=L\frac{d I(t)}{dt}=L I_p \omega cos(\omega t)=I_p L\omega sin(\omega t + \frac{\pi}{2}) \qquad\text{(36)}
 ```
 
 > GeoGebra 互動圖：https://www.geogebra.org/calculator/pd7yxzz7
@@ -630,12 +630,12 @@ V_L(t)=L\frac{d I(t)}{dt}=L I_p \omega cos(\omega t)=I_p L\omega sin(\omega t + 
 將數學式 (36) 的 $`V_L(t)`$和 $`I(t)`$ 可用相子表示：
 
 ```math
-\vec{V_L}=I_p \omega L e^{j(\omega t+\frac{\pi}{2})}=I_p \omega L e^{j\omega t}e^{j\frac{\pi}{2}}=(j\omega L)I_p e^{j\omega t}\tag{37}
+\vec{V_L}=I_p \omega L e^{j(\omega t+\frac{\pi}{2})}=I_p \omega L e^{j\omega t}e^{j\frac{\pi}{2}}=(j\omega L)I_p e^{j\omega t} \qquad\text{(37)}
 ```
 
 
 ```math
-\vec{I}=I_p e^{j\omega t}\tag{38}
+\vec{I}=I_p e^{j\omega t} \qquad\text{(38)}
 ```
 
 
@@ -643,7 +643,7 @@ V_L(t)=L\frac{d I(t)}{dt}=L I_p \omega cos(\omega t)=I_p L\omega sin(\omega t + 
 
 
 ```math
-\vec{V_L}=\vec{I} X_L= (I_p e^{j\omega t})(j\omega L)\tag{39}
+\vec{V_L}=\vec{I} X_L= (I_p e^{j\omega t})(j\omega L) \qquad\text{(39)}
 ```
 
 >  注意！ $`\vec{V_L}`$ 和 $`\vec{I}`$ 是線性關係！
@@ -652,7 +652,7 @@ V_L(t)=L\frac{d I(t)}{dt}=L I_p \omega cos(\omega t)=I_p L\omega sin(\omega t + 
 
 
 ```math
-X_L=j\omega L\tag{40}
+X_L=j\omega L \qquad\text{(40)}
 ```
 
 
@@ -662,7 +662,7 @@ X_L=j\omega L\tag{40}
 
 
 ```math
-X_L=j\omega L=\omega L e^{j\frac{\pi}{2}}\tag{41}
+X_L=j\omega L=\omega L e^{j\frac{\pi}{2}} \qquad\text{(41)}
 ```
 
 
@@ -706,7 +706,7 @@ X_L=j\omega L=\omega L e^{j\frac{\pi}{2}}\tag{41}
 
 
 ```math
-I(t)=\frac{d Q(t)}{dt}=\frac{d(CV(t))}{dt}\tag{42}
+I(t)=\frac{d Q(t)}{dt}=\frac{d(CV(t))}{dt} \qquad\text{(42)}
 ```
 
 
@@ -716,7 +716,7 @@ I(t)=\frac{d Q(t)}{dt}=\frac{d(CV(t))}{dt}\tag{42}
 
 
 ```math
-\vec{Q}(t)=\int_{}^{}\vec{I}dt=\int_{}^{}I_p e^{j\omega t}dt=\frac{1}{j\omega}I_pe^{j\omega t}+K=C\vec{V_C}\tag{43}
+\vec{Q}(t)=\int_{}^{}\vec{I}dt=\int_{}^{}I_p e^{j\omega t}dt=\frac{1}{j\omega}I_pe^{j\omega t}+K=C\vec{V_C} \qquad\text{(43)}
 ```
 
 
@@ -728,7 +728,7 @@ I(t)=\frac{d Q(t)}{dt}=\frac{d(CV(t))}{dt}\tag{42}
 Q(0)=Im\{\frac{1}{j\omega}I_pe^{j\omega t}+K\} \Big|  t=0, K=0 \\
 =Im\{\frac{j}{j^2\omega}I_pe^{j\omega\cdot0}+0\} \\
 =Im\{\frac{-j}{\omega}I_p\cdot 1+0\}=\frac{-I_p}{\omega}
-\end{gathered}\tag{44}
+\end{gathered} \qquad\text{(44)}
 ```
 
 
@@ -736,7 +736,7 @@ Q(0)=Im\{\frac{1}{j\omega}I_pe^{j\omega t}+K\} \Big|  t=0, K=0 \\
 
 
 ```math
-\vec{V_C}=\frac{1}{j\omega C}I_pe^{j\omega t}=\frac{1}{j\omega C}\vec{I}=\frac{1}{\omega C}e^{j\frac{-\pi}{2}}\vec{I}=\vec{I} X_C\tag{45}
+\vec{V_C}=\frac{1}{j\omega C}I_pe^{j\omega t}=\frac{1}{j\omega C}\vec{I}=\frac{1}{\omega C}e^{j\frac{-\pi}{2}}\vec{I}=\vec{I} X_C \qquad\text{(45)}
 ```
 
 >  注意！ $`\vec{V_C}`$ 和 $`\vec{I}`$ 是線性關係！
@@ -745,7 +745,7 @@ Q(0)=Im\{\frac{1}{j\omega}I_pe^{j\omega t}+K\} \Big|  t=0, K=0 \\
 
 
 ```math
-X_C=\frac{1}{j\omega C}=\frac{1}{\omega C}e^{j\frac{-\pi}{2}}\tag{46}
+X_C=\frac{1}{j\omega C}=\frac{1}{\omega C}e^{j\frac{-\pi}{2}} \qquad\text{(46)}
 ```
 
 
@@ -794,7 +794,7 @@ X_C=\frac{1}{j\omega C}=\frac{1}{\omega C}e^{j\frac{-\pi}{2}}\tag{46}
 
 
 ```math
-Z=R+\frac{1}{j\omega C}\tag{3.1}
+Z=R+\frac{1}{j\omega C} \qquad\text{(3.1)}
 ```
 
  
@@ -807,7 +807,7 @@ Z=R+\frac{1}{j\omega C}\tag{3.1}
 
 
 ```math
-V_a-V_b=V_{RC}=V_R+V_C=IR+\frac{Q}{C}\tag{3.2}
+V_a-V_b=V_{RC}=V_R+V_C=IR+\frac{Q}{C} \qquad\text{(3.2)}
 ```
 
 
@@ -815,7 +815,7 @@ V_a-V_b=V_{RC}=V_R+V_C=IR+\frac{Q}{C}\tag{3.2}
 
 
 ```math
-\vec{V_{RC}}=\vec{I}R+\vec{I}\frac{1}{j\omega C}=\vec{I}Z\tag{3.3}
+\vec{V_{RC}}=\vec{I}R+\vec{I}\frac{1}{j\omega C}=\vec{I}Z \qquad\text{(3.3)}
 ```
 
 
@@ -837,7 +837,7 @@ V_a-V_b=V_{RC}=V_R+V_C=IR+\frac{Q}{C}\tag{3.2}
 
 
 ```math
-\vec{V_{RC}}=\vec{I}Z=I_p e^{j \omega t}(R+\frac{1}{j\omega C})\tag{3.4}
+\vec{V_{RC}}=\vec{I}Z=I_p e^{j \omega t}(R+\frac{1}{j\omega C}) \qquad\text{(3.4)}
 ```
 
 
@@ -848,7 +848,7 @@ V_a-V_b=V_{RC}=V_R+V_C=IR+\frac{Q}{C}\tag{3.2}
 \begin{gathered}
 Z=R+\frac{1}{j\omega C}=R+\frac{j}{j^2\omega C}=R-\frac{1}{\omega C}j \\
 =\sqrt{R^2+(\frac{1}{\omega C})^2} \exp(j\tan^{-1}(-\frac{1}{\omega RC}))=Ae^{j\phi}
-\end{gathered}\tag{3.5}
+\end{gathered} \qquad\text{(3.5)}
 ```
 
 
@@ -856,7 +856,7 @@ Z=R+\frac{1}{j\omega C}=R+\frac{j}{j^2\omega C}=R-\frac{1}{\omega C}j \\
 
 
 ```math
-A=\sqrt{R^2+(\frac{1}{\omega C})^2}\tag{3.6}
+A=\sqrt{R^2+(\frac{1}{\omega C})^2} \qquad\text{(3.6)}
 ```
 
 
@@ -864,7 +864,7 @@ A=\sqrt{R^2+(\frac{1}{\omega C})^2}\tag{3.6}
 \begin{gathered}
 \phi=\tan^{-1}(-\frac{1}{\omega RC})=-\tan^{-1}(\frac{1}{\omega RC})=-\cot^{-1}(\omega RC) \\
 =-(\frac{\pi}{2}-\tan^{-1}(\omega RC))=\tan^{-1}(\omega RC)-\frac{\pi}{2}
-\end{gathered}\tag{3.7}
+\end{gathered} \qquad\text{(3.7)}
 ```
 
 
@@ -875,7 +875,7 @@ A=\sqrt{R^2+(\frac{1}{\omega C})^2}\tag{3.6}
 \begin{gathered}
 \vec{V_{RC}}=\vec{I}Z=I_p e^{j \omega t}(R+\frac{1}{j\omega C})=I_p e^{j \omega t}Ae^{j\phi}=AI_p e^{j \omega t+\phi} \\
 =\sqrt{R^2+(\frac{1}{\omega C})^2}I_p\exp\{j[\omega t+\tan^{-1}(\omega RC)-\frac{\pi}{2}]\}
-\end{gathered}\tag{3.8}
+\end{gathered} \qquad\text{(3.8)}
 ```
 
 
@@ -886,7 +886,7 @@ A=\sqrt{R^2+(\frac{1}{\omega C})^2}\tag{3.6}
 \begin{gathered}
 V_{RC}(t)=Im\{\vec{V_{RC}}\}=Im[AI_pe^{j(\omega t +\phi)}]=AI_p\sin(\omega t+\phi) \\
 =\sqrt{R^2+(\frac{1}{\omega C})^2}I_p\sin[\omega t+\tan^{-1}(\omega RC)-\frac{\pi}{2}]
-\end{gathered}\tag{3.9}
+\end{gathered} \qquad\text{(3.9)}
 ```
 
 
@@ -923,12 +923,12 @@ https://youtu.be/J9PVsDiNuaM
 
 
 ```math
-\vec{V_{in}}=V_pe^{j\omega t}=\vec{I}R+\vec{V_{out}}=\vec{I}R+\vec{I}\frac{1}{j\omega C}\tag{3.10}
+\vec{V_{in}}=V_pe^{j\omega t}=\vec{I}R+\vec{V_{out}}=\vec{I}R+\vec{I}\frac{1}{j\omega C} \qquad\text{(3.10)}
 ```
 
 
 ```math
-\vec{V_{out}}=\vec{I}\frac{1}{j\omega C}=\frac{\vec{V_{in}}}{(R+\frac{1}{j\omega C})}\frac{1}{j\omega C}=\frac{\frac{1}{j\omega C}}{R+\frac{1}{j\omega C}}\vec{V_{in}}=H(\omega)\vec{V_{in}}\tag{3.11}
+\vec{V_{out}}=\vec{I}\frac{1}{j\omega C}=\frac{\vec{V_{in}}}{(R+\frac{1}{j\omega C})}\frac{1}{j\omega C}=\frac{\frac{1}{j\omega C}}{R+\frac{1}{j\omega C}}\vec{V_{in}}=H(\omega)\vec{V_{in}} \qquad\text{(3.11)}
 ```
 
 
@@ -936,7 +936,7 @@ https://youtu.be/J9PVsDiNuaM
 
 
 ```math
-H(\omega)=\frac{\frac{1}{j\omega C}}{R+\frac{1}{j\omega C}}\tag{3.12}
+H(\omega)=\frac{\frac{1}{j\omega C}}{R+\frac{1}{j\omega C}} \qquad\text{(3.12)}
 ```
 
 
@@ -950,7 +950,7 @@ H(\omega)=\frac{\frac{1}{j\omega C}}{R+\frac{1}{j\omega C}}\tag{3.12}
 H(\omega)=\frac{\frac{1}{j\omega C}}{R+\frac{1}{j\omega C}}=\frac{1}{1+j\omega RC} \\
 =\frac{1}{\sqrt{1+\omega^2 R^2C^2}e^{j\tan^{-1}(\omega RC)}} \\
 =\frac{1}{\sqrt{1+\omega^2 R^2C^2}}e^{-j\tan^{-1}(\omega RC)}
-\end{gathered}\tag{3.13}
+\end{gathered} \qquad\text{(3.13)}
 ```
 
 
@@ -958,7 +958,7 @@ H(\omega)=\frac{\frac{1}{j\omega C}}{R+\frac{1}{j\omega C}}=\frac{1}{1+j\omega R
 
 
 ```math
-A(\omega)=\frac{1}{\sqrt{1+\omega^2 R^2C^2}}\tag{3.14}
+A(\omega)=\frac{1}{\sqrt{1+\omega^2 R^2C^2}} \qquad\text{(3.14)}
 ```
 
 
@@ -966,7 +966,7 @@ A(\omega)=\frac{1}{\sqrt{1+\omega^2 R^2C^2}}\tag{3.14}
 
 
 ```math
-\phi=-\tan^{-1}(\omega RC)\tag{3.15}
+\phi=-\tan^{-1}(\omega RC) \qquad\text{(3.15)}
 ```
 
 
@@ -974,7 +974,7 @@ A(\omega)=\frac{1}{\sqrt{1+\omega^2 R^2C^2}}\tag{3.14}
 
 
 ```math
-\vec{V_{out}}=\frac{1}{\sqrt{1+\omega^2R^2C^2}}e^{-j\tan^{-1}(\omega RC)}V_pe^{j\omega t}=A(\omega)V_pe^{j[\omega t+\phi(\omega)]}\tag{3.16}
+\vec{V_{out}}=\frac{1}{\sqrt{1+\omega^2R^2C^2}}e^{-j\tan^{-1}(\omega RC)}V_pe^{j\omega t}=A(\omega)V_pe^{j[\omega t+\phi(\omega)]} \qquad\text{(3.16)}
 ```
 
 
@@ -982,7 +982,7 @@ A(\omega)=\frac{1}{\sqrt{1+\omega^2 R^2C^2}}\tag{3.14}
 
 
 ```math
-V_{out}(t)=A(\omega)V_p\cos(\omega t+\phi(\omega))\tag{3.17}
+V_{out}(t)=A(\omega)V_p\cos(\omega t+\phi(\omega)) \qquad\text{(3.17)}
 ```
 
 
@@ -1006,14 +1006,14 @@ V_{out}(t)=A(\omega)V_p\cos(\omega t+\phi(\omega))\tag{3.17}
 
 
 ```math
-V_{in}=V_p\cos(\omega_c t)\tag{3.18}
+V_{in}=V_p\cos(\omega_c t) \qquad\text{(3.18)}
 ```
 
 
 則輸出信號為
 
 ```math
-V_{out}(t)=\frac{1}{\sqrt{2}}V_p\cos(\omega_c  t-\tan^{-1}(1))\tag{3.19}
+V_{out}(t)=\frac{1}{\sqrt{2}}V_p\cos(\omega_c  t-\tan^{-1}(1)) \qquad\text{(3.19)}
 ```
 
 
@@ -1025,14 +1025,14 @@ V_{out}(t)=\frac{1}{\sqrt{2}}V_p\cos(\omega_c  t-\tan^{-1}(1))\tag{3.19}
 1. 了解電阻的特性 
 
 ```math
-R=\frac{\rho L}{A}\tag{1}
+R=\frac{\rho L}{A} \qquad\text{(1)}
 ```
 
 其中 $`\rho`$ 代表電阻係數、$`A`$ 代表截面積、$`L`$ 為長度。
 2. 了解電容的特性
 
 ```math
-C=\frac{\kappa\epsilon_0 A}{d}\tag{2}
+C=\frac{\kappa\epsilon_0 A}{d} \qquad\text{(2)}
 ```
 
 其中 $`\kappa`$ 為介電係數(dielectric constant)、$`\epsilon_0`$ 為真空環境為準的介電常數(permittivity of free space)、$`A`$ 代表平行電極板的重疊面積、$`d`$ 代表兩電極板之間的距離。
@@ -1079,7 +1079,7 @@ Solution:
 
 
 ```math
-RC=\frac{1}{2\pi 8000}\approx 1.989436\times 10^{-5}\tag{1.1}
+RC=\frac{1}{2\pi 8000}\approx 1.989436\times 10^{-5} \qquad\text{(1.1)}
 ```
 
 
@@ -1145,13 +1145,13 @@ A=\frac{Cd}{\kappa \epsilon_0}=\frac{10^{-9}10^{-4}}{1.4\times 8.85418782\times 
 若
 
 ```math
-V_{in}(t)=2.5+2.5\sum_{k=0}^{9}\frac{4}{\pi}\frac{sin(2\pi (2k+1)ft)}{2k+1}\tag{3}
+V_{in}(t)=2.5+2.5\sum_{k=0}^{9}\frac{4}{\pi}\frac{sin(2\pi (2k+1)ft)}{2k+1} \qquad\text{(3)}
 ```
 
 且 
 
 ```math
-f=2000(Hz)\tag{4}
+f=2000(Hz) \qquad\text{(4)}
 ```
 
 則 
