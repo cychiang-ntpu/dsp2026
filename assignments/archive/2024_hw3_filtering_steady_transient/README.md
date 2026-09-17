@@ -12,31 +12,38 @@
 
 ## 2. 作業內容
 1. 設計多個 low-pass filter 以符合以下的 spec (specification):
-    * 針對取樣率為 $f_s=44100$ Hz 的雙聲道音樂 (\*.wav) 處理。
-    * Cutoff frequency 在 $f_c=4000$ Hz 的 linear-phase low-pass filter。
-    * 其理想的 frequency response 為
-$$H_{lp}(e^{j\omega})=\begin{cases}
+- 針對取樣率為 $`f_s=44100`$ Hz 的雙聲道音樂 (\*.wav) 處理。
+- Cutoff frequency 在 $`f_c=4000`$ Hz 的 linear-phase low-pass filter。
+- 其理想的 frequency response 為
+
+```math
+H_{lp}(e^{j\omega})=\begin{cases}
 1, \text{ } |{\omega}|<\omega_c\\
 0, \text{ } \omega_c \leq|\omega| \leq \pi \\
-\end{cases}$$
-    * 而實作上只能使用以下數學式 FIR system 之 impulse response 來實現，注意! 應該還要再乘上 window，比如 hamming 或是 blackman 才會比較好。
-$$h_{M}[n]=\begin{cases}
+\end{cases}
+```
+
+- 而實作上只能使用以下數學式 FIR system 之 impulse response 來實現，注意! 應該還要再乘上 window，比如 hamming 或是 blackman 才會比較好。
+
+```math
+h_{M}[n]=\begin{cases}
 \frac{\sin(\omega_c n)}{n\pi}*\delta[n-M], \text{ } {0 \leq n\leq 2M}\\
 0, \text{otherwise}\\
-\end{cases}$$
-    * 建立 5 種不同 order 數的 low-pass filter: $M=4, 16, 64, 512, 2048$。注意! order=$2M$。
-    
-2. 繪製出 impulse response $h_{M}[n]$ for $M=4, 16, 64, 512, 2048$
+\end{cases}
+```
 
-3. 繪製出 magnitude response:$|H_{M}(e^{j\omega})|$ 以及 phase response:$\angle H_{M}(e^{j\omega})$ for $M=4, 16, 64, 512, 2048$，其中 $H_{M}(e^{j\omega})=\text{DTFT}\{h_{M}[n]\}$ ，繪製的結果要類似課本的圖例，要附上產生$|H_{M}(e^{j\omega})|$資料點以及繪圖的 code 繳交:
+- 建立 5 種不同 order 數的 low-pass filter: $`M=4, 16, 64, 512, 2048`$。注意! order=$`2M`$。
+    
+2. 繪製出 impulse response $`h_{M}[n]`$ for $`M=4, 16, 64, 512, 2048`$
+
+3. 繪製出 magnitude response:$`|H_{M}(e^{j\omega})|`$ 以及 phase response:$`\angle H_{M}(e^{j\omega})`$ for $`M=4, 16, 64, 512, 2048`$，其中 $`H_{M}(e^{j\omega})=\text{DTFT}\{h_{M}[n]\}`$ ，繪製的結果要類似課本的圖例，要附上產生$`|H_{M}(e^{j\omega})|`$資料點以及繪圖的 code 繳交:
 ![XXXX](https://hackmd.io/_uploads/HkeuvzVB1l.jpg)
 
-4. 實作多個 LCCDE 將 HW1 產生的波形輸入至 $h_{M}[n]$ 為 impulse response 的系統，輸出之波形儲存成 wav 檔。考慮並討論頻率為 1000Hz、3000Hz、4000Hz、5000Hz、8000Hz 的輸入。
+4. 實作多個 LCCDE 將 HW1 產生的波形輸入至 $`h_{M}[n]`$ 為 impulse response 的系統，輸出之波形儲存成 wav 檔。考慮並討論頻率為 1000Hz、3000Hz、4000Hz、5000Hz、8000Hz 的輸入。
 
-5. 討論不同 $M$ 情況下 low-pass filter 的 transient 以及 steady state 的輸出為何?
+5. 討論不同 $`M`$ 情況下 low-pass filter 的 transient 以及 steady state 的輸出為何?
 
-5. 建立以下 3 種不同 order 數對應 $h_{M}[n]$ 的 minimum-phase low-pass filter: $M=4, 16, 64$，重複以上的 impulse response、magnitude response、phase response 繪製以及濾波實驗，並且和 linear-phase low-pass filter 的結果比較。
-
+5. 建立以下 3 種不同 order 數對應 $`h_{M}[n]`$ 的 minimum-phase low-pass filter: $`M=4, 16, 64`$，重複以上的 impulse response、magnitude response、phase response 繪製以及濾波實驗，並且和 linear-phase low-pass filter 的結果比較。
 
 
     
@@ -61,7 +68,7 @@ $$h_{M}[n]=\begin{cases}
 ```
 ./sine_wav_gen.exe 8000 3000 1.0 sincos_fs8000_f3000_L1.0.wav
 ```
-以上指令可以產生名為 `sincos_fs8000_f3000_L1.0.wav` 的音檔，這個音檔是一個取樣率為 `8000`Hz 的 `1.0` seconds 雙聲道聲音，左聲道為 sine wave，右聲道為 cosine wave，分別模擬 $x_l(t)=\sin(2\pi f t)$ 以及 $x_r(t)=cos(2\pi f t)$，左右聲道一起考量就是在模擬 complex exponential $x(t)=\exp{(j 2\pi f t)}$. 
+以上指令可以產生名為 `sincos_fs8000_f3000_L1.0.wav` 的音檔，這個音檔是一個取樣率為 `8000`Hz 的 `1.0` seconds 雙聲道聲音，左聲道為 sine wave，右聲道為 cosine wave，分別模擬 $`x_l(t)=\sin(2\pi f t)`$ 以及 $`x_r(t)=cos(2\pi f t)`$，左右聲道一起考量就是在模擬 complex exponential $`x(t)=\exp{(j 2\pi f t)}`$. 
 
 
 #### 3.1.2 不同 order 數的 linear-phase 的濾波程式 `Linear_Phase_Filter.c`
@@ -112,9 +119,9 @@ $$h_{M}[n]=\begin{cases}
 1. 撰寫 Markdown 說明程式流程以及結果討論。
 2. 編譯所有 C Code。
 3. 執行所有以 C Code 撰寫並建置好的程式。
-    * 包含 linear-phase filter 的 $M=4, 16, 64, 512, 2048$ 以及 1000Hz、3000Hz、4000Hz、5000Hz、8000Hz sine/cosine waves 輸入和對應輸出。
-    * 包含 minimum-phase filter 的 $M=4, 16, 64$ 以及 1000Hz、3000Hz、4000Hz、5000Hz、8000Hz sine/cosine waves 輸入和對應輸出。
-4. 以 Python 相關函式繪製 $|H_{M}(e^{j\omega})|$ 以及 $\angle H_{M}(e^{j\omega})$，相關參數可以讀取 `Linear_Phase_Filter.c` 以及 `Minimum_Phase_Filter.c` 輸出的 `coef.txt`。
+    * 包含 linear-phase filter 的 $`M=4, 16, 64, 512, 2048`$ 以及 1000Hz、3000Hz、4000Hz、5000Hz、8000Hz sine/cosine waves 輸入和對應輸出。
+    * 包含 minimum-phase filter 的 $`M=4, 16, 64`$ 以及 1000Hz、3000Hz、4000Hz、5000Hz、8000Hz sine/cosine waves 輸入和對應輸出。
+4. 以 Python 相關函式繪製 $`|H_{M}(e^{j\omega})|`$ 以及 $`\angle H_{M}(e^{j\omega})`$，相關參數可以讀取 `Linear_Phase_Filter.c` 以及 `Minimum_Phase_Filter.c` 輸出的 `coef.txt`。
 ### 3.2 繳交方法
 * 請同學將所有作業內容放置於 GitHub project。
 * 同學僅要在數位學苑 3.0 繳交提供 GitHub project link 即可。記得將 project 以 private 邀請 cychiang@mail.ntpu.edu.tw。
@@ -125,7 +132,6 @@ $$h_{M}[n]=\begin{cases}
     4. 一個執行整個作業動作的 Jupyter Notebook file `DSP_Assignment_3.ipynb` 檔案
 * 作業進行批改時，只會跑 `DSP_Assignment_3.ipynb`，所以所有的動作都在 `DSP_Assignment_3.ipynb` 裡面執行，所以 C code 的編譯以及編譯出程式的執行都是由此 `DSP_Assignment_3.ipynb` 呼叫，所有展示用的圖片都是要用程式產生，不能用手動存檔，批改時只會看 `DSP_Assignment_3.ipynb` 執行產生結果。
     
-
 
 
 ---
