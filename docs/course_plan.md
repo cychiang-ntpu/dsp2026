@@ -21,7 +21,7 @@
 |---|---|---|---|---|
 | 1 | 9/10 | Introduction to DSP；Discrete-time signals and systems I（Ch. 1–2） | [課程介紹](lectures/dsp2026_lecture_notes.md#第一部分day-1-introduction-to-dsp)；開發環境與 Git | |
 | 2 | 9/17 | Discrete-time signals and systems II（Ch. 2） | [從連續到離散](lectures/dsp2026_lecture_notes.md#第二部分day-2-from-continuous-to-discrete)：相子、阻抗、RC 低通轉換函數；LTI、卷積、LCCDE；WAV 讀寫 | |
-| 3 | 9/24 | Z-transform I（Ch. 3） | RC 電路離散化；補充：[語音信號的表示](lectures/dsp2026_lecture_notes.md#第三部分語音信號的表示補充教材) | **HW1 公布** |
+| 3 | 9/24 | Z-transform I（Ch. 3） | [LTI 系統](lectures/dsp2026_lecture_notes.md#第四部分day-3-lti-系統脈衝響應卷積特徵函數暫態與穩態)：時域 impulse response、卷積的由來、複指數特徵函數、穩態與暫態；RC 電路離散化；補充：[語音信號的表示](lectures/dsp2026_lecture_notes.md#第三部分語音信號的表示補充教材) | **HW1 公布** |
 | 4 | 10/1 | Z-transform II（Ch. 3） | ROC、系統函數 | |
 | 5 | 10/8 | Sampling of Continuous-Time Signals I（Ch. 4） | 取樣定理、混疊、重建 | **HW1 截止 10/8** |
 | 6 | 10/15 | Sampling of Continuous-Time Signals II（Ch. 4） | 多速率：↑L、↓M、非整數倍轉換（Ch. 4.6–4.7） | Team Project 分組登記 |

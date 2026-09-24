@@ -9,11 +9,12 @@
 | [第一部分](#第一部分day-1-introduction-to-dsp) | 1 | 課程介紹：DSP 應用、歷史、教科書、評分 | [2021](https://hackmd.io/DuawpzgGTAm1pr1ewb6NSA)、[2022](https://hackmd.io/kdVyXcDLQ9yV7OxeIiVlEg) |
 | [第二部分](#第二部分day-2-from-continuous-to-discrete) | 2 | 從連續到離散：複數與相子、R/L/C 相位關係、阻抗、RC 低通濾波器、以離散模擬連續 | [2021/2024](https://hackmd.io/PkyN4-shQRujFfkdpUT8dg)，源自[「交流電、電阻、電抗、阻抗」](https://hackmd.io/@cychiang-ntpu/Hk3nWkcKd) |
 | [第三部分](#第三部分語音信號的表示補充教材) | 3 | 語音信號的表示：麥克風、ADC、傅立葉轉換、窗函數、spectrogram | [HackMD](https://hackmd.io/l9hfP04-Sgm76bunMz05JQ)（編修中） |
+| [第四部分](#第四部分day-3-lti-系統脈衝響應卷積特徵函數暫態與穩態) | 3 | LTI 系統：時域 impulse response、卷積的由來、複指數特徵函數分析、穩態與暫態 | 本學期新寫（O&S Ch. 2.2–2.6）；圖由 [demos/week3_lti_demo.py](demos/week3_lti_demo.py) 產生 |
 
 歷年作業「Filtering: Steady and Transient States」（2024）另置於
 [assignments/archive/](../../assignments/archive/2024_hw3_filtering_steady_transient/)。
 
-說明：圖片由 imgur／HackMD 代管；GeoGebra 互動圖與「歷史上課影片」（2021 年錄影）以連結提供。
+說明：第一至三部分的圖片由 imgur／HackMD 代管，第四部分的圖存於 [figures/week3/](figures/week3/)；GeoGebra 互動圖與「歷史上課影片」（2021 年錄影）以連結提供。
 成績結構與時程一律以 [course_plan.md](../course_plan.md) 為準。
 
 ---
@@ -1668,8 +1669,488 @@ v oicer unvoiced
 
 ---
 
+# 第四部分：Day-3 LTI 系統：脈衝響應、卷積、特徵函數、暫態與穩態
+
+- 第 3 週（9/24）上課內容，對應 O&S Ch. 2.2–2.6（2.2 離散時間系統、2.3 LTI 系統、2.4 LTI 系統的性質、2.5 LCCDE、2.6 頻域表示，其中 2.6.1 特徵函數、2.6.2 突然施加的複指數輸入）。
+- 本週四個重點：
+  1. 在**時域**看 impulse response $`h[n]`$
+  2. LTI 系統與**卷積的由來**：卷積不是定義出來的，而是由「線性＋非時變」推導出來的
+  3. 以**複指數輸入**做特徵系統分析（eigen analysis）：頻率響應 $`H(e^{j\omega})`$ 就是特徵值
+  4. **穩態（steady state）與暫態（transient）**：輸入從 $`n=0`$ 才開始時會發生什麼事
+- 與作業的關係：第 2 部分的連續時間相子分析，本週換成離散時間；HW1 Part B 的式 (8) 就是一個 LTI 系統，
+  B1–B2（連續）與 B5–B6（離散）正是「特徵函數」與「暫態／穩態」在兩個世界的版本；
+  HW2 Part B 的「不同 M 下的 transient 與 steady state」則是本週第 4 節的實驗驗證。
+- 本部分的圖皆由 [demos/week3_lti_demo.py](demos/week3_lti_demo.py) 產生（只需 numpy 與 matplotlib），
+  課堂上可改參數重跑。
+
+## 1. 時域中的脈衝響應（Impulse Response in Time Domain）
+
+### 1.1 兩個基本序列
+
+單位脈衝（unit impulse）與單位步階（unit step）：
+
+```math
+\delta[n]=\begin{cases}1, & n=0\\ 0, & n\neq 0\end{cases}
+\qquad
+u[n]=\begin{cases}1, & n\geq 0\\ 0, & n<0\end{cases} \qquad\text{(4.1)}
+```
+
+兩者互為「累加」與「差分」：
+
+```math
+u[n]=\sum_{k=-\infty}^{n}\delta[k]=\sum_{k=0}^{\infty}\delta[n-k],
+\qquad
+\delta[n]=u[n]-u[n-1] \qquad\text{(4.2)}
+```
+
+### 1.2 任何序列都是「加權、移位的脈衝」之和
+
+把序列 $`x[n]`$ 的每一個樣本看成一根高度為 $`x[k]`$、位於 $`n=k`$ 的脈衝：
+
+```math
+x[n]=\sum_{k=-\infty}^{\infty}x[k]\,\delta[n-k] \qquad\text{(4.3)}
+```
+
+例如 $`x[n]=\{\underline{1},2,3\}`$（底線表示 $`n=0`$）可寫成
+
+```math
+x[n]=1\cdot\delta[n]+2\cdot\delta[n-1]+3\cdot\delta[n-2]
+```
+
+式 (4.3) 是本週一切推導的出發點：**只要知道系統對 $`\delta[n]`$ 的反應，再加上一些性質，就能知道系統對任何輸入的反應**。
+
+### 1.3 Impulse response 的定義與例子
+
+系統 $`y[n]=T\{x[n]\}`$ 在輸入為 $`\delta[n]`$、且系統初始靜止（initial rest，$`n<0`$ 時輸出為 0）時的輸出，稱為 impulse response：
+
+```math
+h[n]=T\{\delta[n]\} \qquad\text{(4.4)}
+```
+
+在時域求 $`h[n]`$ 最直接的方法：**把 $`x[n]=\delta[n]`$ 代入系統，一個樣本一個樣本地算**。
+
+| 系統 | 差分方程 | $`h[n]`$ | 類型 |
+|---|---|---|---|
+| 理想延遲 | $`y[n]=x[n-n_d]`$ | $`\delta[n-n_d]`$ | FIR |
+| 3 點移動平均 | $`y[n]=\frac{1}{3}(x[n]+x[n-1]+x[n-2])`$ | $`\frac{1}{3}(\delta[n]+\delta[n-1]+\delta[n-2])`$ | FIR |
+| 累加器 | $`y[n]=x[n]+y[n-1]`$ | $`u[n]`$ | IIR |
+| 一階遞迴 | $`y[n]=x[n]+a\,y[n-1]`$ | $`a^n u[n]`$ | IIR |
+| 前向差分 | $`y[n]=x[n+1]-x[n]`$ | $`\delta[n+1]-\delta[n]`$ | FIR，非因果 |
+
+以一階遞迴為例，逐點代入 $`x[n]=\delta[n]`$、$`y[-1]=0`$：
+
+```math
+\begin{gathered}
+h[0]=\delta[0]+a\cdot 0=1\\
+h[1]=\delta[1]+a\,h[0]=a\\
+h[2]=\delta[2]+a\,h[1]=a^2\\
+\vdots\\
+h[n]=a^n,\quad n\geq 0
+\end{gathered} \qquad\text{(4.5)}
+```
+
+輸入只「敲一下」，但遞迴（回授）讓輸出永遠不會完全停下來 → 無限長脈衝響應（Infinite Impulse Response, IIR）。
+沒有回授、只由有限個輸入樣本加權組成的系統，其 $`h[n]`$ 就是那組權重 → 有限長脈衝響應（Finite Impulse Response, FIR）。
+
+![](figures/week3/fig1_impulse_responses.png)
+
+圖 4-1：六個系統的 impulse response（藍：FIR；橘：IIR；紅：非因果）。右下的二階系統
+$`y[n]=x[n]+2r\cos\theta\,y[n-1]-r^2y[n-2]`$（$`r=0.9,\ \theta=\pi/6`$）的 $`h[n]`$ 是一個衰減的弦波，這就是「共振」在時域的樣子。
+
+### 1.4 從 $`h[n]`$ 直接讀出系統性質（限 LTI 系統）
+
+| 性質 | 條件 | 直覺 |
+|---|---|---|
+| 因果（causal） | $`h[n]=0,\ n<0`$ | 還沒敲，就不該有回應 |
+| 穩定（BIBO stable） | $`\sum_{n}\lvert h[n]\rvert<\infty`$ | 回應的「總能量預算」有限 |
+| FIR | 只有有限個 $`h[n]\neq 0`$ | 一定穩定 |
+
+- 累加器：$`\sum|u[n]|=\infty`$ → **不穩定**（輸入 $`u[n]`$ 時輸出 $`(n+1)u[n]`$ 無界）。
+- 一階遞迴：$`\sum_{n\geq 0}|a|^n=\frac{1}{1-|a|}`$ 在 $`|a|<1`$ 時有限 → 穩定。
+- 前向差分：$`h[-1]=1\neq 0`$ → 非因果（要用到「未來」的輸入）。
+
+> 注意：上表只對 LTI 系統成立；下一節會說明為什麼 LTI 系統「只要一個 $`h[n]`$ 就夠了」。
+
+## 2. LTI 系統與卷積的由來（The Origin of Convolution）
+
+### 2.1 線性（Linearity）
+
+對任意輸入 $`x_1[n]`$、$`x_2[n]`$ 與任意常數 $`a`$、$`b`$：
+
+```math
+T\{a\,x_1[n]+b\,x_2[n]\}=a\,T\{x_1[n]\}+b\,T\{x_2[n]\} \qquad\text{(4.6)}
+```
+
+即可加性（additivity）＋齊次性（homogeneity）＝疊加原理（superposition）。
+
+### 2.2 非時變（Time Invariance / Shift Invariance）
+
+若 $`y[n]=T\{x[n]\}`$，則對任意整數 $`n_0`$：
+
+```math
+T\{x[n-n_0]\}=y[n-n_0] \qquad\text{(4.7)}
+```
+
+「今天做實驗和明天做實驗，得到的結果只差一個時間平移」。
+
+### 2.3 課堂判斷題
+
+| 系統 | 線性？ | 非時變？ | 說明 |
+|---|---|---|---|
+| $`y[n]=x[n-n_d]`$ | ✓ | ✓ | 理想延遲 |
+| $`y[n]=\sum_{k=-\infty}^{n}x[k]`$ | ✓ | ✓ | 累加器 |
+| $`y[n]=x^2[n]`$ | ✗ | ✓ | 輸入加倍，輸出變四倍 |
+| $`y[n]=x[n]+1`$ | ✗ | ✓ | 零輸入卻有非零輸出 |
+| $`y[n]=n\,x[n]`$ | ✓ | ✗ | 增益隨時間改變 |
+| $`y[n]=x[Mn]`$ | ✓ | ✗ | 降取樣（compressor）；HW3/HW4 的 ↓M 就是它 |
+
+最後一列值得多想：把輸入延遲 1 個樣本，$`x[M n-1]`$ 並不等於 $`y[n-1]=x[M n-M]`$。
+**取樣率轉換器不是 LTI 系統**，所以第 6 週的多速率分析不能直接套用本週的卷積結果，要另外處理。
+
+### 2.4 卷積是「推導」出來的
+
+以下每一步都標出用到了哪一個性質：
+
+**步驟 0（式 4.3，純數學，不需任何系統性質）**：把輸入拆成脈衝
+
+```math
+x[n]=\sum_{k=-\infty}^{\infty}x[k]\,\delta[n-k]
+```
+
+**步驟 1（線性）**：$`x[k]`$ 對 $`n`$ 而言只是常數權重，線性讓 $`T`$ 可以穿過加總與權重
+
+```math
+y[n]=T\Big\{\sum_{k}x[k]\,\delta[n-k]\Big\}=\sum_{k}x[k]\,T\{\delta[n-k]\}=\sum_{k}x[k]\,h_k[n] \qquad\text{(4.8)}
+```
+
+其中 $`h_k[n]=T\{\delta[n-k]\}`$ 是「在時間 $`k`$ 敲一下」的回應。
+**只有線性時**，我們需要知道**無窮多個** $`h_k[n]`$（每個 $`k`$ 一個）才能描述系統。
+
+**步驟 2（非時變）**：在時間 $`k`$ 敲一下的回應，就是在時間 0 敲一下的回應往後平移 $`k`$
+
+```math
+h_k[n]=T\{\delta[n-k]\}=h[n-k] \qquad\text{(4.9)}
+```
+
+**結論**：兩個性質合起來，得到卷積和（convolution sum）
+
+```math
+\boxed{\,y[n]=\sum_{k=-\infty}^{\infty}x[k]\,h[n-k]=x[n]*h[n]\,} \qquad\text{(4.10)}
+```
+
+重點整理：
+
+1. 卷積不是憑空定義的運算；它是「**線性**讓我們可以拆開再加回來」、「**非時變**讓所有的積木長得一樣」這兩件事的直接結果。
+2. 因此 LTI 系統**完全由一個序列 $`h[n]`$ 決定**。這也是為什麼 1.4 節可以只看 $`h[n]`$ 判斷因果與穩定。
+3. 少了非時變，式 (4.8) 仍然成立，但每個時間點的積木 $`h_k[n]`$ 都不同（time-varying system），分析就困難得多。
+4. 連續時間的版本推導完全相同：$`y(t)=\int_{-\infty}^{\infty}x(\tau)h(t-\tau)\,d\tau`$，第二部分的 RC 電路就是一個連續時間 LTI 系統。
+
+### 2.5 怎麼算卷積：翻轉、平移、相乘、加總
+
+計算 $`y[n_0]`$ 時，把 $`k`$ 當成變數：
+
+1. **翻轉**：$`h[k]\rightarrow h[-k]`$
+2. **平移**：$`h[-k]\rightarrow h[n_0-k]`$（$`n_0>0`$ 往右移）
+3. **相乘**：$`x[k]\,h[n_0-k]`$
+4. **加總**：對所有 $`k`$ 加起來得到 $`y[n_0]`$；再換下一個 $`n_0`$
+
+例：$`x[n]=\{\underline{1},2,3\}`$，$`h[n]=\{\underline{1},1,0.5\}`$。
+
+| $`n`$ | 參與相乘的項 | $`y[n]`$ |
+|---|---|---|
+| 0 | $`1\cdot 1`$ | 1 |
+| 1 | $`1\cdot 1+2\cdot 1`$ | 3 |
+| 2 | $`1\cdot 0.5+2\cdot 1+3\cdot 1`$ | 5.5 |
+| 3 | $`2\cdot 0.5+3\cdot 1`$ | 4 |
+| 4 | $`3\cdot 0.5`$ | 1.5 |
+
+![](figures/week3/fig2_convolution.png)
+
+圖 4-2：$`n_0=2`$ 時的翻轉、平移、相乘、加總。
+
+另一種等價看法（對寫程式更直覺）：**輸出是 $`h[n]`$ 的「複本」疊加**，每個輸入樣本 $`x[k]`$ 在時間 $`k`$ 放一份 $`x[k]\,h[n-k]`$：
+
+```math
+y[n]=1\cdot h[n]+2\cdot h[n-1]+3\cdot h[n-2]
+```
+
+長度規則：長度 $`N`$ 的序列與長度 $`L`$ 的序列卷積，結果長度為 $`N+L-1`$（上例 $`3+3-1=5`$）。
+這條規則是 HW4 overlap-add 決定 FFT 長度（$`P+Q-1\leq N`$）的依據。
+
+### 2.6 卷積的性質與系統的連接
+
+| 性質 | 式子 | 系統意義 |
+|---|---|---|
+| 交換律 | $`x*h=h*x`$ | 輸入與 impulse response 角色可互換 |
+| 結合律 | $`(x*h_1)*h_2=x*(h_1*h_2)`$ | **串接**（cascade）：等效 $`h=h_1*h_2`$，且順序可交換 |
+| 分配律 | $`x*(h_1+h_2)=x*h_1+x*h_2`$ | **並接**（parallel）：等效 $`h=h_1+h_2`$ |
+| 單位元素 | $`x*\delta=x`$；$`x*\delta[n-n_d]=x[n-n_d]`$ | 與脈衝卷積＝不變；與移位脈衝卷積＝延遲 |
+
+例：累加器 $`h_1=u[n]`$ 串接後向差分 $`h_2=\delta[n]-\delta[n-1]`$，
+$`h_1*h_2=u[n]-u[n-1]=\delta[n]`$ → 兩者互為**反系統**（inverse system）。
+
+### 2.7 時域實作：C 語言的直接卷積
+
+FIR 濾波（$`h[n]`$ 長度 $`L`$，因果）在 C 語言裡就是兩層迴圈，正是式 (4.10) 的逐字翻譯：
+
+```c
+/* y[n] = sum_{k=0}^{L-1} h[k] x[n-k]，x[n] 在 n<0 時視為 0（initial rest） */
+for (int n = 0; n < N; n++) {
+    double acc = 0.0;
+    for (int k = 0; k < L && k <= n; k++)
+        acc += h[k] * x[n - k];
+    y[n] = acc;
+}
+```
+
+運算量為每個輸出樣本 $`L`$ 次乘加，共約 $`N\cdot L`$ 次。HW3（直接卷積，$`P=1025`$）與 HW4（FFT 快速卷積）比較的就是這個數字。
+IIR 系統則不必做無限長卷積：以 LCCDE 遞迴計算即可（見 HW1 式 (8)），這是 IIR 在運算量上的最大優勢。
+
+## 3. 以複指數輸入做特徵系統分析（Eigen Analysis with Complex Exponential Input）
+
+### 3.1 線性代數的類比
+
+矩陣 $`\mathbf{A}`$ 的特徵向量 $`\mathbf{v}`$ 滿足 $`\mathbf{A}\mathbf{v}=\lambda\mathbf{v}`$：
+進去什麼方向，出來還是同一個方向，只被乘上一個（複數）純量 $`\lambda`$。
+
+LTI 系統也是一個線性運算子。把卷積寫成矩陣，$`\mathbf{y}=\mathbf{H}\mathbf{x}`$ 的 $`\mathbf{H}`$ 每一條對角線上的值都相同
+（Toeplitz 矩陣，這正是「非時變」的矩陣樣貌）：
+
+```math
+\begin{bmatrix}y[0]\\y[1]\\y[2]\\y[3]\\\vdots\end{bmatrix}=
+\begin{bmatrix}
+h[0] & 0 & 0 & 0 & \cdots\\
+h[1] & h[0] & 0 & 0 & \cdots\\
+h[2] & h[1] & h[0] & 0 & \cdots\\
+h[3] & h[2] & h[1] & h[0] & \cdots\\
+\vdots & & & & \ddots
+\end{bmatrix}
+\begin{bmatrix}x[0]\\x[1]\\x[2]\\x[3]\\\vdots\end{bmatrix} \qquad\text{(4.11)}
+```
+
+問題：**什麼樣的輸入序列，通過 LTI 系統後「形狀不變」，只被乘上一個複數？**
+
+### 3.2 複指數是 LTI 系統的特徵函數
+
+令輸入為對所有 $`n`$（$`-\infty<n<\infty`$）都存在的複指數 $`x[n]=e^{j\omega n}`$，代入式 (4.10)（用交換律寫成 $`\sum_k h[k]x[n-k]`$）：
+
+```math
+y[n]=\sum_{k=-\infty}^{\infty}h[k]\,e^{j\omega(n-k)}
+=\underbrace{\Big(\sum_{k=-\infty}^{\infty}h[k]\,e^{-j\omega k}\Big)}_{H(e^{j\omega})}\,e^{j\omega n} \qquad\text{(4.12)}
+```
+
+```math
+\boxed{\,T\{e^{j\omega n}\}=H(e^{j\omega})\,e^{j\omega n}\,},\qquad
+H(e^{j\omega})=\sum_{k=-\infty}^{\infty}h[k]\,e^{-j\omega k} \qquad\text{(4.13)}
+```
+
+- $`e^{j\omega n}`$ 是 LTI 系統的**特徵函數**（eigenfunction），對**所有** LTI 系統都是同一組。
+- 對應的**特徵值**（eigenvalue）$`H(e^{j\omega})`$ 稱為系統的**頻率響應**（frequency response），它就是 $`h[n]`$ 的 DTFT。
+- 關鍵在 $`e^{j\omega(n-k)}=e^{j\omega n}e^{-j\omega k}`$：延遲一個複指數，只會乘上一個常數相位。其他波形（方波、三角波）沒有這個性質。
+- 寫成極座標 $`H(e^{j\omega})=|H(e^{j\omega})|e^{j\angle H(e^{j\omega})}`$：
+  **振幅乘上 $`|H|`$、相位加上 $`\angle H`$、頻率不變**。這和第二部分式 (3.16) 的相子分析完全同構，只是 $`H(\omega)`$ 換成 $`H(e^{j\omega})`$。
+
+更一般地，$`x[n]=z^n`$（$`z`$ 為任意複數）也是特徵函數：$`T\{z^n\}=H(z)\,z^n`$，
+$`H(z)=\sum_k h[k]z^{-k}`$ 就是下週的主角 **z 轉換**；$`z=e^{j\omega}`$（單位圓上）時退化回頻率響應。
+
+### 3.3 弦波輸入
+
+實數弦波可拆成兩個複指數：
+
+```math
+A\cos(\omega_0 n+\phi)=\frac{A}{2}e^{j\phi}e^{j\omega_0 n}+\frac{A}{2}e^{-j\phi}e^{-j\omega_0 n} \qquad\text{(4.14)}
+```
+
+由線性，兩項各自乘上 $`H(e^{j\omega_0})`$ 與 $`H(e^{-j\omega_0})`$。若 $`h[n]`$ 為實數，則 $`H(e^{-j\omega})=H^*(e^{j\omega})`$（共軛對稱），因此
+
+```math
+y[n]=A\,\lvert H(e^{j\omega_0})\rvert\cos\!\big(\omega_0 n+\phi+\angle H(e^{j\omega_0})\big) \qquad\text{(4.15)}
+```
+
+**實作技巧（HW1 `sine_wav_gen.c` 為什麼要做雙聲道）**：左聲道放 $`\sin(\omega n)`$、右聲道放 $`\cos(\omega n)`$，
+兩聲道各自通過同一個實係數 LTI 系統，因為線性，
+
+```math
+T\{\cos\omega n\}+j\,T\{\sin\omega n\}=T\{e^{j\omega n}\}=H(e^{j\omega})e^{j\omega n}
+```
+
+所以把「右聲道輸出 $`+j\cdot`$ 左聲道輸出」組回複數，就能直接從波形量到 $`|H|`$ 與 $`\angle H`$：
+振幅比就是 $`|H|`$，相位差就是 $`\angle H`$。這就是用 WAV 檔「實驗量測」特徵值的方法。
+
+### 3.4 例子
+
+**例 1：理想延遲** $`h[n]=\delta[n-n_d]`$
+
+```math
+H(e^{j\omega})=e^{-j\omega n_d},\qquad |H|=1,\quad \angle H=-\omega n_d \qquad\text{(4.16)}
+```
+
+所有頻率都通過，相位與頻率成線性關係，斜率 $`-n_d`$ 就是延遲量 → 這就是 HW2 的 **linear phase** 與**群延遲**的原型。
+
+**例 2：3 點移動平均** $`h[n]=\frac{1}{3}(\delta[n]+\delta[n-1]+\delta[n-2])`$
+
+```math
+H(e^{j\omega})=\frac{1}{3}\big(1+e^{-j\omega}+e^{-j2\omega}\big)=\frac{1}{3}e^{-j\omega}\big(e^{j\omega}+1+e^{-j\omega}\big)=\frac{1+2\cos\omega}{3}\,e^{-j\omega} \qquad\text{(4.17)}
+```
+
+- $`\omega=0`$（直流）：$`H=1`$，常數輸入原封不動。
+- $`\omega=2\pi/3`$：$`1+2\cos(2\pi/3)=0`$，**完全消去**。例如 $`\cos(2\pi n/3)=\{1,-\tfrac12,-\tfrac12,1,-\tfrac12,-\tfrac12,\dots\}`$，任意連續三點加起來恰為 0。
+- 相位 $`-\omega`$（在 $`1+2\cos\omega>0`$ 處）：線性相位，延遲 1 個樣本，剛好是 3 點窗的中心。
+- $`1+2\cos\omega<0`$ 處振幅取絕對值，負號併入相位成為 $`\pm\pi`$ 的跳躍（圖 4-3 藍線相位的跳點）。
+
+**例 3：一階遞迴** $`y[n]=0.9\,y[n-1]+0.1\,x[n]`$，$`h[n]=0.1\,(0.9)^n u[n]`$
+
+```math
+H(e^{j\omega})=\sum_{k=0}^{\infty}0.1\,(0.9)^k e^{-j\omega k}=\frac{0.1}{1-0.9\,e^{-j\omega}} \qquad\text{(4.18)}
+```
+
+（等比級數，因 $`|0.9\,e^{-j\omega}|<1`$ 而收斂。）$`H(e^{j0})=1`$、$`|H(e^{j\pi})|=0.1/1.9\approx 0.053`$：低通。
+HW1 的式 (8) 是同一型式的系統，請自行代入 RC 與取樣週期 $`\tau`$ 推導（B5–B6），並和第二部分連續時間的 $`H(\omega)`$ 比較。
+
+![](figures/week3/fig3_frequency_response.png)
+
+圖 4-3：例 2 與例 3 的振幅響應與相位響應。$`H(e^{j\omega})`$ 以 $`2\pi`$ 為週期，所以只需畫 $`-\pi\leq\omega\leq\pi`$；
+$`\omega=0`$ 附近是低頻、$`\omega=\pm\pi`$ 附近是最高頻（對應 $`f_s/2`$）。
+
+### 3.5 為什麼一定要 LTI？
+
+- 非線性：$`y[n]=x^2[n]`$，輸入 $`e^{j\omega n}`$ 得到 $`e^{j2\omega n}`$，**產生了新的頻率**（Team Project 的 distortion 效果器正是利用這一點）。
+- 時變：$`y[n]=n\,x[n]`$，輸出 $`n\,e^{j\omega n}`$ 不是常數乘上輸入。
+- 只有 LTI 系統保證「**頻率進去什麼，出來就是什麼**」，所以才能用一條 $`H(e^{j\omega})`$ 曲線描述整個系統。
+
+## 4. 穩態與暫態（Steady State and Transient State）
+
+### 4.1 問題：現實中的輸入都有「開始」
+
+3.2 節假設 $`e^{j\omega n}`$ 從 $`n=-\infty`$ 就存在，但錄音、WAV 檔、HW 產生的測試訊號都從 $`n=0`$ 才開始。
+考慮**突然施加**（suddenly applied）的複指數，並假設系統因果（$`h[n]=0,\ n<0`$）：
+
+```math
+x[n]=e^{j\omega n}u[n] \qquad\text{(4.19)}
+```
+
+### 4.2 推導：把輸出拆成兩部分
+
+$`n<0`$ 時 $`y[n]=0`$。$`n\geq 0`$ 時，$`x[n-k]`$ 只在 $`0\leq k\leq n`$ 非零：
+
+```math
+y[n]=\sum_{k=0}^{n}h[k]\,e^{j\omega(n-k)}=\Big(\sum_{k=0}^{n}h[k]\,e^{-j\omega k}\Big)e^{j\omega n} \qquad\text{(4.20)}
+```
+
+括號內只是 $`H(e^{j\omega})`$ 的「部分和」。補上缺少的尾巴再扣掉：
+
+```math
+y[n]=\underbrace{H(e^{j\omega})\,e^{j\omega n}}_{y_{ss}[n]\ \text{(steady state)}}
+\;\underbrace{-\;\Big(\sum_{k=n+1}^{\infty}h[k]\,e^{-j\omega k}\Big)e^{j\omega n}}_{y_t[n]\ \text{(transient)}},\qquad n\geq 0 \qquad\text{(4.21)}
+```
+
+- **穩態響應** $`y_{ss}[n]`$：就是 3.2 節的特徵函數答案，彷彿輸入從 $`-\infty`$ 就開始了。
+- **暫態響應** $`y_t[n]`$：因為「系統還記得 $`n<0`$ 時輸入是 0」而產生的差異。它包含的是 $`h[n]`$ 在 $`n`$ 之後還沒用到的尾巴。
+
+暫態的大小有一個簡單的上界（三角不等式，$`|e^{j\theta}|=1`$）：
+
+```math
+\lvert y_t[n]\rvert\leq\sum_{k=n+1}^{\infty}\lvert h[k]\rvert \qquad\text{(4.22)}
+```
+
+### 4.3 FIR：暫態在有限時間內「完全」結束
+
+若 $`h[n]`$ 只在 $`0\leq n\leq M`$ 非零（長度 $`M+1`$），則 $`n\geq M`$ 時式 (4.21) 的尾巴是空的：
+
+```math
+y_t[n]=0,\qquad y[n]=H(e^{j\omega})e^{j\omega n},\qquad n\geq M \qquad\text{(4.23)}
+```
+
+**FIR 系統的暫態恰好持續 $`M`$ 個樣本**（$`n=0,\dots,M-1`$）。直覺：輸出要等到濾波器的「窗」完全被輸入填滿，才看得到穩態。
+
+小例子：3 點移動平均（$`M=2`$），輸入 $`e^{j\omega n}u[n]`$：
+
+| $`n`$ | $`y[n]`$ | 狀態 |
+|---|---|---|
+| 0 | $`\frac{1}{3}`$ | 暫態：窗內只有 1 個輸入樣本 |
+| 1 | $`\frac{1}{3}(e^{j\omega}+1)`$ | 暫態：窗內 2 個樣本 |
+| $`\geq 2`$ | $`\frac{1}{3}(e^{j\omega n}+e^{j\omega(n-1)}+e^{j\omega(n-2)})=H(e^{j\omega})e^{j\omega n}`$ | 穩態 |
+
+![](figures/week3/fig4_transient_fir.png)
+
+圖 4-4：8 點移動平均（$`M=7`$），輸入 $`\cos(0.1\pi n)u[n]`$（即 $`e^{j0.1\pi n}u[n]`$ 的實部）。
+上圖：前 7 個樣本（藍）還沒貼上穩態曲線（橘虛線）；從 $`n=7`$ 起完全重合。
+下圖：$`|y_t[n]|`$ 在 $`n=M=7`$ 降為 0（對數座標掉到底），且始終在式 (4.22) 的上界之下。
+
+推論：**濾波器越長（$`M`$ 越大），頻率響應可以越接近理想（越陡），但暫態也越長**。
+這正是 HW2 Part B 要你用 $`M=4\sim 2048`$ 實驗觀察的取捨，請以實際 WAV 輸出驗證並討論。
+
+### 4.4 IIR：暫態以指數速度衰減，但永不「完全」結束
+
+以例 3 的 $`h[n]=b\,a^n u[n]`$（$`|a|<1`$）代入式 (4.21)，尾巴是等比級數：
+
+```math
+y_t[n]=-\Big(\sum_{k=n+1}^{\infty}b\,a^k e^{-j\omega k}\Big)e^{j\omega n}
+=-\frac{b\,a^{n+1}e^{-j\omega}}{1-a\,e^{-j\omega}},\qquad n\geq 0 \qquad\text{(4.24)}
+```
+
+```math
+\lvert y_t[n]\rvert=\frac{|b|\,|a|^{n+1}}{\lvert 1-a\,e^{-j\omega}\rvert}\propto |a|^{n} \qquad\text{(4.25)}
+```
+
+- 暫態以 $`|a|^n`$ 衰減，永遠不會精確為 0，但**系統穩定（$`|a|<1`$）保證它趨近 0**。
+- 衰減到 $`1/e`$ 需要約 $`n_\tau=-1/\ln|a|`$ 個樣本（時間常數）；$`a=0.9`$ 時約 9.5 個樣本。
+  衰減 60 dB（千分之一）需要 $`n=-3/\log_{10}|a|\approx 66`$ 個樣本。
+- $`|a|`$ 越接近 1（極點越靠近單位圓），濾波越「窄」、暫態也越長；這個「極點位置 ↔ 暫態長度」的關係到 z 轉換時會再看到。
+- 連續時間 RC 電路的暫態 $`\propto e^{-t/RC}`$ 與此同構；HW1 B2 請用第二部分的微分方程自行推導連續時間版本。
+
+![](figures/week3/fig5_transient_iir.png)
+
+圖 4-5：$`y[n]=0.9\,y[n-1]+0.1\,x[n]`$，輸入 $`\cos(0.1\pi n)u[n]`$。下圖的 $`|y_t[n]|`$ 在對數座標上是一條直線（斜率 $`\log_{10}0.9`$），
+從 $`\approx 0.29`$（式 4.25 於 $`n=0`$）衰減到 $`n=79`$ 時的 $`\approx 7\times 10^{-5}`$。
+
+### 4.5 一般結論
+
+| | FIR（長度 $`M+1`$） | 穩定的 IIR | 不穩定系統 |
+|---|---|---|---|
+| 暫態長度 | 恰好 $`M`$ 個樣本 | 無限長，但指數衰減 | 不會衰減 |
+| 穩態 | $`n\geq M`$ 起精確成立 | 漸近成立 | 不存在（例：累加器輸入 $`u[n]`$，$`\omega=0`$） |
+| 由什麼決定 | $`h[n]`$ 的長度 | $`h[n]`$ 尾巴衰減速度（極點半徑） | — |
+
+穩定性（$`\sum|h[n]|<\infty`$）是「穩態存在」的充分條件：由式 (4.22)，尾巴和趨近 0，暫態必然消失。
+
+### 4.6 實務觀察：聽得到的暫態
+
+- **開頭**：濾波後的 WAV 前 $`M`$ 個樣本（FIR）振幅逐漸「長出來」；若輸入突然從 0 跳到滿振幅，常可聽到「喀」一聲。
+- **結尾**：輸入在 $`n=N-1`$ 結束時，輸出還會延續 $`M`$ 個樣本的「尾巴」（全長 $`N+M`$，正是 2.5 節的長度規則）。
+  這是另一個方向的暫態，同樣可用式 (4.21) 的想法分析。
+- **對策**：輸入頭尾乘上漸入漸出的視窗（例如 HW2 Part A 的 Hanning 視窗）可以避免突然開始造成的寬頻暫態。
+- **量測頻率響應時**：用複指數輸入量 $`|H|`$、$`\angle H`$，必須**跳過暫態**，只取穩態區段計算振幅比與相位差，否則量到的是錯的。
+
+## 5. 課堂練習
+
+1. 求 $`y[n]=\frac{1}{2}(x[n]+x[n-1])`$ 的 $`h[n]`$，並判斷其因果性與穩定性。
+2. 判斷 $`y[n]=x[n]\cos(\omega_0 n)`$ 是否為線性？是否為非時變？（提示：這是 AM 調變。）
+3. 以翻轉平移法計算 $`\{\underline{1},-1\}*\{\underline{1},2,3,4\}`$，並說明結果與「差分」的關係。
+4. 求第 1 題系統的 $`H(e^{j\omega})`$，寫成 $`|H|e^{j\angle H}`$，指出哪個頻率被完全消去。
+5. 輸入 $`e^{j\omega n}u[n]`$ 到第 1 題的系統，從哪個 $`n`$ 開始進入穩態？寫出 $`y_t[n]`$。
+6. 一階系統 $`h[n]=a^n u[n]`$，要讓暫態在 20 個樣本內衰減到 1% 以下，$`|a|`$ 最大可以是多少？
+
+## 6. 本週重點與作業對應
+
+| 本週重點 | 一句話 | 對應作業 |
+|---|---|---|
+| Impulse response | 敲一下看回應；FIR/IIR、因果、穩定都寫在 $`h[n]`$ 裡 | HW1 式 (8)、HW2 Part B 的 $`h_M[n]`$ |
+| LTI 與卷積 | 線性＋非時變 ⇒ $`y=x*h`$，系統由 $`h[n]`$ 唯一決定 | HW3 直接卷積、HW4 overlap-add |
+| 特徵函數 | $`e^{j\omega n}\rightarrow H(e^{j\omega})e^{j\omega n}`$：只改振幅與相位 | HW1 B1、B5–B6；`sine_wav_gen.c` 雙聲道 |
+| 穩態與暫態 | $`y=y_{ss}+y_t`$；FIR 暫態 $`M`$ 個樣本，IIR 指數衰減 | HW1 B2；HW2 Part B |
+
+---
+
 # 課後待辦（第 1 週）
 
 1. 依 [vscode_c_starter.md](../tutorials/vscode_c_starter.md) 架好 C 開發環境，編譯 [tools/wav_info.c](../../tools/wav_info.c)。
 2. 依 [git_intro.md](../tutorials/git_intro.md) 建立個人私人 repo，邀請 cychiang@mail.ntpu.edu.tw。
 3. 預習第二部分第 1 節（相子與 RC 低通濾波器），為 HW1 做準備。
+
+# 課後待辦（第 3 週）
+
+1. 複習[第四部分](#第四部分day-3-lti-系統脈衝響應卷積特徵函數暫態與穩態)，完成第 5 節課堂練習。
+2. 執行 [demos/week3_lti_demo.py](demos/week3_lti_demo.py)，改變移動平均長度與 $`a`$，觀察暫態長度如何改變。
+3. 開始 [HW1](../../assignments/hw1_rc_lowpass/)（10/8 18:00 截止）：B1–B2 對應第四部分第 3–4 節的連續時間版本，B5–B6 對應離散時間版本。
+4. 預習 O&S Ch. 3（z 轉換）：3.2 節的 $`z^n`$ 特徵函數與 $`H(z)`$ 是下週的起點。
