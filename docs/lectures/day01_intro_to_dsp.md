@@ -169,12 +169,12 @@ Linear/Minimum Phase Systems、Changing Sampling Rates、FFT Filters。
 ## 9. 複習 RC 低通濾波器 → 見 Day-2
 
 DSP 需要「訊號與系統」的基礎，而其基礎在於交流電、電阻、電抗、阻抗的觀念。
-相關內容已併入[Day-2 講義](day02_continuous_to_discrete.md)第 1 節，這也是 HW1 的背景知識。
+相關內容已併入 [Day-2 講義](day02_continuous_to_discrete.md) 第 1 節（1.1–1.3），這也是 HW1 的背景知識。
 
 ## 10. 回到 1950 年代：用 DSP 來模擬類比電路 → 見 Day-2 第 3 節
 
 思考：如何用程式語言模擬 RC 電路，對任何輸入 x(t) 求出 y(t)？
-推導見 [Day-2 講義](day02_continuous_to_discrete.md)第 3 節，即 [HW1](../../assignments/hw1_rc_lowpass/) 的出發點。
+推導見 [Day-2-4 以離散訊號處理模擬 RC 低通濾波器](day02_4_simulation_by_discrete.md)，即 [HW1](../../assignments/hw1_rc_lowpass/) 的出發點。
 
 ---
 

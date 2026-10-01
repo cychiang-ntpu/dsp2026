@@ -1,6 +1,6 @@
 # 第 3 週補充：語音信號的表示
 
-[← day02_continuous_to_discrete.md](day02_continuous_to_discrete.md) ｜ [講義目錄](README.md) ｜ [day04_frequency_response_transient.md →](day04_frequency_response_transient.md)
+[← day02_supp_rlc_filter_experiment.md](day02_supp_rlc_filter_experiment.md) ｜ [講義目錄](README.md) ｜ [day04_frequency_response_transient.md →](day04_frequency_response_transient.md)
 
 
 - 第 3 週補充閱讀。以語音為例說明取樣、量化、WAV 儲存、DTFT/DFT、窗函數與 spectrogram，
@@ -429,4 +429,4 @@ v oicer unvoiced
 
 ---
 
-[← day02_continuous_to_discrete.md](day02_continuous_to_discrete.md) ｜ [講義目錄](README.md) ｜ [day04_frequency_response_transient.md →](day04_frequency_response_transient.md)
+[← day02_supp_rlc_filter_experiment.md](day02_supp_rlc_filter_experiment.md) ｜ [講義目錄](README.md) ｜ [day04_frequency_response_transient.md →](day04_frequency_response_transient.md)
