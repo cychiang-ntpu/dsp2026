@@ -42,7 +42,7 @@ dsp2026/
 ├── samples_2025/           去年（1141）作業樣本（hw1–hw4 各 HIGH / MEDIUM / LOW，開學後補上）
 ├── docs/
 │   ├── course_plan.md      課程時程、行事曆與評分方式
-│   ├── lectures/           課堂講義（第 1–3 週聯集版：課程介紹、從連續到離散、語音信號表示）
+│   ├── lectures/           課堂講義（第 1–4 週：課程介紹、從連續到離散、語音信號表示、頻率響應與暫態穩態）
 │   └── tutorials/          新手教學（VSCode、終端機、Git、除錯、Makefile…）
 └── tools/                  課程工具（wav_info.c；input.wav 測試音檔於 HW3 公布時發布）
 ```
@@ -55,7 +55,7 @@ Oppenheim, A. V., & Schafer, R. W. (2009). *Discrete-Time Signal Processing* (3r
 
 ## 第一堂課 checklist
 
-1. 讀 [docs/lectures/dsp2026_lecture_notes.md](docs/lectures/dsp2026_lecture_notes.md)（第 1–3 週講義）與
+1. 讀 [docs/lectures/dsp2026_lecture_notes.md](docs/lectures/dsp2026_lecture_notes.md)（第 1–4 週講義）與
    [docs/course_plan.md](docs/course_plan.md)：整學期時程、作業與評分。
 2. 照 [docs/tutorials/vscode_c_starter.md](docs/tutorials/vscode_c_starter.md)
    架好開發環境，跑出 Hello World，並完成步驟 6 編譯 [tools/wav_info.c](tools/wav_info.c)。
