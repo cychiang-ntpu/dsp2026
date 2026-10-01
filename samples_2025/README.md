@@ -11,8 +11,8 @@
 ```
 samples_2025/
 ├── README.md
-├── hw1/   README.md + HIGH/ MEDIUM/ LOW/
-├── hw2/   README.md + HIGH/ MEDIUM/ LOW/
-├── hw3/   README.md + HIGH/ MEDIUM/ LOW/
-└── hw4/   README.md + HIGH/ MEDIUM/ LOW/
+├── hw1/   README.md + HIGH/ MEDIUM/ LOW/（樣本待補）
+├── hw2/   README.md + HIGH/ MEDIUM/ LOW/（樣本待補）
+├── hw3/   README.md + HIGH/ MEDIUM/ LOW/（樣本待補）
+└── hw4/   README.md + HIGH/ MEDIUM/ LOW/（樣本待補）
 ```

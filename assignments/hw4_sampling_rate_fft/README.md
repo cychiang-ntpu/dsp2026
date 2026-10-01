@@ -1,7 +1,8 @@
 # DSP Assignment-4: Changing Sampling Rate with FFT Filters
 
-參考：去年投影片 DSP-Assignment-4 (20251223).pdf（公布 2025/12/23，截止 2026/01/08）
-（今年公布第 12 週 11/26，截止 12/17 18:00）
+**本學期公布第 12 週 11/26，截止 12/17 18:00。**
+
+參考：去年投影片 DSP-Assignment-4 (20251223).pdf（去年時程與本學期無關）
 
 ## 學習目標
 - 理解升取樣與降取樣

@@ -1,6 +1,6 @@
 # DSP Assignment-2: Transform Analysis — Linear/Minimum Phase, Steady and Transient States
 
-本作業為歷年題目的聯集：
+本作業整合以下歷年題目：
 - 「Transform Analysis: Examine the example」（2025 版：https://hackmd.io/@dsp-ce-ntpu/dsp-ce-ntpu-2025-assignment-2 ）
 - 「Filtering: Steady and Transient States」與「Linear/Minimum Phase Systems」
   （2024 版 Assignment-3：https://hackmd.io/QgTHBIoYRwSuiLTZDn3Gmw ，全文存於 [archive/](../archive/2024_hw3_filtering_steady_transient/)）
@@ -34,6 +34,8 @@
    - 實作上以下列 FIR impulse response 實現（應再乘上 Hamming 或 Blackman 等視窗）：
 
          h_M[n] = sin(ω_c (n − M)) / (π (n − M))，0 ≤ n ≤ 2M；否則 0
+
+     其中 n = M 時取極限值 h_M[M] = ω_c / π，ω_c = 2π f_c / f_s。
 
    - 建立 5 種 order 的 linear-phase low-pass filter：M = 4, 16, 64, 512, 2048（order = 2M）
 2. 繪製 impulse response h_M[n]，M = 4, 16, 64, 512, 2048

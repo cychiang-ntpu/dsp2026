@@ -94,7 +94,7 @@
   ![](https://i.imgur.com/Zi7v4tA.png)
 
   > A History of Vocoder Research at Lincoln Laboratory,
-  > https://www.ll.mit.edu/publications/journal/pdf/vol03_no2/3.2.1.vocoder.pdf
+  > http://web.archive.org/web/20170706083533/http://www.ll.mit.edu/publications/journal/pdf/vol03_no2/3.2.1.vocoder.pdf（原 MIT 網址已失效，此為 Internet Archive 備份）
 - **1960 年代**：DSP 系統用來逼近類比訊號處理系統，已可得到很好的類比濾波器近似；
   但速度、成本、體積三個因素，使完整的 DSP 系統仍無法取代類比系統用於語音通訊、雷達處理等。
 - **1960 年代**：部分演算法源自數位電腦的彈性，在類比設備上並無對應的實作方式。
@@ -138,7 +138,7 @@ ISBN-13: 978-0131988422（課綱指定用書）
 本學期的成績結構、週次進度與作業截止日，統一以 [docs/course_plan.md](../course_plan.md) 為準。
 
 作業繳交規範（延續歷年做法）：
-- 繳交 C（或 Python）原始碼，push 到個人私人 GitHub repo，並邀請 cychiang@mail.ntpu.edu.tw。
+- 繳交 C（或 Python）原始碼，push 到個人私人 GitHub repo 的 hw1/…hw4/ 資料夾，並邀請 cychiang@mail.ntpu.edu.tw；於 LMS 登錄 repo URL＋完整 commit SHA。
 - 以 [Markdown](https://markdown.tw/) 撰寫 README.md 記錄作業（推導、圖表、結果分析）。
 - 評分重點：程式正確性、原始碼可讀性、文件（README.md）的品質與正確性。
 
@@ -166,12 +166,12 @@ Linear/Minimum Phase Systems、Changing Sampling Rates、FFT Filters。
 
 ---
 
-## 9. 複習 RC 低通濾波器 → 見 Day-2
+## 9. 複習 RC 低通濾波器 → 見 Day-2-1～2-3
 
 DSP 需要「訊號與系統」的基礎，而其基礎在於交流電、電阻、電抗、阻抗的觀念。
-相關內容已併入 [Day-2 講義](day02_continuous_to_discrete.md) 第 1 節（1.1–1.3），這也是 HW1 的背景知識。
+相關內容已併入 Day-2 的 [1.1 複數與相子](day02_1_complex_phasor.md)、[1.2 R/L/C 相位關係](day02_2_rlc_phase.md)、[1.3 阻抗與 RC 低通](day02_3_impedance_rc_lowpass.md)，這也是 HW1 的背景知識。
 
-## 10. 回到 1950 年代：用 DSP 來模擬類比電路 → 見 Day-2 第 3 節
+## 10. 回到 1950 年代：用 DSP 來模擬類比電路 → 見 Day-2-4
 
 思考：如何用程式語言模擬 RC 電路，對任何輸入 x(t) 求出 y(t)？
 推導見 [Day-2-4 以離散訊號處理模擬 RC 低通濾波器](day02_4_simulation_by_discrete.md)，即 [HW1](../../assignments/hw1_rc_lowpass/) 的出發點。
@@ -182,7 +182,7 @@ DSP 需要「訊號與系統」的基礎，而其基礎在於交流電、電阻�
 
 1. 依 [vscode_c_starter.md](../tutorials/vscode_c_starter.md) 架好 C 開發環境，編譯 [tools/wav_info.c](../../tools/wav_info.c)。
 2. 依 [git_intro.md](../tutorials/git_intro.md) 建立個人私人 repo，邀請 cychiang@mail.ntpu.edu.tw。
-3. 預習 [Day-2 講義](day02_continuous_to_discrete.md) 第 1 節（相子與 RC 低通濾波器），為 HW1 做準備。
+3. 預習 [Day-2 講義](day02_continuous_to_discrete.md)（1.1 相子、1.3 RC 低通濾波器），為 HW1 做準備。
 
 ---
 

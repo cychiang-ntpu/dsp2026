@@ -31,7 +31,7 @@ printf("%d\n", x);
 ```
 
 ```
-error: expected ';' before 'printf'
+error: expected ',' or ';' before 'printf'
 ```
 
 **修法**：錯誤指到 `printf` 那行，但真正的問題在**上一行**結尾少了 `;`。
@@ -81,12 +81,15 @@ int main(void)
 ```
 
 ```
-warning: implicit declaration of function 'printf'
+error: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
 ```
+
+舊版 gcc 只會給 warning 並照樣編譯；GCC 14 起這是 **error**，程式編不出來。
 
 **修法**：用到的函式要 include 對應的標頭檔：
 `printf/scanf` → `<stdio.h>`、`strlen/strcpy` → `<string.h>`、
-`malloc/rand` → `<stdlib.h>`、`sqrt/pow` → `<math.h>`。
+`malloc/rand` → `<stdlib.h>`、`sin/cos/sqrt/pow/M_PI` → `<math.h>`。
+用了 `M_PI` 卻出現 `'M_PI' undeclared`：編譯選項不要用 `-std=c99`，改用 `-std=gnu99`（或不加 `-std`）。
 
 ---
 
@@ -95,19 +98,22 @@ warning: implicit declaration of function 'printf'
 這種錯誤**沒有行號**，長相也不同——它不是語法錯，而是「找不到函式的實體」：
 
 ```
-undefined reference to 'add'
-undefined reference to 'WSAStartup'
+undefined reference to `add'
+undefined reference to `sin'
 ```
 
 **常見原因與修法**：
 - 函式只有宣告沒有定義（只寫了 `int add(int, int);` 沒寫函式內容），或函式名稱打錯。
-- 少連結函式庫：數學函式要加 `-lm`（Linux），
-  網路程式在 Windows 要加 `-lws2_32`（例如網路聊天程式），
-  執行緒在 Linux 要加 `-lpthread`。函式庫參數要放在**指令最後面**：
+- 少連結函式庫：用到 `sin`、`cos`、`sqrt` 等數學函式要加 `-lm`
+  （MSYS2 上不加也能編，但 Linux/macOS 一定要，建議一律加上）。
+  函式庫參數要放在**指令最後面**：
 
   ```
-  gcc chat.c -o chat.exe -lws2_32
+  gcc sine_wav_gen.c -o sine_wav_gen.exe -lm
   ```
+
+- 程式拆成多個 `.c` 檔（例如 `wav.c` 放 WAV 讀寫）卻只編了一個：
+  要把所有 `.c` 都列進指令，`gcc main.c wav.c -o main.exe -lm`，或用 Makefile。
 
 - `undefined reference to 'main'`：你根本沒寫 `main` 函式，或編錯檔案了。
 

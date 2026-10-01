@@ -15,9 +15,9 @@
 
 | 專案 | 內容 | 開題 | 繳交 | 評測 |
 |---|---|---|---|---|
-| [team_project_audio_effects](team_project_audio_effects/) | 音樂音響效果器：C 實作可串接的 EQ／echo／reverb／flanger／distortion／pitch-shift 等 | 11/12 | 12/15 | 12/17 |
+| [team_project_audio_effects](team_project_audio_effects/) | 音樂音響效果器：C 實作可串接的 EQ／echo／reverb／flanger／distortion／pitch-shift 等 | 11/12 | 12/15 18:00 | 12/17 |
 
-## 與歷年題目的對應（聯集）
+## 與歷年題目的對應
 
 | 歷年題目 | 本學期歸屬 |
 |---|---|

@@ -14,8 +14,8 @@
 | 1.1 | [day02_1_complex_phasor.md](day02_1_complex_phasor.md) | 複數的直角／極座標表示、尤拉公式、相子與其應用、相子練習題（HW1 Part A） |
 | 1.2 | [day02_2_rlc_phase.md](day02_2_rlc_phase.md) | 電阻、電感、電容：以弦波與相子計算，以訊號與系統觀點說明 |
 | 1.3 | [day02_3_impedance_rc_lowpass.md](day02_3_impedance_rc_lowpass.md) | RC 串聯阻抗、RC 低通濾波器的轉換函數與截止頻率 |
-| 3 | [day02_4_simulation_by_discrete.md](day02_4_simulation_by_discrete.md) | 由 KVL 微分方程離散化得到 HW1 式 (8) |
-| 2 | [day02_supp_rlc_filter_experiment.md](day02_supp_rlc_filter_experiment.md) | 鉛筆電阻、鋁箔電容的 RC／RLC 濾波器設計題（補充閱讀，不列入作業） |
+| 3（接 1.3） | [day02_4_simulation_by_discrete.md](day02_4_simulation_by_discrete.md) | 由 KVL 微分方程離散化得到 HW1 式 (8) |
+| 補充（原第 2 節） | [day02_supp_rlc_filter_experiment.md](day02_supp_rlc_filter_experiment.md) | 鉛筆電阻、鋁箔電容的 RC／RLC 濾波器設計題（補充閱讀，不列入作業） |
 
 建議閱讀順序：1.1 → 1.2 → 1.3 → 3；第 2 節為補充閱讀。
 

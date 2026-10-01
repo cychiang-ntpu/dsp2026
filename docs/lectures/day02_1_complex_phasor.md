@@ -1,6 +1,6 @@
 # Day-2-1：複數與相子（phasor）
 
-[← Day-2 總覽](day02_continuous_to_discrete.md) ｜ [Day-2 總覽](day02_continuous_to_discrete.md) ｜ [day02_2_rlc_phase.md →](day02_2_rlc_phase.md)
+[← Day-2 總覽](day02_continuous_to_discrete.md) ｜ [day02_2_rlc_phase.md →](day02_2_rlc_phase.md)
 
 ## 1.1. 複數 (complex number) 和相子 (phasor)
 
@@ -40,7 +40,7 @@ y=Im\{z\} \qquad\text{(3)}
 ```
 
 
-可以特別注意，在圖一裡面，我們將這個複數使用一個向量 (vector) 來代表它在空間中的位置，也就是說，我們把複數當作是一個向量來描述，這個複數是在複數平面 (complex plane, 或稱 z-plane) 上，這個複數平面為一個 2-dimensional (sub)space，這 complex plane 的 basis vectors 就是實數軸 (real axis) 以及虛數軸 (imaginary axis) 所指的方向向量。$`x`$ 就是虛數 $`z`$ 投影在 real axis 的投影量，$`y`$ 就是虛數 $`z`$ 投影在 imaginary axis 的投影量。real axis 和 imaginary axis 兩個互相正交，就是因為互相正交，才有有趣的特性。
+可以特別注意，在圖一裡面，我們將這個複數使用一個向量 (vector) 來代表它在空間中的位置，也就是說，我們把複數當作是一個向量來描述，這個複數是在複數平面 (complex plane, 或稱 z-plane) 上，這個複數平面為一個 2-dimensional (sub)space，這 complex plane 的 basis vectors 就是實數軸 (real axis) 以及虛數軸 (imaginary axis) 所指的方向向量。$`x`$ 就是複數 $`z`$ 投影在 real axis 的投影量，$`y`$ 就是複數 $`z`$ 投影在 imaginary axis 的投影量。real axis 和 imaginary axis 兩個互相正交，就是因為互相正交，才有有趣的特性。
 
 ---
 
@@ -67,7 +67,7 @@ z=r\cos\theta+j\ r\ sin\theta=r(cos\theta+j\ sin\theta) \qquad\text{(4)}
 ---
 
 ### 1.1.3. 尤拉表示式 (Euler’s formula)
-我們亦可用 「尤拉表示式」 (Euler’s formula) 來表示複數，這種表示方法非常方便，並廣泛應用於訊號處裡的領域裡面，Euler’s formula 為：
+我們亦可用 「尤拉表示式」 (Euler’s formula) 來表示複數，這種表示方法非常方便，並廣泛應用於訊號處理的領域裡面，Euler’s formula 為：
 
 ```math
 e^{j\theta}=cos\theta+j\sin\theta \qquad\text{(7)}
@@ -139,14 +139,14 @@ V_0e^{j(\omega t+\phi)}=V_0cos(\omega t+\phi)+jV_0sin(\omega t+\phi) \qquad\text
 ```
 
 
-我們也可以用以下數學是來表示ㄧ個餘弦信號：
+我們也可以用以下數學式來表示一個餘弦信號：
 
 ```math
 C(t)=V_0cos(\omega t+\phi)=Re\{V_0e^{j(\omega t+\phi)}\} \qquad\text{(16)}
 ```
 
 
-因為數學式(14)裡面的複數 $`V_0e^{j(\omega t+\phi))}`$ 就是在 z-plane 這個 space 裡面，$`x=Re\{V_0e^{j(\omega t+\phi)}\}`$ 就是在 real axis 上的投影量，$`y=Im\{V_0e^{j(\omega t+\phi)}\}`$ 就是在 imaginary axis 上的投影量。
+因為數學式(14)裡面的複數 $`V_0e^{j(\omega t+\phi)}`$ 就是在 z-plane 這個 space 裡面，$`x=Re\{V_0e^{j(\omega t+\phi)}\}`$ 就是在 real axis 上的投影量，$`y=Im\{V_0e^{j(\omega t+\phi)}\}`$ 就是在 imaginary axis 上的投影量。
 
 以實際生活上的例子來說，台灣家用電就是振幅為 $`110\sqrt2`$ Volts 或 $`220\sqrt2`$ Volts 的 60 Hz交流電，以數學來表示就是這個信號 $`S(t)`$：
 
@@ -217,12 +217,12 @@ C(t)=Im\{V_0e^{j(\omega t+\phi+\frac{\pi}{2})}\}=Im\{V_0e^{j(\omega t+\phi)}e^{j
 ```
 
 
-使用 phasor 表示的數學式(25) $`\vec{V}e^{j(\frac{\pi}{2})}`$ 就是原本數學式(23) $`\vec{V}`$ 的相位(phase)偏移(shift)版本，或著說 $`Im\{\vec{V}e^{j(\frac{\pi}{2})}\}`$ 信號是 $`Im\{\vec{V}\}`$ 信號的延遲(delay)版本，或著說 $`C(t)`$ 相對於 $`S(t)`$ 超前了 $`\frac{\pi}{2}`$。
+使用 phasor 表示的數學式(25) $`\vec{V}e^{j(\frac{\pi}{2})}`$ 就是原本數學式(23) $`\vec{V}`$ 的相位(phase)偏移(shift)版本，或者說 $`Im\{\vec{V}e^{j(\frac{\pi}{2})}\}`$ 信號是 $`Im\{\vec{V}\}`$ 信號的超前(advanced)版本，或者說 $`C(t)`$ 相對於 $`S(t)`$ 超前了 $`\frac{\pi}{2}`$。
 
 ---
 
 #### 重點！
-**所以使用 phasor 可以將 $`cos`$ 訊號 ($`C(t)`$) 和 $`sin`$ 訊號 ($`S(t)`$) 可以使一樣的表示方法 (如數學式(23)以及(25))，方便表示以及計算。**
+**所以使用 phasor 可以將 $`cos`$ 訊號 ($`C(t)`$) 和 $`sin`$ 訊號 ($`S(t)`$) 使用一樣的表示方法 (如數學式(23)以及(25))，方便表示以及計算。**
 
 ---
 
@@ -255,7 +255,7 @@ V_C(t)=V_A(t)-V_B(t)=? \qquad\text{(28)}
 > GeoGebra 互動圖：https://www.geogebra.org/calculator/dtjwrz4s
 
 
-***注意！1.5.1 以及 1.5.2 的解法交互比對來看，便可以了解 1.5.1 的簡便方法之原理。***
+***注意！1.1.5.1.1 以及 1.1.5.1.2 的解法交互比對來看，便可以了解 1.1.5.1.2 的簡便方法之原理。***
 
 ##### 1.1.5.1.1. 高中程度解法（積化和差、和差化積）
 
@@ -319,4 +319,4 @@ Y(t)=3 sin(w t+\frac{2}{3}\pi)
 
 ---
 
-[← Day-2 總覽](day02_continuous_to_discrete.md) ｜ [Day-2 總覽](day02_continuous_to_discrete.md) ｜ [day02_2_rlc_phase.md →](day02_2_rlc_phase.md)
+[← Day-2 總覽](day02_continuous_to_discrete.md) ｜ [day02_2_rlc_phase.md →](day02_2_rlc_phase.md)

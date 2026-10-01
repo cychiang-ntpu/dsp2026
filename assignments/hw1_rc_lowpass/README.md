@@ -1,6 +1,6 @@
 # DSP Assignment-1: Simulation of RC Low-Pass Filter by DSP
 
-本作業為歷年題目的聯集：
+本作業整合以下歷年題目：
 - 「Generating Sine Waves」（歷年 HW，`sine_wav_gen.c`）
 - 「交流電、電阻、電抗、阻抗」講義的相子練習題（Day-2 Problems 1–3）
 - 「Simulation of RC Low-Pass Filter by Discrete Signal Processing」（2025 版：https://hackmd.io/@dsp-ce-ntpu/dsp-ce-ntpu-2025-assignment-1 ）

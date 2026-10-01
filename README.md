@@ -9,7 +9,7 @@
 | 教室 | 電 2F07 |
 | 課程流水碼 | U4064（大學部：通訊 4、資工 4、電機 4、嵌入式系統／數位多媒體學程） |
 | | M5631（研究所：通訊碩、資工碩、電資博、智慧製造與系統應用專班、電機與資通訊專班） |
-| 評量 | HW1–HW4 40%、紙筆期中考 20%（11/5）、期末上機考 20%（12/24，考所有作業與 Team Project）、Team Project 音樂音響效果器 20%（12/17 評測） |
+| 評量 | HW1–HW4 40%（各 10%）、紙筆期中考 20%（11/5）、期末上機考 20%（12/24，考所有作業與 Team Project）、Team Project 音樂音響效果器 20%（2–3 人一組，12/17 評測） |
 | 行事曆 | 見 [docs/course_plan.md](docs/course_plan.md#本課程行事曆依-115-1-校曆) |
 
 本 repo 提供作業規格、去年作業樣本、課程時程與新手教學，供修課同學 clone／fork 使用。
@@ -39,10 +39,12 @@ dsp2026/
 │   ├── hw4_sampling_rate_fft/      取樣率轉換：FFT 濾波器 overlap-add（C）
 │   ├── team_project_audio_effects/ Team Project：音樂音響效果器（C，2–3 人一組）
 │   └── archive/                    歷年題目原文（2024 Filtering: Steady and Transient States，已併入 HW2）
-├── samples_2025/           去年（1141）作業樣本（hw1–hw4 各 HIGH / MEDIUM / LOW，開學後補上）
+├── samples_2025/           去年（1141）作業樣本（hw1–hw4 各 HIGH / MEDIUM / LOW，陸續補上）
 ├── docs/
 │   ├── course_plan.md      課程時程、行事曆與評分方式
-│   ├── lectures/           課堂講義，依週次分檔（day01_…、day02_…）
+│   ├── lectures/           課堂講義（day01–day04；Day-2 分為 day02_1…4 與 day02_supp）
+│   │   ├── demos/          課堂示範程式（Python）
+│   │   └── figures/        示範程式產生的講義圖
 │   └── tutorials/          新手教學（VSCode、終端機、Git、除錯、Makefile…）
 └── tools/                  課程工具（wav_info.c；input.wav 測試音檔於 HW3 公布時發布）
 ```
@@ -68,17 +70,17 @@ Oppenheim, A. V., & Schafer, R. W. (2009). *Discrete-Time Signal Processing* (3r
 
 | 作業 | 主題 | 語言 | 截止 |
 |---|---|---|---|
-| HW1 | RC 低通濾波器數位模擬 | C + Python | 10/8 |
-| HW2 | 轉換分析 + 暫態/穩態、linear/minimum phase 濾波 | C + Python Jupyter | 11/12 |
-| HW3 | 取樣率轉換（LCCDE） | C | 12/10 |
-| HW4 | 取樣率轉換（FFT） | C | 12/17 |
+| HW1 | RC 低通濾波器數位模擬 | C + Python | 10/8 18:00 |
+| HW2 | 轉換分析 + 暫態/穩態、linear/minimum phase 濾波 | C + Python Jupyter | 11/12 18:00 |
+| HW3 | 取樣率轉換（LCCDE） | C | 12/10 18:00 |
+| HW4 | 取樣率轉換（FFT） | C | 12/17 18:00 |
 
-繳交方式：push 到個人 GitHub repo，於 LMS 登錄 repo 連結與 commit SHA。詳見 [assignments/README.md](assignments/README.md)。
+繳交方式：push 到個人私人 GitHub repo 的 hw1/…hw4/ 資料夾，於 LMS 登錄 repo URL＋完整 commit SHA。詳見 [assignments/README.md](assignments/README.md)。
 
 ## Team Project：音樂音響效果器（20%）
 
 2–3 人一組，以 C 實作可串接的命令列效果器（EQ、echo、reverb、flanger、distortion、pitch-shift…），
-把 LCCDE、FIR/IIR、取樣率轉換與 FFT 用在真正的音樂上。10/15 分組、11/12 開題、12/15 繳交、12/17 評測。
+把 LCCDE、FIR/IIR、取樣率轉換與 FFT 用在真正的音樂上。10/15 分組、11/12 開題、12/3 進度檢查、12/15 18:00 繳交、12/17 評測。
 規格見 [assignments/team_project_audio_effects/](assignments/team_project_audio_effects/)。
 
 ## 開發環境還沒設定好？

@@ -55,7 +55,7 @@ VSCode 本身不會編譯 C 程式，我們要另外安裝編譯器 GCC。
    gcc --version
    ```
 
-   看到類似 `gcc (Rev...) 13.x.x` 的版本訊息就代表成功了！
+   看到類似 `gcc.exe (Rev..., Built by MSYS2 project) 15.x.x` 的版本訊息就代表成功了（版本數字依安裝時間而不同）！
    如果出現「不是內部或外部命令」，請回頭檢查第 4 步的 PATH 設定，
    並記得**關掉 cmd 重開**再試一次。
 
@@ -158,7 +158,7 @@ PATH 沒設定好。回到步驟 2 的第 4 步檢查，設定完記得把 VSCod
 按 `` Ctrl+` `` 打開 VSCode 終端機，輸入：
 
 ```
-gcc -Wall -Wextra -std=c99 wav_info.c -o wav_info
+gcc -Wall -Wextra -std=gnu99 wav_info.c -o wav_info
 ```
 
 沒有錯誤訊息就代表編譯成功，資料夾裡會多出 `wav_info.exe`（macOS/Linux 為 `wav_info`）。
@@ -171,20 +171,22 @@ gcc -Wall -Wextra -std=c99 wav_info.c -o wav_info
 .\wav_info C:\Windows\Media\tada.wav
 ```
 
-應該會看到類似輸出：
+應該會看到類似輸出（frames 與 duration 依 Windows 版本可能不同）：
 
 ```
+file        : C:\Windows\Media\tada.wav
+format tag  : 1 (PCM)
 channels    : 2
 sample rate : 44100 Hz
 bits/sample : 16
-frames      : 84008
-duration    : 1.905 s
+frames      : 71296
+duration    : 1.617 s
 ```
 
 ### 6-4 想一想
 
 - 這個檔案的取樣週期 T 是多少秒？
-- 如果要把它變成 8 kHz，要丟掉多少樣本？直接丟掉會發生什麼事？（HW3 的主題）
+- 如果要把它變成 8 kHz，44100/8000 不是整數，能不能「每隔幾點留一點」？直接這樣做會發生什麼事？（HW3 的主題）
 
 ---
 
@@ -201,6 +203,6 @@ duration    : 1.905 s
 3. 《C 語言錯誤訊息急救手冊》（c_error_guide.md）——編譯失敗時翻開。
 4. 《VSCode 除錯教學》（vscode_debug_tutorial.md）——學會逐行除錯。
 5. 《Git 入門》（git_intro.md）——幫程式設存檔點。
-6. 《Makefile 入門》（makefile_intro.md）——多檔案專案（HW3/HW4）會用到。
+6. 《Makefile 入門》（makefile_intro.md）——HW2 起多個程式共用 WAV 讀寫、Team Project 要求 `make test`，都會用到。
 
 祝學習順利！

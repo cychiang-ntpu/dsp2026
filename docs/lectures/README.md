@@ -21,5 +21,5 @@
 
 說明：
 - 第 1–3 週講義的圖片由 imgur／HackMD 代管；GeoGebra 互動圖與「歷史上課影片」（2021 年錄影）以連結提供。
-- 歷年作業題目已聯集進本學期 HW1–HW4，對應表見 [assignments/README.md](../../assignments/README.md)。
+- 歷年作業題目已整併進本學期 HW1–HW4，對應表見 [assignments/README.md](../../assignments/README.md)。
 - 成績結構與時程一律以 [course_plan.md](../course_plan.md) 為準。

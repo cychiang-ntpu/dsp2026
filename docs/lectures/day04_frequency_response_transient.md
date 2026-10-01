@@ -176,8 +176,8 @@ y[n]=x[n]*h[n]\quad\Longleftrightarrow\quad Y(e^{j\omega})=X(e^{j\omega})\,H(e^{
 |---|---|---|
 | $`\sum_n\vert x[n]\vert <\infty`$（絕對可加總） | 均勻收斂，$`X(e^{j\omega})`$ 連續 | $`a^nu[n]`$，$`\vert a\vert <1`$；所有有限長序列 |
 | $`\sum_n\vert x[n]\vert ^2<\infty`$（能量有限） | 均方收斂，可有跳躍 | 理想低通 $`h_{lp}[n]=\dfrac{\sin\omega_cn}{\pi n}`$ |
-| 都不滿足 | 用 impulse（廣義函數）表示 | $`e^{j\omega_0n}`$ 對所有 $`n`$：$`2\pi\sum_r\delta(\omega-\omega_0+2\pi r)`$ |
-| 不存在 | — | $`a^nu[n]`$，$`\vert a\vert >1`$；$`u[n]`$ 本身需特別處理 |
+| 都不滿足 | 用 impulse（廣義函數）表示 | $`e^{j\omega_0n}`$ 對所有 $`n`$：$`2\pi\sum_r\delta(\omega-\omega_0+2\pi r)`$；$`u[n]`$：$`\frac{1}{1-e^{-j\omega}}+\pi\sum_r\delta(\omega+2\pi r)`$ |
+| 不存在 | — | $`a^nu[n]`$，$`\vert a\vert >1`$ |
 
 穩定 LTI 系統的定義正好是 $`\sum|h[n]|<\infty`$，所以**穩定系統的頻率響應一定存在且連續**。
 
