@@ -16,7 +16,7 @@
 
 ## 背景
 連續時間的相子分析與 RC 低通轉換函數推導，見
-[課堂講義第二部分](../../docs/lectures/dsp2026_lecture_notes.md#第二部分day-2-from-continuous-to-discrete)。
+[Day-2 講義](../../docs/lectures/day02_continuous_to_discrete.md)。
 
 RC 電路，輸入 x(t)、輸出 y(t)，由 KVL 得
 
