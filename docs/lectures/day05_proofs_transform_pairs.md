@@ -175,6 +175,67 @@ $`\cos(2\pi k_0n/N)`$ 由 (E) 拆成 $`\frac12e^{j2\pi k_0n/N}+\frac12e^{-j2\pi 
 
 $`X^*[k]=\sum_nx[n]W_N^{-kn}=\sum_nx[n]W_N^{(-k)n}=X[-k]`$，再用 $`W_N^{kn}`$ 對 $`k`$ 的 $`N`$ 週期性得 $`X[((-k))_N]`$。所以 `rfft` 只存 $`k=0..N/2`$ 不會丟資訊。
 
+### 2.9 ★ 卷積定理的三個版本完整證明
+
+**(a) DTFT**（同 1.8，重抄一次以便對照）。設 $`x,h`$ 絕對可和，$`y=x*h`$：
+
+```math
+Y(e^{j\omega})=\sum_{n}\Big(\sum_{k}x[k]h[n-k]\Big)e^{-j\omega n}
+=\sum_{k}x[k]\sum_{n}h[n-k]e^{-j\omega n}
+```
+
+內層令 $`m=n-k`$（$`k`$ 固定，$`n`$ 跑遍整數則 $`m`$ 也跑遍整數）：$`\sum_mh[m]e^{-j\omega(m+k)}=e^{-j\omega k}H(e^{j\omega})`$。代回：
+
+```math
+Y(e^{j\omega})=H(e^{j\omega})\sum_kx[k]e^{-j\omega k}=X(e^{j\omega})H(e^{j\omega})
+```
+
+交換 Σ 次序的合法性：$`\sum_n\sum_k\vert x[k]\vert\vert h[n-k]\vert=\big(\sum_k\vert x[k]\vert\big)\big(\sum_m\vert h[m]\vert\big)<\infty`$（Fubini／絕對收斂級數可重排）。順帶證明了 $`y`$ 也絕對可和，且 $`\sum_n\vert y[n]\vert\le\Vert x\Vert_1\Vert h\Vert_1`$。
+
+**(b) z 轉換**。把 $`e^{-j\omega}`$ 換成 $`z^{-1}`$，每一步相同：
+
+```math
+Y(z)=\sum_n\Big(\sum_kx[k]h[n-k]\Big)z^{-n}
+=\sum_kx[k]z^{-k}\sum_mh[m]z^{-m}=X(z)H(z)
+```
+
+合法性要求兩個級數在同一個 $`z`$ 絕對收斂，即 $`z\in R_x\cap R_h`$，所以 $`R_y\supseteq R_x\cap R_h`$。可能更大：若 $`X(z)`$ 的零點抵銷了 $`H(z)`$ 的極點，乘積的 ROC 會往外（或往內）擴。例：$`x[n]=\delta[n]-a\delta[n-1]`$（$`X=1-az^{-1}`$，全平面），$`h[n]=a^nu[n]`$（$`\vert z\vert>\vert a\vert`$），則 $`y[n]=\delta[n]`$、$`Y(z)=1`$、ROC 全平面。
+
+**(c) DFT（圓周卷積）**。$`y[n]=\sum_{m=0}^{N-1}x_1[m]x_2[((n-m))_N]`$，$`0\le n\le N-1`$：
+
+```math
+Y[k]=\sum_{n=0}^{N-1}\sum_{m=0}^{N-1}x_1[m]x_2[((n-m))_N]W_N^{kn}
+=\sum_{m=0}^{N-1}x_1[m]\underbrace{\sum_{n=0}^{N-1}x_2[((n-m))_N]W_N^{kn}}_{=\,W_N^{km}X_2[k]\ (2.5)}
+=X_2[k]\sum_{m=0}^{N-1}x_1[m]W_N^{km}=X_1[k]X_2[k]
+```
+
+有限和，交換次序無條件合法。2.5 的關鍵是 $`W_N^{kn}`$ 對 $`n`$ 有 $`N`$ 週期，所以「$`n`$ 跑 $`0..N-1`$」和「$`((n-m))_N`$ 跑 $`0..N-1`$」是同一組指標的重排。
+
+**(d) 圓周卷積何時等於線性卷積**。令 $`\tilde x_i[n]=\sum_rx_i[n-rN]`$ 為週期延拓。則 $`x_1\circledast_Nx_2`$ 在 $`0\le n\le N-1`$ 上等於 $`(x_1*\tilde x_2)[n]=\sum_r(x_1*x_2)[n-rN]`$，即**線性卷積的 $`N`$ 週期延拓取一個週期**。線性卷積 $`x_1*x_2`$ 的支撐為 $`0..L+P-2`$；若 $`N\ge L+P-1`$，各週期副本互不重疊，取 $`0..N-1`$ 就是原樣（後面補零）；若 $`N<L+P-1`$，$`r=1`$ 的副本 $`(x_1*x_2)[n+N]`$ 會疊到 $`n=0..L+P-2-N`$ 上（time aliasing）。
+
+**(e) 從 eigenfunction 看**。由 Day-4 第 2 節，$`e^{j\omega n}\to H(e^{j\omega})e^{j\omega n}`$。反 DTFT 把 $`x[n]=\frac{1}{2\pi}\int X(e^{j\omega})e^{j\omega n}d\omega`$ 寫成複指數的連續疊加；LTI 系統是線性的，且（絕對可和時）可與積分交換，故
+
+```math
+y[n]=\frac{1}{2\pi}\int X(e^{j\omega})\,\underbrace{\big(e^{j\omega n}\to\big)}_{\text{通過系統}}\,d\omega
+=\frac{1}{2\pi}\int X(e^{j\omega})H(e^{j\omega})e^{j\omega n}d\omega
+```
+
+比對反 DTFT 的形式，得 $`Y(e^{j\omega})=X(e^{j\omega})H(e^{j\omega})`$。這是 (a) 的「物理」版本，兩者等價。
+
+**(f) numpy 驗證**（課堂可直接跑）：
+
+```python
+import numpy as np
+x = np.random.randn(5); h = np.random.randn(4)          # L=5, P=4
+lin = np.convolve(x, h)                                  # 長 8
+N = 8                                                    # N >= L+P-1
+circ = np.fft.ifft(np.fft.fft(x, N) * np.fft.fft(h, N)).real
+print(np.allclose(lin, circ))                            # True
+N = 6                                                    # N <  L+P-1 -> time aliasing
+circ6 = np.fft.ifft(np.fft.fft(x, 6) * np.fft.fft(h, 6)).real
+print(np.allclose(circ6, lin[:6] + np.r_[lin[6:], 0, 0, 0, 0]))  # True：尾巴繞回前面
+```
+
 ## 3. z 轉換對
 
 ### 3.1 ★ $`a^nu[n]\leftrightarrow\dfrac{1}{1-az^{-1}}`$，ROC $`\vert z\vert>\vert a\vert`$
@@ -226,7 +287,7 @@ ROC：兩個極點模都是 $`r`$，右邊序列 → $`\vert z\vert>r`$。$`r=1`
 - **指數加權**：$`\sum_nz_0^nx[n]z^{-n}=\sum_nx[n](z/z_0)^{-n}=X(z/z_0)`$；$`z/z_0\in R_x\iff z\in\vert z_0\vert R_x`$。
 - **z 域微分**：$`\dfrac{dX}{dz}=\sum_nx[n](-n)z^{-n-1}`$，乘 $`-z`$：$`-z\dfrac{dX}{dz}=\sum_nnx[n]z^{-n}`$。
 - **時間反轉**：$`\sum_nx[-n]z^{-n}\overset{m=-n}{=}\sum_mx[m](1/z)^{-m}=X(1/z)`$。
-- **卷積**：與 1.8 逐字相同，把 $`e^{-j\omega}`$ 換成 $`z^{-1}`$。ROC 至少是交集（可能因極零相消而更大）。
+- **卷積**：見 2.9(b)。ROC 至少是交集（可能因極零相消而更大）。
 - **初值定理**：因果 $`X(z)=x[0]+x[1]z^{-1}+x[2]z^{-2}+\cdots`$，$`z\to\infty`$ 時只剩 $`x[0]`$。
 - **ROC 包含單位圓 ⇔ 穩定**：穩定 $`\iff\sum_n\vert h[n]\vert<\infty\iff\sum_n\vert h[n]\vert\,\vert z\vert^{-n}`$ 在 $`\vert z\vert=1`$ 收斂 $`\iff`$ 單位圓 $`\in`$ ROC（z 轉換在 ROC 內絕對收斂）。因果 → ROC 是最外極點之外的區域，要包含單位圓則所有極點 $`\vert d_k\vert<1`$。
 

@@ -95,6 +95,31 @@ x[n]=\frac{1}{N}\sum_{k=0}^{N-1}X[k]\,e^{+j\frac{2\pi}{N}kn},\qquad 0\le n,k\le 
 
 **圓周卷積 vs. 線性卷積**：長 $`L`$ 與長 $`P`$ 的序列做線性卷積長 $`L+P-1`$；要用 DFT 算線性卷積，必須先補零到 $`N\ge L+P-1`$，否則尾巴會「繞回來」疊到前面（time aliasing）。這是 Team Project 用 FFT 做快速卷積（overlap-add）的核心規則。
 
+## 2.5 ★ 卷積定理：時域卷積 ↔ 頻域相乘（證明：附錄第 2.6 與 2.9 節）
+
+這是整門課最重要的一條，三個轉換各有一個版本：
+
+| 轉換 | 時域 | 變換域 | 附帶條件 |
+|---|---|---|---|
+| DTFT | $`y[n]=x[n]*h[n]=\sum_kx[k]h[n-k]`$ | $`Y(e^{j\omega})=X(e^{j\omega})H(e^{j\omega})`$ | 兩者 DTFT 存在（絕對可和） |
+| z | $`y[n]=x[n]*h[n]`$ | $`Y(z)=X(z)H(z)`$ | ROC $`\supseteq R_x\cap R_h`$ |
+| DFT | $`y[n]=x_1[n]\circledast_Nx_2[n]=\sum_{m=0}^{N-1}x_1[m]x_2[((n-m))_N]`$（**圓周**卷積） | $`Y[k]=X_1[k]X_2[k]`$ | 要等於線性卷積需 $`N\ge L+P-1`$ |
+
+**為什麼會這樣**（Day-4 第 2 節的 eigenfunction 觀點）：$`e^{j\omega n}`$ 進 LTI 系統出來還是 $`e^{j\omega n}`$，只被乘上 $`H(e^{j\omega})`$。反 DTFT 把 $`x[n]`$ 寫成一堆 $`e^{j\omega n}`$ 的疊加，每一個頻率各自被乘上 $`H(e^{j\omega})`$，疊加回去就是 $`X(e^{j\omega})H(e^{j\omega})`$。卷積定理只是把這句話寫成公式。
+
+**三個直接後果**
+
+1. **串接系統**：$`h_1*h_2\leftrightarrow H_1H_2`$，LTI 串接順序可以交換，總頻率響應是相乘、相位是相加。
+2. **系統函數**：$`H(z)=Y(z)/X(z)`$ 才有意義；LCCDE 兩邊 z 轉換後能「除過去」就是因為卷積變成了相乘。
+3. **快速卷積**：長 $`L`$ 的 $`x`$ 與長 $`P`$ 的 $`h`$，補零到 $`N\ge L+P-1`$，`ifft(fft(x,N)*fft(h,N))` 的前 $`L+P-1`$ 點就是 `np.convolve(x,h)`，運算量 $`O(N\log N)`$ 而非 $`O(LP)`$（Team Project 的 overlap-add）。
+
+**例**：兩個 3 點移動平均串接。$`h_1=h_2=\tfrac13[1,1,1]`$，$`H_1(e^{j\omega})=H_2(e^{j\omega})=\tfrac13\dfrac{\sin(3\omega/2)}{\sin(\omega/2)}e^{-j\omega}`$（第 1 節矩形窗，$`M=2`$）。
+時域：$`h_1*h_2=\tfrac19[1,2,3,2,1]`$（三角窗）。
+頻域：$`H_1H_2=\tfrac19\dfrac{\sin^2(3\omega/2)}{\sin^2(\omega/2)}e^{-j2\omega}`$。
+檢查 $`\omega=0`$：時域係數和 $`\tfrac19\cdot9=1`$，頻域 $`\tfrac19\cdot3^2=1`$ ✓。檢查 $`\omega=2\pi/3`$：$`\sin(\pi)=0`$ → 零點，兩個系統各有一個零點在此，串接後變成二階零點，$`\vert H\vert`$ 在該處「更平」。
+
+**對偶**：時域相乘 ↔ 頻域（週期）卷積 $`\tfrac{1}{2\pi}X\circledast W`$。這就是視窗效應：截斷 $`x[n]w[n]`$ 讓頻譜被窗的主瓣抹開、旁瓣洩漏（Day-3、Ch. 7、Ch. 8）。
+
 ## 3. z 轉換重要轉換對（O&S Table 3.1） （證明：附錄第 3 節）
 
 ROC 一定要跟著寫。**同一個 $`X(z)`$ 配不同 ROC 是不同的序列。**
