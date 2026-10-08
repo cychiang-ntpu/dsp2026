@@ -2,6 +2,7 @@
 
 > 上課用速查講義。目標：把四種「時域 ↔ 變換域」的對應關係放在同一張表裡，看清楚它們其實是同一件事的四個版本；並熟記最常用的幾組轉換對，之後 Ch. 4–8 都會反覆用到。
 > 教科書對應：O&S Table 2.3（DTFT pairs）、Table 3.1（z-transform pairs）、Table 3.2（z 性質）、Table 8.2（DFT 性質）。
+> **每一條轉換對與性質的證明**見附錄 [day05_proofs_transform_pairs.md](day05_proofs_transform_pairs.md)，編號與本檔各節對應。
 
 ## 0. 四個轉換一張圖
 
@@ -23,7 +24,7 @@ X[k]=X(e^{j\omega})\big|_{\omega=2\pi k/N}\quad(x[n]\text{ 長度}\le N)
 
 **一句話：z 轉換是最一般的；把 $`z`$ 限制在單位圓上就是 DTFT；再把單位圓等分成 $`N`$ 點取樣就是 DFT。**
 
-## 1. DTFT 重要轉換對（O&S Table 2.3）
+## 1. DTFT 重要轉換對（O&S Table 2.3） （證明：附錄第 1 節）
 
 | 序列 $`x[n]`$ | DTFT $`X(e^{j\omega})`$ | 備註 |
 |---|---|---|
@@ -52,7 +53,7 @@ X[k]=X(e^{j\omega})\big|_{\omega=2\pi k/N}\quad(x[n]\text{ 長度}\le N)
 | Parseval | $`\sum_n\vert x[n]\vert^2`$ | $`=\dfrac{1}{2\pi}\displaystyle\int_{-\pi}^{\pi}\vert X(e^{j\omega})\vert^2d\omega`$ |
 | 實數序列 | $`x[n]\in\mathbb{R}`$ | $`X(e^{-j\omega})=X^*(e^{j\omega})`$：$`\vert X\vert`$ 偶、$`\angle X`$ 奇 |
 
-## 2. DFT／IDFT
+## 2. DFT／IDFT （證明：附錄第 2 節）
 
 ### 2.1 定義與符號
 
@@ -94,7 +95,7 @@ x[n]=\frac{1}{N}\sum_{k=0}^{N-1}X[k]\,e^{+j\frac{2\pi}{N}kn},\qquad 0\le n,k\le 
 
 **圓周卷積 vs. 線性卷積**：長 $`L`$ 與長 $`P`$ 的序列做線性卷積長 $`L+P-1`$；要用 DFT 算線性卷積，必須先補零到 $`N\ge L+P-1`$，否則尾巴會「繞回來」疊到前面（time aliasing）。這是 Team Project 用 FFT 做快速卷積（overlap-add）的核心規則。
 
-## 3. z 轉換重要轉換對（O&S Table 3.1）
+## 3. z 轉換重要轉換對（O&S Table 3.1） （證明：附錄第 3 節）
 
 ROC 一定要跟著寫。**同一個 $`X(z)`$ 配不同 ROC 是不同的序列。**
 
@@ -136,7 +137,7 @@ ROC 一定要跟著寫。**同一個 $`X(z)`$ 配不同 ROC 是不同的序列�
 
 時移＋線性＋卷積三條，就足以把任何 LCCDE 變成 $`H(z)=\dfrac{\sum_k b_kz^{-k}}{\sum_k a_kz^{-k}}`$，再從 $`H(z)`$ 反推 $`h[n]`$。
 
-## 4. 反 z 轉換：三種方法
+## 4. 反 z 轉換：三種方法 （證明：附錄第 4 節）
 
 ### 4.1 查表（最常用）
 
