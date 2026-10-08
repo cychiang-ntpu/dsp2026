@@ -1,6 +1,6 @@
 # Day-4（第 4 週）：LTI 系統的頻率響應、暫態與穩態
 
-[← day03_speech_signal_representation.md](day03_speech_signal_representation.md) ｜ [講義目錄](README.md)
+[← day03_speech_signal_representation.md](day03_speech_signal_representation.md) ｜ [講義目錄](README.md) ｜ [day05_transform_pairs.md →](day05_transform_pairs.md)
 
 
 - 日期：2026/10/1（第 4 週，週四）
@@ -256,4 +256,4 @@ $`H(z)`$ 在 $`z=a`$ 有一個**極點**（pole）。對照第 3.2 節：
 
 ---
 
-[← day03_speech_signal_representation.md](day03_speech_signal_representation.md) ｜ [講義目錄](README.md)
+[← day03_speech_signal_representation.md](day03_speech_signal_representation.md) ｜ [講義目錄](README.md) ｜ [day05_transform_pairs.md →](day05_transform_pairs.md)

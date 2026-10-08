@@ -15,6 +15,7 @@
 | 2 | ↳ [day02_supp_rlc_filter_experiment.md](day02_supp_rlc_filter_experiment.md) | 鉛筆電阻、鋁箔電容的 RC／RLC 濾波器設計題（補充閱讀，不列入作業） | |
 | 3 | [day03_speech_signal_representation.md](day03_speech_signal_representation.md) | 語音信號的表示：麥克風、ADC、傅立葉轉換、窗函數、spectrogram | [HackMD](https://hackmd.io/l9hfP04-Sgm76bunMz05JQ)（編修中） |
 | 4 | [day04_frequency_response_transient.md](day04_frequency_response_transient.md) | complex exponential 進入 LTI 系統：頻率響應、穩態與暫態、DTFT、z 轉換入門 | 2026 新編；示範程式 [demos/day04_transient_steady.py](demos/day04_transient_steady.py) |
+| 5 | [day05_transform_pairs.md](day05_transform_pairs.md) | 重要轉換對速查：DTFT、DFT／IDFT、z 轉換與反 z 轉換（含 ROC、性質表、部分分式） | 2026 新編 |
 
 - [demos/](demos/)：課堂示範程式（Python），講義中的圖由它們產生，同學可自行修改參數重跑。
 - [figures/](figures/)：示範程式產生的講義圖。
