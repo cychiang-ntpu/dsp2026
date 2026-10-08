@@ -107,7 +107,7 @@ $`\tfrac12\leftrightarrow\sum_k\pi\delta(\omega-2\pi k)`$（由 1.6）。$`s[n]`
 - **頻移**：$`\sum_ne^{j\omega_0n}x[n]e^{-j\omega n}=\sum_nx[n]e^{-j(\omega-\omega_0)n}=X(e^{j(\omega-\omega_0)})`$。
 - **時間反轉**：$`\sum_nx[-n]e^{-j\omega n}\overset{m=-n}{=}\sum_mx[m]e^{j\omega m}=X(e^{-j\omega})`$。
 - **頻域微分**：$`\dfrac{dX}{d\omega}=\sum_nx[n](-jn)e^{-j\omega n}`$，兩邊乘 $`j`$：$`j\dfrac{dX}{d\omega}=\sum_n nx[n]e^{-j\omega n}`$。
-- **相乘 ↔ 週期卷積**：把 $`w[n]=\frac{1}{2\pi}\int W(e^{j\theta})e^{j\theta n}d\theta`$ 代入 $`\sum_nx[n]w[n]e^{-j\omega n}`$，交換 Σ 與 ∫：$`\frac{1}{2\pi}\int W(e^{j\theta})\underbrace{\sum_nx[n]e^{-j(\omega-\theta)n}}_{X(e^{j(\omega-\theta)})}d\theta`$。
+- **相乘 ↔ 週期卷積**：見 2.10(a)。
 - **Parseval**：$`\sum_n\vert x[n]\vert^2=\sum_nx[n]x^*[n]=\sum_nx[n]\Big(\frac{1}{2\pi}\int X^*(e^{j\omega})e^{-j\omega n}d\omega\Big)=\frac{1}{2\pi}\int X^*(e^{j\omega})\underbrace{\sum_nx[n]e^{-j\omega n}}_{X(e^{j\omega})}d\omega`$。
 - **實數序列的共軛對稱**：$`X^*(e^{j\omega})=\sum_nx^*[n]e^{j\omega n}=\sum_nx[n]e^{-j(-\omega)n}=X(e^{-j\omega})`$。取模與取角即得 $`\vert X\vert`$ 偶、$`\angle X`$ 奇。
 
@@ -235,6 +235,66 @@ N = 6                                                    # N <  L+P-1 -> time al
 circ6 = np.fft.ifft(np.fft.fft(x, 6) * np.fft.fft(h, 6)).real
 print(np.allclose(circ6, lin[:6] + np.r_[lin[6:], 0, 0, 0, 0]))  # True：尾巴繞回前面
 ```
+
+### 2.10 ★ 對偶：時域相乘 ↔ 頻域卷積
+
+**(a) DTFT：$`x[n]w[n]\leftrightarrow\dfrac{1}{2\pi}\displaystyle\int_{-\pi}^{\pi}X(e^{j\theta})W(e^{j(\omega-\theta)})d\theta`$（週期卷積）**
+
+把 $`w[n]`$ 用反 DTFT 寫開，代入定義，交換 Σ 與 ∫：
+
+```math
+\sum_nx[n]w[n]e^{-j\omega n}
+=\sum_nx[n]\Big(\frac{1}{2\pi}\int_{-\pi}^{\pi}W(e^{j\theta})e^{j\theta n}d\theta\Big)e^{-j\omega n}
+=\frac{1}{2\pi}\int_{-\pi}^{\pi}W(e^{j\theta})\underbrace{\sum_nx[n]e^{-j(\omega-\theta)n}}_{X(e^{j(\omega-\theta)})}d\theta
+```
+
+即 $`\dfrac{1}{2\pi}\displaystyle\int_{-\pi}^{\pi}W(e^{j\theta})X(e^{j(\omega-\theta)})d\theta`$；令 $`\theta'=\omega-\theta`$ 並利用被積函數的 $`2\pi`$ 週期性（積分區間可任意平移一個週期），得到對稱的寫法 $`\dfrac{1}{2\pi}\displaystyle\int_{-\pi}^{\pi}X(e^{j\theta'})W(e^{j(\omega-\theta')})d\theta'`$。
+為什麼叫「週期卷積」：普通卷積積分跑 $`(-\infty,\infty)`$，這裡兩個函數都是 $`2\pi`$ 週期，只積一個週期，並多一個 $`\frac{1}{2\pi}`$。
+合法性：$`x`$ 絕對可和且 $`W`$ 有界（$`w`$ 絕對可和即可）時，Σ∫ 可交換。
+
+**它就是視窗效應**：取 $`x[n]=e^{j\omega_0n}`$（$`X=2\pi\delta(\omega-\omega_0)`$，一個週期內），截斷後 $`x[n]w[n]`$ 的 DTFT 為 $`\frac{1}{2\pi}\int2\pi\delta(\theta-\omega_0)W(e^{j(\omega-\theta)})d\theta=W(e^{j(\omega-\omega_0)})`$：一根線被換成窗的頻譜（主瓣＋旁瓣）搬到 $`\omega_0`$。矩形窗的 $`W`$ 就是 1.4 的 $`\sin`$ 比。
+
+**(b) DFT：$`x_1[n]x_2[n]\leftrightarrow\dfrac1N\displaystyle\sum_{\ell=0}^{N-1}X_1[\ell]X_2[((k-\ell))_N]`$（頻域圓周卷積）**
+
+把 $`x_2[n]`$ 用 IDFT 寫開：
+
+```math
+\sum_{n=0}^{N-1}x_1[n]x_2[n]W_N^{kn}
+=\sum_{n=0}^{N-1}x_1[n]\Big(\frac1N\sum_{\ell=0}^{N-1}X_2[\ell]W_N^{-\ell n}\Big)W_N^{kn}
+=\frac1N\sum_{\ell=0}^{N-1}X_2[\ell]\underbrace{\sum_{n=0}^{N-1}x_1[n]W_N^{(k-\ell)n}}_{X_1[((k-\ell))_N]}
+```
+
+最後一步用 $`W_N^{(k-\ell)n}`$ 對 $`k-\ell`$ 的 $`N`$ 週期性，把指標 $`k-\ell`$（可能為負）折回 $`0..N-1`$。有限和，交換無條件合法。對調 $`x_1,x_2`$ 的角色得對稱寫法。
+
+**$`\frac1N`$ 從哪來**：和 2.1 一樣，是 IDFT 裡的那個 $`\frac1N`$。對照 (a) 的 $`\frac{1}{2\pi}`$：連續頻率一個週期長 $`2\pi`$，離散頻率一個週期 $`N`$ 格，都是「除以一個週期的長度」。
+
+**(c) z 轉換：$`x_1[n]x_2[n]\leftrightarrow\dfrac{1}{2\pi j}\displaystyle\oint_CX_1(v)X_2\!\left(\frac zv\right)v^{-1}dv`$（複卷積定理，選讀）**
+
+把 $`x_2[n]`$ 用反 z 轉換（4.4）寫開：
+
+```math
+\sum_nx_1[n]x_2[n]z^{-n}
+=\sum_nx_1[n]\Big(\frac{1}{2\pi j}\oint_CX_2(v)v^{n-1}dv\Big)z^{-n}
+=\frac{1}{2\pi j}\oint_CX_2(v)\underbrace{\sum_nx_1[n]\Big(\frac zv\Big)^{-n}}_{X_1(z/v)}v^{-1}dv
+```
+
+對調兩者角色得上式。$`C`$ 須同時落在 $`R_{x_2}`$ 與「$`z/v\in R_{x_1}`$」的區域內；$`R_{x_1x_2}\supseteq R_{x_1}R_{x_2}`$（兩個 ROC 的半徑逐點相乘）。令 $`z=e^{j\omega}`$、$`v=e^{j\theta}`$（$`dv=je^{j\theta}d\theta`$），這條式子就退化成 (a)，再一次說明 DTFT 是 z 轉換在單位圓上的特例。
+
+**(d) 與 2.9 的對稱**：兩條定理可以互推。對 (a) 用「對偶」（DTFT 與反 DTFT 形式相同，只差正負號與 $`2\pi`$）即得 2.9(a)；DFT 版同理用 2.3 的對偶性質 $`X[n]\leftrightarrow Nx[((-k))_N]`$。上課只需證一邊，另一邊用對偶帶過。
+
+**(e) numpy 驗證**（DFT 版）：
+
+```python
+import numpy as np
+N = 8
+x1 = np.random.randn(N); x2 = np.random.randn(N)
+X1 = np.fft.fft(x1); X2 = np.fft.fft(x2)
+lhs = np.fft.fft(x1 * x2)
+rhs = np.array([sum(X1[l] * X2[(k - l) % N] for l in range(N)) for k in range(N)]) / N
+print(np.allclose(lhs, rhs))                             # True
+```
+
+DTFT 版可用大 $`N`$ 的 DFT 近似積分來驗證：對長 $`L`$ 的 $`x`$ 與 $`w`$，取 $`N\ge2L-1`$，`fft(x*w, N)` 與「$`\frac1N\,`$fft(x,N) 圓周卷積 fft(w,N)」相等，因為 $`N`$ 點 DFT 正是 DTFT 的取樣，而 $`x w`$ 長度 $`L\le N`$ 不發生 time aliasing。
 
 ## 3. z 轉換對
 

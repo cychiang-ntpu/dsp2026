@@ -95,7 +95,7 @@ x[n]=\frac{1}{N}\sum_{k=0}^{N-1}X[k]\,e^{+j\frac{2\pi}{N}kn},\qquad 0\le n,k\le 
 
 **圓周卷積 vs. 線性卷積**：長 $`L`$ 與長 $`P`$ 的序列做線性卷積長 $`L+P-1`$；要用 DFT 算線性卷積，必須先補零到 $`N\ge L+P-1`$，否則尾巴會「繞回來」疊到前面（time aliasing）。這是 Team Project 用 FFT 做快速卷積（overlap-add）的核心規則。
 
-## 2.5 ★ 卷積定理：時域卷積 ↔ 頻域相乘（證明：附錄第 2.6 與 2.9 節）
+## 2.5 ★ 卷積定理：時域卷積 ↔ 頻域相乘（證明：附錄第 2.9 節；對偶「時域相乘 ↔ 頻域卷積」見附錄第 2.10 節）
 
 這是整門課最重要的一條，三個轉換各有一個版本：
 
@@ -118,7 +118,7 @@ x[n]=\frac{1}{N}\sum_{k=0}^{N-1}X[k]\,e^{+j\frac{2\pi}{N}kn},\qquad 0\le n,k\le 
 頻域：$`H_1H_2=\tfrac19\dfrac{\sin^2(3\omega/2)}{\sin^2(\omega/2)}e^{-j2\omega}`$。
 檢查 $`\omega=0`$：時域係數和 $`\tfrac19\cdot9=1`$，頻域 $`\tfrac19\cdot3^2=1`$ ✓。檢查 $`\omega=2\pi/3`$：$`\sin(\pi)=0`$ → 零點，兩個系統各有一個零點在此，串接後變成二階零點，$`\vert H\vert`$ 在該處「更平」。
 
-**對偶**：時域相乘 ↔ 頻域（週期）卷積 $`\tfrac{1}{2\pi}X\circledast W`$。這就是視窗效應：截斷 $`x[n]w[n]`$ 讓頻譜被窗的主瓣抹開、旁瓣洩漏（Day-3、Ch. 7、Ch. 8）。
+**對偶**：時域相乘 ↔ 頻域（週期）卷積 $`\tfrac{1}{2\pi}X\circledast W`$；DFT 版為 $`x_1[n]x_2[n]\leftrightarrow\tfrac1N X_1\circledast_N X_2`$（證明：附錄第 2.10 節）。這就是視窗效應：截斷 $`x[n]w[n]`$ 讓頻譜被窗的主瓣抹開、旁瓣洩漏（Day-3、Ch. 7、Ch. 8）。
 
 ## 3. z 轉換重要轉換對（O&S Table 3.1） （證明：附錄第 3 節）
 
