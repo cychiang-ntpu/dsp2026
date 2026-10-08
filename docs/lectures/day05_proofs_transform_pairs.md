@@ -80,15 +80,16 @@ $`\omega_0=0`$ 得 $`1\leftrightarrow\sum_k2\pi\delta(\omega-2\pi k)`$。用 (E)
 
 ### 1.7 $`u[n]\leftrightarrow\dfrac{1}{1-e^{-j\omega}}+\sum_k\pi\delta(\omega-2\pi k)`$
 
-$`u[n]`$ 不絕對可和，不能直接套 (G)。把它拆成「偶部 + 奇部」：
-$`u[n]=\frac12+\frac12\,\mathrm{sgn}[n]`$（取 $`\mathrm{sgn}[0]=0`$，則 $`u[0]=\frac12`$；這個定義與 $`u[0]=1`$ 的差只影響一個常數，O&S 的表採用這個收斂意義）。
-$`\frac12\leftrightarrow\sum_k\pi\delta(\omega-2\pi k)`$（由 1.6）。$`\mathrm{sgn}[n]`$ 視為 $`a^nu[n]-a^{-n}u[-n-1]`$ 在 $`a\to1^-`$ 的極限：
+$`u[n]`$ 不絕對可和，不能直接套 (G)。把它拆成 $`u[n]=\tfrac12+\tfrac12s[n]`$，其中 $`s[n]=u[n]-u[-n-1]`$（$`n\ge0`$ 為 $`+1`$、$`n\le-1`$ 為 $`-1`$；逐點檢查：$`n\ge0`$ 得 $`\frac12+\frac12=1`$，$`n\le-1`$ 得 $`\frac12-\frac12=0`$ ✓）。
+$`\tfrac12\leftrightarrow\sum_k\pi\delta(\omega-2\pi k)`$（由 1.6）。$`s[n]`$ 視為 $`a^nu[n]-a^{-n}u[-n-1]`$ 在 $`a\to1^-`$ 的極限，兩項分別由 (G)：
 
 ```math
-\frac{1}{1-ae^{-j\omega}}-\frac{ae^{j\omega}}{1-ae^{j\omega}}\;\xrightarrow{a\to1^-}\;\frac{1}{1-e^{-j\omega}}-\frac{e^{j\omega}}{1-e^{j\omega}}=\frac{1}{1-e^{-j\omega}}+\frac{1}{1-e^{-j\omega}}=\frac{2}{1-e^{-j\omega}}
+\sum_{n\ge0}a^ne^{-j\omega n}-\sum_{n\le-1}a^{-n}e^{-j\omega n}
+=\frac{1}{1-ae^{-j\omega}}-\frac{ae^{j\omega}}{1-ae^{j\omega}}
+\;\xrightarrow{a\to1^-}\;\frac{1}{1-e^{-j\omega}}-\frac{e^{j\omega}}{1-e^{j\omega}}
 ```
 
-（第二項用 $`\dfrac{-e^{j\omega}}{1-e^{j\omega}}=\dfrac{1}{e^{-j\omega}-1}\cdot(-1)=\dfrac{1}{1-e^{-j\omega}}`$。）乘 $`\frac12`$ 相加即得。
+而 $`-\dfrac{e^{j\omega}}{1-e^{j\omega}}=\dfrac{e^{j\omega}}{e^{j\omega}-1}=\dfrac{1}{1-e^{-j\omega}}`$（分子分母同除 $`e^{j\omega}`$），故 $`s[n]\leftrightarrow\dfrac{2}{1-e^{-j\omega}}`$。乘 $`\tfrac12`$ 與 DC 項相加即得。
 
 ### 1.8 ★ 卷積定理 $`x*h\leftrightarrow XH`$
 
@@ -198,11 +199,7 @@ X(z)=-\sum_{n=-\infty}^{-1}a^nz^{-n}\overset{m=-n}{=}-\sum_{m=1}^{\infty}a^{-m}z
 
 用 z 域微分性質（3.6 證）$`nx[n]\leftrightarrow-z\dfrac{dX}{dz}`$：
 
-```math
--z\frac{d}{dz}\frac{1}{1-az^{-1}}=-z\cdot\frac{-(a z^{-2})}{(1-az^{-1})^2}\cdot(-1)\cdot(-1)
-```
-
-細算：$`\dfrac{d}{dz}(1-az^{-1})^{-1}=-(1-az^{-1})^{-2}\cdot\dfrac{d}{dz}(1-az^{-1})=-(1-az^{-1})^{-2}\cdot az^{-2}`$。
+計算：$`\dfrac{d}{dz}(1-az^{-1})^{-1}=-(1-az^{-1})^{-2}\cdot\dfrac{d}{dz}(1-az^{-1})=-(1-az^{-1})^{-2}\cdot az^{-2}`$。
 乘 $`-z`$：$`\dfrac{az^{-1}}{(1-az^{-1})^2}`$。ROC 不變。左邊版本同理對 3.2 微分。
 
 ### 3.4 ★ $`r^n\cos(\omega_0n)u[n]`$ 與 $`r^n\sin(\omega_0n)u[n]`$
