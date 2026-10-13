@@ -23,10 +23,10 @@
 | 2 | 9/17 | Discrete-time signals and systems II（Ch. 2） | [從連續到離散](lectures/day02_continuous_to_discrete.md)：相子、阻抗、RC 低通轉換函數；LTI、卷積、LCCDE；WAV 讀寫 | |
 | 3 | 9/24 | Z-transform I（Ch. 3） | RC 電路離散化；補充：[語音信號的表示](lectures/day03_speech_signal_representation.md) | **HW1 公布** |
 | 4 | 10/1 | Z-transform II（Ch. 3） | [頻率響應、暫態與穩態](lectures/day04_frequency_response_transient.md)：complex exponential 輸入 LTI、DTFT、z 轉換與 ROC 入門（Ch. 2.6–2.9, 3.1） | |
-| 5 | 10/8 | Sampling of Continuous-Time Signals I（Ch. 4） | 取樣定理、混疊、重建 | **HW1 截止 10/8 18:00** |
+| 5 | 10/8 | Sampling of Continuous-Time Signals I（Ch. 4） | 取樣定理、混疊、重建 | |
 | 6 | 10/15 | Sampling of Continuous-Time Signals II（Ch. 4） | 多速率：↑L、↓M、非整數倍轉換（Ch. 4.6–4.7） | Team Project 分組登記 |
 | 7 | 10/22 | Transform Analysis of LTI Systems I（Ch. 5） | 頻率響應、極零點、群延遲、相位 unwrap | **HW2 公布** |
-| 8 | 10/29 | Transform Analysis of LTI Systems II（Ch. 5） | linear/minimum phase；FIR 濾波的暫態與穩態 | |
+| 8 | 10/29 | Transform Analysis of LTI Systems II（Ch. 5） | linear/minimum phase；FIR 濾波的暫態與穩態 | **HW1 截止 11/2（一）18:00** |
 | 9 | 11/5 | Midterm | **紙筆期中考**（第一節，50 分鐘）；其餘時間講授 Ch. 6 | |
 | 10 | 11/12 | Structure for Discrete-Time System I（Ch. 6） | 直接型、多相結構、biquad；效果器架構簡介 | **HW2 截止 11/12 18:00**；Team Project 開題 |
 | 11 | 11/19 | Structure for Discrete-Time System II（Ch. 6） | 運算量分析 | **HW3 公布** |
@@ -67,9 +67,9 @@
 |---|---|
 | 9/10 | 第 1 週：建置個人 GitHub repo，邀請 cychiang@mail.ntpu.edu.tw |
 | 9/24 | HW1 公布 |
-| 10/8 18:00 | HW1 截止 |
 | 10/15 | Team Project 分組登記 |
 | 10/22 | HW2 公布 |
+| 11/2 18:00 | HW1 截止 |
 | 11/5 | 紙筆期中考（第一節，50 分鐘） |
 | 11/12 18:00 | HW2 截止 |
 | 11/12 | Team Project 開題（一頁企劃） |
@@ -86,7 +86,7 @@
 
 | 作業 | 語言 | 核心內容 | 公布 | 截止 |
 |---|---|---|---|---|
-| [HW1](../assignments/hw1_rc_lowpass/) RC 低通模擬 | C + Python 繪圖 | Part A 相子暖身 3 題；Part B 7 題連續/離散分析推導 + `sine_wav_gen.c`、`RC_filtering.c` | 9/24 | 10/8 18:00 |
+| [HW1](../assignments/hw1_rc_lowpass/) RC 低通模擬 | C + Python 繪圖 | Part A 相子暖身 3 題；Part B 7 題連續/離散分析推導 + `sine_wav_gen.c`、`RC_filtering.c` | 9/24 | 11/2 18:00 |
 | [HW2](../assignments/hw2_transform_analysis/) 轉換分析 | C + Python Jupyter | Part A 給定 H(z)：相位/群延遲/振幅響應；Hanning 視窗弦波經 LCCDE 濾波。Part B 截斷理想低通 FIR（M=4…2048）的暫態/穩態；linear vs. minimum phase | 10/22 | 11/12 18:00 |
 | [HW3](../assignments/hw3_sampling_rate_lccde/) 取樣率轉換（LCCDE） | C | 44.1 kHz → 8 kHz（L=80, M=441），視窗法 FIR P=1025，直接卷積 | 11/19 | 12/10 18:00 |
 | [HW4](../assignments/hw4_sampling_rate_fft/) 取樣率轉換（FFT） | C | 同 HW3 規格；overlap-add P=441、Q=1025、N=2048；自行實作 FFT | 11/26 | 12/17 18:00 |

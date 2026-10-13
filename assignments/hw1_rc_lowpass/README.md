@@ -5,7 +5,7 @@
 - 「交流電、電阻、電抗、阻抗」講義的相子練習題（Day-2 Problems 1–3）
 - 「Simulation of RC Low-Pass Filter by Discrete Signal Processing」（2025 版：https://hackmd.io/@dsp-ce-ntpu/dsp-ce-ntpu-2025-assignment-1 ）
 
-公布第 3 週 9/24，截止 10/8 18:00。
+公布第 3 週 9/24，截止 11/2（一）18:00。
 
 ## 學習目標
 1. 以複數／相子表示弦波，理解同頻率弦波的相加與相位差

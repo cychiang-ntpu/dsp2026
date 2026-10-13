@@ -70,7 +70,7 @@ Oppenheim, A. V., & Schafer, R. W. (2009). *Discrete-Time Signal Processing* (3r
 
 | 作業 | 主題 | 語言 | 截止 |
 |---|---|---|---|
-| HW1 | RC 低通濾波器數位模擬 | C + Python | 10/8 18:00 |
+| HW1 | RC 低通濾波器數位模擬 | C + Python | 11/2 18:00 |
 | HW2 | 轉換分析 + 暫態/穩態、linear/minimum phase 濾波 | C + Python Jupyter | 11/12 18:00 |
 | HW3 | 取樣率轉換（LCCDE） | C | 12/10 18:00 |
 | HW4 | 取樣率轉換（FFT） | C | 12/17 18:00 |

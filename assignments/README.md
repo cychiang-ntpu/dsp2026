@@ -2,7 +2,7 @@
 
 | 作業 | 主題 | 公布 | 截止 |
 |---|---|---|---|
-| [hw1_rc_lowpass](hw1_rc_lowpass/) | Generating Sine Waves + 相子暖身 + Simulation of RC Low-Pass Filter by DSP | 9/24 | 10/8 18:00 |
+| [hw1_rc_lowpass](hw1_rc_lowpass/) | Generating Sine Waves + 相子暖身 + Simulation of RC Low-Pass Filter by DSP | 9/24 | 11/2 18:00 |
 | [hw2_transform_analysis](hw2_transform_analysis/) | Transform Analysis + Filtering: Steady/Transient States, Linear/Minimum Phase | 10/22 | 11/12 18:00 |
 | [hw3_sampling_rate_lccde](hw3_sampling_rate_lccde/) | Changing the Sampling Rate with a Low-Pass Filter Implemented by LCCDE | 11/19 | 12/10 18:00 |
 | [hw4_sampling_rate_fft](hw4_sampling_rate_fft/) | Changing Sampling Rate with FFT Filters | 11/26 | 12/17 18:00 |
