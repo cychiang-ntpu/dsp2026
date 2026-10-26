@@ -9,7 +9,7 @@
 | 教室 | 電 2F07 |
 | 課程流水碼 | U4064（大學部：通訊 4、資工 4、電機 4、嵌入式系統／數位多媒體學程） |
 | | M5631（研究所：通訊碩、資工碩、電資博、智慧製造與系統應用專班、電機與資通訊專班） |
-| 評量 | HW1–HW4 40%（各 10%）、紙筆期中考 20%（11/5）、期末上機考 20%（12/24，考所有作業與 Team Project）、Team Project 音樂音響效果器 20%（2–3 人一組，12/17 評測） |
+| 評量 | HW1–HW4 40%（各 10%）、紙筆期中考 20%（10/29）、期末上機考 20%（12/24，考所有作業與 Team Project）、Team Project 音樂音響效果器 20%（2–3 人一組，12/17 評測） |
 | 行事曆 | 見 [docs/course_plan.md](docs/course_plan.md#本課程行事曆依-115-1-校曆) |
 
 本 repo 提供作業規格、去年作業樣本、課程時程與新手教學，供修課同學 clone／fork 使用。
@@ -42,7 +42,7 @@ dsp2026/
 ├── samples_2025/           去年（1141）作業樣本（hw1–hw4 各 HIGH / MEDIUM / LOW，陸續補上）
 ├── docs/
 │   ├── course_plan.md      課程時程、行事曆與評分方式
-│   ├── lectures/           課堂講義（day01–day04；Day-2 分為 day02_1…4 與 day02_supp）
+│   ├── lectures/           課堂講義（day01–day05；Day-2 分為 day02_1…4 與 day02_supp）
 │   │   ├── demos/          課堂示範程式（Python）
 │   │   └── figures/        示範程式產生的講義圖
 │   └── tutorials/          新手教學（VSCode、終端機、Git、除錯、Makefile…）
