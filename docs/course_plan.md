@@ -9,7 +9,7 @@
 | 項目 | 比例 | 說明 |
 |---|---|---|
 | 個人作業 HW1–HW4 | 40% | 每份 10%；GitHub repo 繳交，LMS 登錄 repo URL＋完整 commit SHA |
-| 紙筆期中考 | 20% | 10/29（第 8 週，學士班期中考週）全堂，120 分鐘閉卷；範圍：卷積與脈衝響應、取樣後的離散頻率、DTFT／頻率響應（振幅與相位）、z 轉換與 pole-zero plot、由 H(z) 求脈衝響應、FIR 與 IIR、group delay 與線性相位、block diagram；不考暫態／穩態 |
+| 紙筆期中考 | 20% | 10/29（第 8 週，學士班期中考週）全堂，120 分鐘閉卷；範圍：卷積與脈衝響應、取樣後的離散頻率、DTFT／頻率響應（振幅與相位）、z 轉換與 pole-zero plot、由 H(z) 求脈衝響應、FIR 與 IIR、block diagram；不考暫態／穩態與 group delay |
 | 個人期末上機考 | 20% | 12/24（第 16 週）三節課內；140 分鐘作答；範圍為 HW1–HW4 與 Team Project 全部內容：現場修改／擴充自己的作業與效果器程式 |
 | Team Project：音樂音響效果器 | 20% | 2–3 人一組；團隊 40 分＋個人 60 分；12/15 繳交、12/17 評測。規格見 [team_project_audio_effects/](../assignments/team_project_audio_effects/) |
 
@@ -27,7 +27,7 @@
 | 6 | 10/15 | Sampling of Continuous-Time Signals II（Ch. 4） | 多速率：↑L、↓M、非整數倍轉換（Ch. 4.6–4.7） | Team Project 分組登記 |
 | 7 | 10/22 | Transform Analysis of LTI Systems I（Ch. 5） | 頻率響應、極零點、群延遲、相位 unwrap | **HW2 公布** |
 | 8 | 10/29 | Midterm | **紙筆期中考**（全堂，120 分鐘）；當日不上課 | **HW1 截止 11/2（一）18:00** |
-| 9 | 11/5 | Transform Analysis of LTI Systems II（Ch. 5） | 期中考檢討；FIR 濾波的暫態與穩態；linear/minimum phase；minimum phase 建構（HW2 Part B 第 6 題） | |
+| 9 | 11/5 | Transform Analysis of LTI Systems II（Ch. 5） | 期中考檢討；group delay；FIR 濾波的暫態與穩態；linear/minimum phase；minimum phase 建構（HW2 Part B 第 6 題） | |
 | 10 | 11/12 | Structure for Discrete-Time System I（Ch. 6） | 直接型、多相結構、biquad；效果器架構簡介 | **HW2 截止 11/12 18:00**；Team Project 開題 |
 | 11 | 11/19 | Structure for Discrete-Time System II（Ch. 6） | 運算量分析 | **HW3 公布** |
 | 12 | 11/26 | Filter Design Techniques I（Ch. 7） | FIR 視窗法：Hamming / Hanning / Kaiser（Ch. 7.5） | **HW4 公布** |
