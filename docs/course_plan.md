@@ -22,7 +22,7 @@
 | 1 | 9/10 | Introduction to DSP；Discrete-time signals and systems I（Ch. 1–2） | [課程介紹](lectures/day01_intro_to_dsp.md)；開發環境與 Git | |
 | 2 | 9/17 | Discrete-time signals and systems II（Ch. 2） | [從連續到離散](lectures/day02_continuous_to_discrete.md)：相子、阻抗、RC 低通轉換函數；LTI、卷積、LCCDE；WAV 讀寫 | |
 | 3 | 9/24 | Z-transform I（Ch. 3） | RC 電路離散化；補充：[語音信號的表示](lectures/day03_speech_signal_representation.md) | **HW1 公布** |
-| 4 | 10/1 | Z-transform II（Ch. 3） | [頻率響應、暫態與穩態](lectures/day04_frequency_response_transient.md)：complex exponential 輸入 LTI、DTFT、z 轉換與 ROC 入門（Ch. 2.6–2.9, 3.1） | |
+| 4 | 10/1 | Z-transform II（Ch. 3） | [頻率響應](lectures/day04_frequency_response_transient.md)：complex exponential 輸入 LTI、DTFT、z 轉換與 ROC 入門（Ch. 2.6–2.9, 3.1；講義中暫態與穩態一節改於第 9 週講授） | |
 | 5 | 10/8 | Sampling of Continuous-Time Signals I（Ch. 4） | 取樣定理、混疊、重建 | |
 | 6 | 10/15 | Sampling of Continuous-Time Signals II（Ch. 4） | 多速率：↑L、↓M、非整數倍轉換（Ch. 4.6–4.7） | Team Project 分組登記 |
 | 7 | 10/22 | Transform Analysis of LTI Systems I（Ch. 5） | 頻率響應、極零點、群延遲、相位 unwrap | **HW2 公布** |
