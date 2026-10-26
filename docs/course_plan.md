@@ -9,7 +9,7 @@
 | 項目 | 比例 | 說明 |
 |---|---|---|
 | 個人作業 HW1–HW4 | 40% | 每份 10%；GitHub repo 繳交，LMS 登錄 repo URL＋完整 commit SHA |
-| 紙筆期中考 | 20% | 10/29（第 8 週，學士班期中考週）全堂，170 分鐘閉卷；範圍：卷積與脈衝響應、取樣後的離散頻率、DTFT／頻率響應（振幅與相位）、z 轉換與 pole-zero plot、由 H(z) 求脈衝響應、FIR 與 IIR、block diagram；不考暫態／穩態與 group delay |
+| 紙筆期中考 | 20% | 10/29（第 8 週，學士班期中考週）全堂，170 分鐘閉卷（closed book），可攜帶 A4 雙面小抄一張；範圍：卷積與脈衝響應、取樣後的離散頻率、DTFT／頻率響應（振幅與相位）、z 轉換與 pole-zero plot、由 H(z) 求脈衝響應、FIR 與 IIR、block diagram；不考暫態／穩態與 group delay |
 | 個人期末上機考 | 20% | 12/24（第 16 週）三節課內；140 分鐘作答；範圍為 HW1–HW4 與 Team Project 全部內容：現場修改／擴充自己的作業與效果器程式 |
 | Team Project：音樂音響效果器 | 20% | 2–3 人一組；團隊 40 分＋個人 60 分；12/15 繳交、12/17 評測。規格見 [team_project_audio_effects/](../assignments/team_project_audio_effects/) |
 
