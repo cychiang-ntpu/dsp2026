@@ -42,7 +42,7 @@ tremolo      <rate_Hz> <depth>
 
 需要 16-bit PCM 的 WAV 檔。兩種來源：
 
-- 用 HW1 的 `sine_wav_gen` 產生 3 秒、440 Hz 的弦波：
+- 在你的 `hw1/` 資料夾用 HW1 的 `sine_wav_gen` 產生 3 秒、440 Hz 的弦波，再把 `tone.wav` 複製過來：
 
   ```
   .\sine_wav_gen 44100 440 3.0 tone.wav
@@ -54,7 +54,7 @@ tremolo      <rate_Hz> <depth>
   ffmpeg -i song.mp3 -ar 44100 -ac 2 -c:a pcm_s16le song.wav
   ```
 
-把 WAV 檔放到同一個資料夾。
+把 WAV 檔放到程式殼所在的資料夾（和 `fx.exe` 同一層）。
 
 ### 4. 執行最簡單的效果器：tremolo（震音）
 
@@ -99,17 +99,18 @@ y[n] = (1 - d/2 + (d/2)·sin(2π·rate·n/fs)) · x[n]
 
 先把音量降 6 dB，再加震音。
 
-### 6. 看懂錯誤訊息
+### 6. 看懂錯誤與警告訊息
 
 | 訊息 | 原因 |
 |---|---|
+| `tone.wav: No such file or directory` | 找不到輸入檔：檔名打錯，或檔案不在目前的資料夾 |
 | `effect 'tremolo' failed. usage: tremolo <rate_Hz> <depth>` | 參數個數或範圍不對（例如只打 `tremolo 5`） |
 | `effect 'echo' is not implemented yet` | 這個效果器還沒實作，就是你們要寫的部分 |
 | `unknown effect: 'xxx' (use --list)` | 效果器名稱打錯 |
-| `WARNING: 175980 samples clipped ...` | 輸出超過 16-bit 能表示的範圍而被削波（例如 `gain 12`），聲音會破掉；請降低增益 |
 | `only 16-bit PCM is supported` | 輸入檔不是 16-bit PCM，照步驟 3 重新轉檔 |
+| `WARNING: 175980 samples clipped ...` | 警告，不是錯誤：輸出超過 16-bit 能表示的範圍而被削波（例如 `gain 12`），聲音會破掉；請降低增益 |
 
-發生錯誤時不會產生輸出檔。
+發生錯誤時不會產生輸出檔（已存在的同名檔案不會被更動）；出現削波警告時輸出檔仍會寫出。
 
 ### 7. 執行自動測試
 
@@ -117,9 +118,11 @@ y[n] = (1 - d/2 + (d/2)·sin(2π·rate·n/fs)) · x[n]
 mingw32-make test
 ```
 
-剛拿到時的結果：
+剛拿到時的結果（編譯指令之後）：
 
 ```
+effect 'eq' is not implemented yet
+effect 'echo' is not implemented yet
 [PASS] wav roundtrip
 [PASS] gain -6 dB
 [PASS] tremolo sideband
@@ -129,6 +132,7 @@ mingw32-make test
 3 passed, 0 failed, 2 not implemented (total 5)
 ```
 
+前兩行是 eq 與 echo 的測試呼叫到尚未實作的效果器時印出的訊息（位置可能在 PASS 那幾行的前面或後面）。
 最後 make 會顯示 `Error 1`，這是正常的：只要有任何一項不是 PASS，測試就算失敗。
 你們把 eq 與 echo 寫對之後會變成 PASS；繳交時必須全部 PASS
 （規格：clone 指定 SHA 後 `make` 即可建置、`make test` 全過）。

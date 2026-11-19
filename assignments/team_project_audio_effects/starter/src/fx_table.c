@@ -7,7 +7,7 @@
 #include "fx.h"
 
 const fx_entry_t fx_table[] = {
-    /* 名稱          函式            參數說明 */
+    /* 名稱          函式            參數說明（只用英文與 ASCII：Windows 主控台與圖形介面都要讀） */
     { "gain",        fx_gain,        "<dB>" },
     { "eq",          fx_eq,          "<lowpass|highpass|bandpass|lowshelf|highshelf> <f0_Hz> [Q=0.7071] [gain_dB=0]" },
     { "echo",        fx_echo,        "<delay_s> <feedback>" },
@@ -17,9 +17,9 @@ const fx_entry_t fx_table[] = {
     { "flanger",     fx_flanger,     "<rate_Hz> <depth_ms> [feedback=0] [mix=0.5]" },
     { "chorus",      fx_chorus,      "<rate_Hz> <depth_ms> [mix=0.5]" },
     { "distortion",  fx_distortion,  "<drive_dB> [oversample=4]" },
-    { "stretch",     fx_stretch,     "<ratio>            (2.0 = 長度變兩倍，音高不變)" },
-    { "pitch",       fx_pitch,       "<semitones>        (+12 = 高八度，長度不變)" },
-    { "spectrogram", fx_spectrogram, "<out.csv> [N=1024] [hop=256]   (音訊原樣通過)" },
+    { "stretch",     fx_stretch,     "<ratio>            (2.0 = twice as long, same pitch)" },
+    { "pitch",       fx_pitch,       "<semitones>        (+12 = one octave up, same length)" },
+    { "spectrogram", fx_spectrogram, "<out.csv> [N=1024] [hop=256]   (audio passes through unchanged)" },
 };
 
 const int fx_count = (int)(sizeof(fx_table) / sizeof(fx_table[0]));
