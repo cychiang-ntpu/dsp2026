@@ -21,13 +21,13 @@
 | ★ 等化器（EQ）：低通／高通／帶通／Shelving | FIR 視窗法或 IIR 二階節（biquad） | Ch. 5, 7；HW2、HW3 |
 | ★ 延遲／回音（Delay / Echo） | LCCDE、回授延遲線 | Ch. 2；HW1 |
 | 殘響（Reverb）：Schroeder comb + all-pass | IIR 結構、all-pass 系統 | Ch. 5.5, 6 |
-| 顫音／震音（Tremolo / Vibrato） | 振幅調變、時變延遲與內插 | Ch. 4 |
+| 顫音（Vibrato） | 時變延遲與內插 | Ch. 4 |
 | Flanger / Chorus | 時變延遲線 + LFO | Ch. 4, 6 |
 | 失真（Distortion / Overdrive） | 非線性映射 + 過取樣（↑L 濾波 ↓M）抗混疊 | Ch. 4.6；HW3 |
 | 變速／變調（Time-stretch / Pitch-shift） | 取樣率轉換或 FFT phase vocoder | Ch. 4.6, 10；HW3、HW4 |
 | 頻譜顯示／Spectrogram 輸出 | 短時 FFT | Ch. 9, 10.3；HW4 |
 
-自訂效果器可申請認列。所有濾波、FFT、內插皆須自行以 C 實作，不得呼叫外部 DSP 函式庫；
+震音（Tremolo，振幅調變）已在程式殼中完整實作，作為範例，不計入必做數量。自訂效果器可申請認列。所有濾波、FFT、內插皆須自行以 C 實作，不得呼叫外部 DSP 函式庫；
 WAV 讀寫可沿用 HW1 的程式碼。
 
 ## 程式介面
@@ -35,7 +35,16 @@ WAV 讀寫可沿用 HW1 的程式碼。
     ./fx.exe in.wav out.wav effect1 [params...] [effect2 [params...] ...]
     ./fx.exe input.wav output.wav eq lowpass 4000 echo 0.3 0.5 reverb 0.8
 
-效果器可串接（chain）。每個效果器的參數格式在 `docs/interface.md` 定義。
+本專案**只需完成命令列（CLI）版本**，不需要製作圖形介面；圖形介面由教師另行提供，之後發布給各組使用。
+
+效果器可串接（chain）。命令列格式、效果器名稱與參數順序為**固定介面**，定義在 [starter/docs/interface.md](starter/docs/interface.md)，
+各組不可更改（教師提供的圖形介面會直接呼叫 `fx`）；只能在既有參數之後新增有預設值的選用參數，或新增自訂效果器。
+
+## 程式殼（starter）
+
+起始程式在 [starter/](starter/)：命令列、WAV 讀寫、效果器串接與測試架構已寫好，
+各效果器與共用 DSP 元件（biquad、延遲線、FIR、FFT）留空，註解中附數學式與參考文獻。
+把 `starter/` 的內容複製到 team repo 根目錄後開始實作，說明見 [starter/README.md](starter/README.md)。
 
 ## Team repo 必備內容
 

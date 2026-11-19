@@ -1,0 +1,11 @@
+# 編譯產物
+*.exe
+*.o
+*.obj
+fx
+test_fx
+
+# 測試與執行產生的檔案（demo/ 內的示範音檔要進 repo）
+/*.wav
+/*.csv
+test_tmp.wav

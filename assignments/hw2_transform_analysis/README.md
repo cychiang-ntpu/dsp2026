@@ -5,7 +5,7 @@
 - 「Filtering: Steady and Transient States」與「Linear/Minimum Phase Systems」
   （2024 版 Assignment-3：https://hackmd.io/QgTHBIoYRwSuiLTZDn3Gmw ，全文存於 [archive/](../archive/2024_hw3_filtering_steady_transient/)）
 
-公布第 7 週 10/22，截止 11/12 18:00。
+公布第 7 週 10/22，截止 11/30（一）23:59（原訂 11/12 18:00，延期）。
 
 ## 學習目標
 1. 計算振幅響應、相位響應與群延遲；依課本理論展示群延遲效應

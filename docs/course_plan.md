@@ -28,9 +28,9 @@
 | 7 | 10/22 | Transform Analysis of LTI Systems I（Ch. 5） | 頻率響應、極零點、群延遲、相位 unwrap | **HW2 公布** |
 | 8 | 10/29 | Midterm | **紙筆期中考**（全堂，170 分鐘）；當日不上課 | **HW1 截止 11/2（一）18:00** |
 | 9 | 11/5 | Transform Analysis of LTI Systems II（Ch. 5） | 期中考檢討；group delay；FIR 濾波的暫態與穩態；linear/minimum phase；minimum phase 建構（HW2 Part B 第 6 題） | |
-| 10 | 11/12 | Structure for Discrete-Time System I（Ch. 6） | 直接型、多相結構、biquad；效果器架構簡介 | **HW2 截止 11/12 18:00**；Team Project 開題 |
+| 10 | 11/12 | Structure for Discrete-Time System I（Ch. 6） | 直接型、多相結構、biquad；效果器架構簡介 | Team Project 開題 |
 | 11 | 11/19 | Structure for Discrete-Time System II（Ch. 6） | 運算量分析 | **HW3 公布** |
-| 12 | 11/26 | Filter Design Techniques I（Ch. 7） | FIR 視窗法：Hamming / Hanning / Kaiser（Ch. 7.5） | **HW4 公布** |
+| 12 | 11/26 | Filter Design Techniques I（Ch. 7） | FIR 視窗法：Hamming / Hanning / Kaiser（Ch. 7.5） | **HW4 公布**；**HW2 截止 11/30（一）23:59**（原訂 11/12，延期） |
 | 13 | 12/3 | Filter Design Techniques II（Ch. 7） | 視窗法設計範例；HW3 實作細節 | Team Project 進度檢查 |
 | 14 | 12/10 | Discrete Fourier Transform I（Ch. 8） | DFT、圓周卷積、視窗效應 | **HW3 截止 12/10 18:00** |
 | 15 | 12/17 | Discrete Fourier Transform II（Ch. 8）；Computation of the DFT（Ch. 9，併講） | FFT 演算法；Team Project 評測（報告＋展示＋口試）；上機模擬與補強；AOL 問卷（不計分） | **HW4 截止 12/17 18:00**；Team 繳交 12/15 18:00 |
@@ -71,10 +71,10 @@
 | 10/22 | HW2 公布 |
 | 10/29 | 紙筆期中考（全堂，170 分鐘） |
 | 11/2 18:00 | HW1 截止 |
-| 11/12 18:00 | HW2 截止 |
 | 11/12 | Team Project 開題（一頁企劃） |
 | 11/19 | HW3 公布（同日發布 input.wav 測試音檔） |
 | 11/26 | HW4 公布 |
+| 11/30（一）23:59 | HW2 截止（原訂 11/12 18:00，延期） |
 | 12/3 | Team Project 進度檢查 |
 | 12/10 18:00 | HW3 截止 |
 | 12/15 18:00 | Team Project 繳交截止（repo URL＋SHA） |
@@ -87,7 +87,7 @@
 | 作業 | 語言 | 核心內容 | 公布 | 截止 |
 |---|---|---|---|---|
 | [HW1](../assignments/hw1_rc_lowpass/) RC 低通模擬 | C + Python 繪圖 | Part A 相子暖身 3 題；Part B 7 題連續/離散分析推導 + `sine_wav_gen.c`、`RC_filtering.c` | 9/24 | 11/2 18:00 |
-| [HW2](../assignments/hw2_transform_analysis/) 轉換分析 | C + Python Jupyter | Part A 給定 H(z)：相位/群延遲/振幅響應；Hanning 視窗弦波經 LCCDE 濾波。Part B 截斷理想低通 FIR（M=4…2048）的暫態/穩態；linear vs. minimum phase | 10/22 | 11/12 18:00 |
+| [HW2](../assignments/hw2_transform_analysis/) 轉換分析 | C + Python Jupyter | Part A 給定 H(z)：相位/群延遲/振幅響應；Hanning 視窗弦波經 LCCDE 濾波。Part B 截斷理想低通 FIR（M=4…2048）的暫態/穩態；linear vs. minimum phase | 10/22 | 11/30（一）23:59 |
 | [HW3](../assignments/hw3_sampling_rate_lccde/) 取樣率轉換（LCCDE） | C | 44.1 kHz → 8 kHz（L=80, M=441），視窗法 FIR P=1025，直接卷積 | 11/19 | 12/10 18:00 |
 | [HW4](../assignments/hw4_sampling_rate_fft/) 取樣率轉換（FFT） | C | 同 HW3 規格；overlap-add P=441、Q=1025、N=2048；自行實作 FFT | 11/26 | 12/17 18:00 |
 

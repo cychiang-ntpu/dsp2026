@@ -37,7 +37,7 @@ dsp2026/
 │   ├── hw2_transform_analysis/     轉換分析 + 暫態/穩態濾波（C + Jupyter）
 │   ├── hw3_sampling_rate_lccde/    取樣率轉換：FIR 低通 + LCCDE（C）
 │   ├── hw4_sampling_rate_fft/      取樣率轉換：FFT 濾波器 overlap-add（C）
-│   ├── team_project_audio_effects/ Team Project：音樂音響效果器（C，2–3 人一組）
+│   ├── team_project_audio_effects/ Team Project：音樂音響效果器（C，2–3 人一組；starter/ 為程式殼）
 │   └── archive/                    歷年題目原文（2024 Filtering: Steady and Transient States，已併入 HW2）
 ├── samples_2025/           去年（1141）作業樣本（hw1–hw4 各 HIGH / MEDIUM / LOW，陸續補上）
 ├── docs/
@@ -71,7 +71,7 @@ Oppenheim, A. V., & Schafer, R. W. (2009). *Discrete-Time Signal Processing* (3r
 | 作業 | 主題 | 語言 | 截止 |
 |---|---|---|---|
 | HW1 | RC 低通濾波器數位模擬 | C + Python | 11/2 18:00 |
-| HW2 | 轉換分析 + 暫態/穩態、linear/minimum phase 濾波 | C + Python Jupyter | 11/12 18:00 |
+| HW2 | 轉換分析 + 暫態/穩態、linear/minimum phase 濾波 | C + Python Jupyter | 11/30（一）23:59 |
 | HW3 | 取樣率轉換（LCCDE） | C | 12/10 18:00 |
 | HW4 | 取樣率轉換（FFT） | C | 12/17 18:00 |
 
